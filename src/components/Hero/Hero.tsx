@@ -1,10 +1,10 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <section className="relative flex h-[70vh] min-h-[500px] items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
-        <Image 
+        <Image
           src="https://placehold.co/1920x1080/2f5b5d/ffffff/png?text=Divine+Spirit"
           alt="Traditional Pooja Lamps"
           fill
@@ -14,19 +14,26 @@ export default function Hero() {
         />
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
-      
-      <div className="container relative z-10 text-center max-w-4xl text-white animate-[fadeIn_1s_ease-out]">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-lg text-white">
+
+      <div className="relative z-10 container max-w-4xl animate-[fadeIn_1s_ease-out] text-center text-white">
+        <h1 className="mb-6 text-4xl leading-tight font-bold text-white drop-shadow-lg md:text-6xl">
           Embrace the Divine Spirit
         </h1>
-        <p className="text-base md:text-xl mb-10 opacity-90 leading-relaxed max-w-2xl mx-auto drop-shadow">
-          Discover authentic pooja essentials, sacred idols, and spiritual literature to elevate your daily prayers and rituals.
+        <p className="mx-auto mb-10 max-w-2xl text-base leading-relaxed opacity-90 drop-shadow md:text-xl">
+          Discover authentic pooja essentials, sacred idols, and spiritual literature to elevate your daily prayers and
+          rituals.
         </p>
-        <div className="flex gap-4 justify-center flex-wrap">
-          <a href="#products" className="inline-flex items-center justify-center px-8 py-3 rounded font-bold transition-all bg-primary hover:bg-primary-dark text-white text-sm uppercase tracking-wide">
+        <div className="flex flex-wrap justify-center gap-4">
+          <a
+            href="#products"
+            className="bg-primary hover:bg-primary-dark inline-flex items-center justify-center rounded px-8 py-3 text-sm font-bold tracking-wide text-white uppercase transition-all"
+          >
             Explore Collection
           </a>
-          <a href="#contact" className="inline-flex items-center justify-center px-8 py-3 rounded font-bold transition-all border-2 border-white text-white hover:bg-white hover:text-primary text-sm uppercase tracking-wide">
+          <a
+            href="#contact"
+            className="hover:text-primary inline-flex items-center justify-center rounded border-2 border-white px-8 py-3 text-sm font-bold tracking-wide text-white uppercase transition-all hover:bg-white"
+          >
             Get a Quote
           </a>
         </div>

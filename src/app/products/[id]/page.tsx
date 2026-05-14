@@ -1,10 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
-import { products } from "@/data/products";
-import { notFound } from "next/navigation";
+import Image from 'next/image';
+import Link from 'next/link';
+import { products } from '@/data/products';
+import { notFound } from 'next/navigation';
 
 // Disable static params for demo purposes, so it builds easily without needing all paths generated.
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -15,51 +15,52 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   }
 
   return (
-    <div className="py-12 md:py-20 bg-stone-50 dark:bg-stone-900 min-h-screen">
+    <div className="min-h-screen bg-stone-50 py-12 md:py-20 dark:bg-stone-900">
       <div className="container max-w-6xl">
         <div className="mb-8">
-          <Link href="/products" className="text-stone-500 hover:text-primary transition-colors inline-flex items-center gap-2">
+          <Link
+            href="/products"
+            className="hover:text-primary inline-flex items-center gap-2 text-stone-500 transition-colors"
+          >
             &larr; Back to Catalog
           </Link>
         </div>
 
-        <div className="bg-white dark:bg-stone-800 rounded-3xl shadow-xl border border-stone-200 dark:border-stone-700 overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+        <div className="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-xl dark:border-stone-700 dark:bg-stone-800">
+          <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
             {/* Image Section */}
-            <div className="relative w-full h-[400px] md:h-[600px] bg-stone-100 dark:bg-stone-900">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                unoptimized
-                className="object-cover"
-              />
+            <div className="relative h-[400px] w-full bg-stone-100 md:h-[600px] dark:bg-stone-900">
+              <Image src={product.image} alt={product.name} fill unoptimized className="object-cover" />
             </div>
 
             {/* Details Section */}
-            <div className="p-8 md:p-12 flex flex-col justify-center">
-              <span className="text-sm font-semibold text-primary uppercase tracking-widest mb-3">
+            <div className="flex flex-col justify-center p-8 md:p-12">
+              <span className="text-primary mb-3 text-sm font-semibold tracking-widest uppercase">
                 {product.category}
               </span>
-              <h1 className="text-3xl md:text-5xl font-display font-bold text-stone-900 dark:text-white mb-6 leading-tight">
+              <h1 className="font-display mb-6 text-3xl leading-tight font-bold text-stone-900 md:text-5xl dark:text-white">
                 {product.name}
               </h1>
 
-              <div className="w-16 h-1 bg-secondary rounded-full mb-8"></div>
+              <div className="bg-secondary mb-8 h-1 w-16 rounded-full"></div>
 
-              <p className="text-lg text-stone-600 dark:text-stone-300 mb-10 leading-relaxed">
-                {product.description}
-              </p>
+              <p className="mb-10 text-lg leading-relaxed text-stone-600 dark:text-stone-300">{product.description}</p>
 
-              <div className="bg-stone-50 dark:bg-stone-900/50 p-6 rounded-2xl border border-stone-100 dark:border-stone-700 mb-10">
-                <h3 className="font-display font-semibold text-lg mb-2 text-stone-900 dark:text-white">Quote Information</h3>
-                <p className="text-stone-500 dark:text-stone-400 text-sm">
-                  This item is available for bulk and individual orders. Pricing varies based on customization and quantity. Contact us directly to get the best quote for your requirements.
+              <div className="mb-10 rounded-2xl border border-stone-100 bg-stone-50 p-6 dark:border-stone-700 dark:bg-stone-900/50">
+                <h3 className="font-display mb-2 text-lg font-semibold text-stone-900 dark:text-white">
+                  Quote Information
+                </h3>
+                <p className="text-sm text-stone-500 dark:text-stone-400">
+                  This item is available for bulk and individual orders. Pricing varies based on customization and
+                  quantity. Contact us directly to get the best quote for your requirements.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-                <a href="#contact-form" className="inline-flex items-center justify-center px-8 py-4 rounded-full font-medium transition-all shadow-md hover:shadow-[0_0_15px_rgba(234,88,12,0.3)] hover:-translate-y-0.5 bg-gradient-to-br from-primary to-primary-dark hover:from-primary-light hover:to-primary text-white font-display text-lg flex-grow">
+              <div className="mt-auto flex flex-col gap-4 sm:flex-row">
+                <a
+                  href="#contact-form"
+                  className="from-primary to-primary-dark hover:from-primary-light hover:to-primary font-display inline-flex flex-grow items-center justify-center rounded-full bg-gradient-to-br px-8 py-4 text-lg font-medium text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(234,88,12,0.3)]"
+                >
                   Request a Quote
                 </a>
               </div>
@@ -68,31 +69,60 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         </div>
 
         {/* Inquiry Form Section */}
-        <div id="contact-form" className="mt-16 max-w-3xl mx-auto bg-white dark:bg-stone-800 p-8 md:p-12 rounded-3xl shadow-lg border border-stone-200 dark:border-stone-700">
-          <h2 className="text-3xl font-display font-semibold mb-8 text-center text-stone-900 dark:text-white">Inquire About This Product</h2>
+        <div
+          id="contact-form"
+          className="mx-auto mt-16 max-w-3xl rounded-3xl border border-stone-200 bg-white p-8 shadow-lg md:p-12 dark:border-stone-700 dark:bg-stone-800"
+        >
+          <h2 className="font-display mb-8 text-center text-3xl font-semibold text-stone-900 dark:text-white">
+            Inquire About This Product
+          </h2>
           <form className="flex flex-col gap-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Your Name</label>
-                <input type="text" className="w-full px-4 py-3 border border-stone-300 dark:border-stone-600 rounded-xl bg-stone-50 dark:bg-stone-900 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="John Doe" required />
+                <input
+                  type="text"
+                  className="focus:ring-primary/20 focus:border-primary w-full rounded-xl border border-stone-300 bg-stone-50 px-4 py-3 transition-all outline-none focus:ring-2 dark:border-stone-600 dark:bg-stone-900"
+                  placeholder="John Doe"
+                  required
+                />
               </div>
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Email Address</label>
-                <input type="email" className="w-full px-4 py-3 border border-stone-300 dark:border-stone-600 rounded-xl bg-stone-50 dark:bg-stone-900 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all" placeholder="john@example.com" required />
+                <input
+                  type="email"
+                  className="focus:ring-primary/20 focus:border-primary w-full rounded-xl border border-stone-300 bg-stone-50 px-4 py-3 transition-all outline-none focus:ring-2 dark:border-stone-600 dark:bg-stone-900"
+                  placeholder="john@example.com"
+                  required
+                />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Product</label>
-              <input type="text" value={product.name} className="w-full px-4 py-3 border border-stone-300 dark:border-stone-600 rounded-xl bg-stone-100 dark:bg-stone-900/50 text-stone-500 cursor-not-allowed" readOnly />
+              <input
+                type="text"
+                value={product.name}
+                className="w-full cursor-not-allowed rounded-xl border border-stone-300 bg-stone-100 px-4 py-3 text-stone-500 dark:border-stone-600 dark:bg-stone-900/50"
+                readOnly
+              />
             </div>
 
             <div className="flex flex-col gap-2">
-              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">Required Quantity & Details</label>
-              <textarea className="w-full px-4 py-3 border border-stone-300 dark:border-stone-600 rounded-xl bg-stone-50 dark:bg-stone-900 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all min-h-[120px]" placeholder="Please provide quantity and any specific requirements..." required></textarea>
+              <label className="text-sm font-medium text-stone-700 dark:text-stone-300">
+                Required Quantity & Details
+              </label>
+              <textarea
+                className="focus:ring-primary/20 focus:border-primary min-h-[120px] w-full rounded-xl border border-stone-300 bg-stone-50 px-4 py-3 transition-all outline-none focus:ring-2 dark:border-stone-600 dark:bg-stone-900"
+                placeholder="Please provide quantity and any specific requirements..."
+                required
+              ></textarea>
             </div>
 
-            <button type="submit" className="mt-4 w-full inline-flex items-center justify-center px-8 py-4 rounded-xl font-medium transition-all shadow-md hover:shadow-[0_0_15px_rgba(234,88,12,0.3)] hover:-translate-y-0.5 bg-stone-900 dark:bg-white text-white dark:text-stone-900 hover:bg-stone-800 dark:hover:bg-stone-100 font-display text-lg">
+            <button
+              type="submit"
+              className="font-display mt-4 inline-flex w-full items-center justify-center rounded-xl bg-stone-900 px-8 py-4 text-lg font-medium text-white shadow-md transition-all hover:-translate-y-0.5 hover:bg-stone-800 hover:shadow-[0_0_15px_rgba(234,88,12,0.3)] dark:bg-white dark:text-stone-900 dark:hover:bg-stone-100"
+            >
               Send Inquiry
             </button>
           </form>

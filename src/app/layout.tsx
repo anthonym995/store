@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
 
 const openSans = Open_Sans({
   variable: '--font-open-sans',
@@ -21,11 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${openSans.variable}`}>
-      <body className="flex min-h-screen flex-col font-sans">
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
-      </body>
+      <body className="flex min-h-screen flex-col bg-white font-sans">{children}</body>
     </html>
   );
 }

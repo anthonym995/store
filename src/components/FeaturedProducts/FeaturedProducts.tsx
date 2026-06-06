@@ -3,48 +3,62 @@ import Link from 'next/link';
 import { products } from '@/data/products';
 
 export default function FeaturedProducts() {
-  // Take the first 4 products to feature
   const featured = products.slice(0, 4);
   return (
-    <section id="products" className="bg-[#F9F9F9] py-16">
+    <section id="products" className="bg-[#F9F9F6] py-16">
       <div className="container mx-auto">
-        <h2 className="border-primary mb-10 border-l-4 pl-4 text-3xl font-bold text-stone-800">Featured Products</h2>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-10 flex items-end justify-between">
+          <div>
+            <h2 className="font-display text-3xl font-bold text-[#081C15]">Featured Masterpieces</h2>
+            <p className="mt-2 font-medium text-[#2D6A4F]">Finest craftsmanship from Nachiyar Kovil and beyond.</p>
+          </div>
+          <Link
+            href="/products"
+            className="hidden text-sm font-bold tracking-wider text-[#D4AF37] uppercase transition-colors hover:text-[#1B4332] md:inline-flex"
+          >
+            View Complete Catalog →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {featured.map((product) => (
             <Link
               href={`/products/${product.id}`}
               key={product.id}
-              className="group flex flex-col overflow-hidden rounded-md border border-stone-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
+              className="group flex flex-col border border-stone-100 bg-white shadow-sm transition-all duration-300 hover:shadow-xl"
             >
-              <div className="relative w-full overflow-hidden bg-white pt-[100%]">
+              <div className="relative w-full overflow-hidden border-b border-stone-50 bg-white pt-[100%]">
                 <Image
-                  src={product.image}
+                  src={product.image || '/images/placeholder.jpg'}
                   alt={product.name}
                   fill
                   unoptimized
-                  className="absolute inset-0 object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                  className="absolute inset-0 object-cover mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="flex flex-grow flex-col border-t border-stone-100 p-5">
-                <span className="mb-2 text-[11px] font-semibold tracking-wider text-stone-500 uppercase">
-                  {product.category}
+              <div className="flex flex-grow flex-col p-6">
+                <span className="mb-2 truncate text-xs font-bold tracking-widest text-[#D4AF37] uppercase">
+                  {product.category.split('/')[0]}
                 </span>
-                <h3 className="group-hover:text-primary mb-4 flex-grow text-base leading-snug font-semibold text-stone-800 transition-colors">
+                <h3 className="font-display mb-2 text-lg leading-tight font-bold text-[#081C15] transition-colors group-hover:text-[#2D6A4F]">
                   {product.name}
                 </h3>
-                <div className="mt-auto">
-                  <span className="bg-primary hover:bg-primary-dark inline-flex w-full items-center justify-center rounded px-4 py-2 text-sm font-semibold text-white transition-all">
-                    Request Quote
+                <p className="mb-6 line-clamp-2 text-sm text-stone-500">{product.material}</p>
+                <div className="mt-auto flex items-center justify-between">
+                  <span className="text-sm font-bold text-[#081C15]">{product.price}</span>
+                  <span className="border border-[#1B4332] px-3 py-1.5 text-xs font-bold tracking-wider text-[#1B4332] uppercase transition-colors group-hover:bg-[#1B4332] group-hover:text-white">
+                    Inquire
                   </span>
                 </div>
               </div>
             </Link>
           ))}
         </div>
-        <div className="mt-10 text-center">
+
+        <div className="mt-10 text-center md:hidden">
           <Link
             href="/products"
-            className="border-primary text-primary hover:bg-primary inline-flex items-center justify-center rounded border px-8 py-2.5 font-semibold transition-all hover:text-white"
+            className="inline-flex items-center justify-center border-2 border-[#1B4332] px-8 py-3 text-sm font-bold tracking-widest text-[#1B4332] uppercase transition-colors hover:bg-[#1B4332] hover:text-white"
           >
             View Complete Catalog
           </Link>

@@ -2,73 +2,54 @@ import Image from 'next/image';
 
 const categories = [
   {
-    id: 'books',
-    title: 'Spiritual Books',
-    description: 'Vedas, Upanishads, Bhagavad Gita, and spiritual literature in multiple languages.',
-    image: 'https://placehold.co/600x600/f97316/ffffff/png?text=Spiritual+Books',
+    id: 'kuthu-vilakku',
+    title: 'Traditional Kuthu Vilakku',
+    image: 'https://placehold.co/600x600/1B4332/D4AF37/png?text=Brass+Lamps',
   },
   {
-    id: 'pooja',
-    title: 'Pooja Essentials',
-    description: 'Incense, camphor, deepams, agarbathi, and necessary items for daily worship.',
-    image: 'https://placehold.co/600x600/f97316/ffffff/png?text=Pooja+Items',
+    id: 'silver-finish',
+    title: 'Silver-Finish Lamps',
+    image: 'https://placehold.co/600x600/1B4332/e2e8f0/png?text=Silver+Lamps',
   },
   {
-    id: 'idols',
-    title: 'Idols & Golu Dolls',
-    description: 'Beautifully crafted brass, panchaloha idols, and traditional Navaratri Golu dolls.',
-    image: 'https://placehold.co/600x600/f97316/ffffff/png?text=Idols+&+Dolls',
+    id: 'designer-diyas',
+    title: 'Designer Brass Diyas',
+    image: 'https://placehold.co/600x600/1B4332/D4AF37/png?text=Brass+Diyas',
   },
   {
-    id: 'jewellery',
-    title: 'Temple Jewellery',
-    description: 'Traditional and authentic temple jewellery for deities and classical dance.',
-    image: 'https://placehold.co/600x600/f97316/ffffff/png?text=Temple+Jewellery',
+    id: 'sacred-vessels',
+    title: 'Sacred Ritual Vessels',
+    image: 'https://placehold.co/600x600/1B4332/D4AF37/png?text=Ritual+Vessels',
   },
   {
-    id: 'homam',
-    title: 'Homam & Yagna Items',
-    description: 'Pure herbs, samagri, and essential items for conducting sacred homams and yagnas.',
-    image: 'https://placehold.co/600x600/f97316/ffffff/png?text=Homam+Items',
-  },
-  {
-    id: 'gifting',
-    title: 'Divine & Corporate Gifting',
-    description: 'Premium spiritual gifts and return gifts for weddings, housewarmings, and events.',
-    image: 'https://placehold.co/600x600/f97316/ffffff/png?text=Divine+Gifting',
-  },
-  {
-    id: 'yantra',
-    title: 'Yantra & Tantra',
-    description: 'Authentic yantras and spiritual items for positive energy and vastu.',
-    image: 'https://placehold.co/600x600/f97316/ffffff/png?text=Yantras',
-  },
-  {
-    id: 'clothing',
-    title: 'Ethnic Wear',
-    description: 'Traditional dhotis, sarees, and devotional clothing for temple visits.',
-    image: 'https://placehold.co/600x600/f97316/ffffff/png?text=Ethnic+Wear',
+    id: 'architectural',
+    title: 'Architectural Lamps',
+    image: 'https://placehold.co/600x600/1B4332/D4AF37/png?text=Pipe+Lamps',
   },
 ];
 
 export default function Categories() {
   return (
-    <section id="categories" className="bg-white py-16">
+    <section id="categories" className="border-b border-stone-100 bg-white py-16">
       <div className="container mx-auto">
-        <h2 className="mb-10 text-center text-3xl font-bold text-stone-800">Shop by Category</h2>
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:gap-6 lg:grid-cols-8">
+        <div className="mb-12 text-center">
+          <h2 className="font-display text-3xl font-bold text-[#081C15]">Explore Collections</h2>
+          <div className="mx-auto mt-4 h-1 w-20 bg-[#D4AF37]"></div>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-8 md:gap-12">
           {categories.map((cat) => (
-            <div key={cat.id} className="group flex cursor-pointer flex-col items-center">
-              <div className="group-hover:border-primary relative mb-3 h-24 w-24 overflow-hidden rounded-full border-2 border-transparent shadow-md transition-all group-hover:shadow-lg md:h-32 md:w-32">
+            <div key={cat.id} className="group flex max-w-[160px] cursor-pointer flex-col items-center">
+              <div className="relative mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-[#F9F9F6] shadow-sm transition-all group-hover:border-[#D4AF37] group-hover:shadow-xl md:h-40 md:w-40">
                 <Image
                   src={cat.image}
                   alt={cat.title}
                   fill
                   unoptimized
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-              <h3 className="group-hover:text-primary text-center text-sm font-semibold text-stone-800 transition-colors md:text-base">
+              <h3 className="text-center text-sm font-bold text-[#081C15] transition-colors group-hover:text-[#2D6A4F] md:text-base">
                 {cat.title}
               </h3>
             </div>

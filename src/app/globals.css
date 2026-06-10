@@ -1,24 +1,32 @@
 @import 'tailwindcss';
 
 @theme inline {
-  /* Deep Heritage Green */
-  --color-primary: #1b4332;
-  --color-primary-light: #2d6a4f;
-  --color-primary-dark: #081c15;
+  /* Rich Maroon (Used for buttons and specific banners) */
+  --color-maroon: #5a0b14;
+  --color-maroon-light: #7a1420;
 
-  /* Metallic Gold / Brass */
-  --color-secondary: #d4af37;
-  --color-secondary-light: #f3e5ab;
-  --color-secondary-dark: #aa8c2c;
+  /* Deep Navy Blue (Used for text, footer, and dark sections) */
+  --color-navy: #001524;
+  --color-navy-light: #0a2239;
+
+  /* Premium Gold / Brass */
+  --color-gold: #d4af37;
+  --color-gold-light: #f3e5ab;
+
+  /* Warm Cream / Beige (Main background for top sections) */
+  --color-cream: #fcf9ef;
+  --color-cream-dark: #f0ead6;
+
+  /* Deep Brown (For alternating dark sections) */
+  --color-brown: #2a1610;
 
   --font-sans: var(--font-open-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-playfair-display), serif;
 }
 
 :root {
-  /* Warm cream background instead of stark white */
-  --background: #f9f9f6;
-  --foreground: #081c15;
+  --background: #ffffff;
+  --foreground: var(--color-navy);
 }
 
 body {

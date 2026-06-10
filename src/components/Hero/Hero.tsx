@@ -2,43 +2,46 @@ import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <section className="relative flex h-[70vh] min-h-[500px] items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0 bg-[#081C15]">
-        <Image
-          src="https://placehold.co/1920x1080/1B4332/D4AF37/png?text=Divine+Brass+Craftsmanship"
-          alt="Traditional Brass Kuthu Vilakku"
-          fill
-          unoptimized
-          priority
-          className="object-cover opacity-50 mix-blend-overlay"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#081C15] via-transparent to-transparent"></div>
-      </div>
+    <section className="w-full overflow-hidden bg-[#fcf9ef]">
+      {/* Main Container. Column on mobile, row on large.
+        The overall container defines the height context: 
+        minimum 60vh on mobile, and exactly 80vh on large screens for a predictable, robust hero.
+      */}
+      <div className="flex min-h-[60vh] flex-col lg:h-[80vh] lg:flex-row">
+        {/* Left Side: Copy & CTA */}
+        {/* Centered content. Ensuring this side also fills vertical space (lg:h-full)
+          for proper vertical centering against the image. 
+        */}
+        <div className="flex w-full flex-col justify-center px-8 py-16 lg:h-full lg:w-1/2 lg:p-20 xl:p-32">
+          <span className="mb-4 block font-sans text-sm font-bold tracking-[0.2em] text-[#d4af37] uppercase">
+            Auspicious Heritage
+          </span>
+          <h1 className="font-display mb-6 text-4xl leading-tight font-normal text-[#001524] lg:text-6xl">
+            Masterpiece <br />
+            <span className="font-semibold text-[#d4af37]">Brassware</span>
+          </h1>
+          <p className="mb-10 max-w-md text-base leading-relaxed text-[#001524]">
+            Discover our exclusive collection of traditional Kuthu Vilakku, designer diyas, and authentic ritual vessels
+            engineered with high-grade casting brass.
+          </p>
+          <div className="flex gap-4">
+            <a
+              href="/products"
+              className="bg-[#5a0b14] px-8 py-3.5 text-sm font-bold tracking-widest text-white uppercase transition-colors hover:bg-[#001524]"
+            >
+              Explore Collection
+            </a>
+          </div>
+        </div>
 
-      <div className="relative z-10 container max-w-4xl animate-[fadeIn_1s_ease-out] text-center text-white">
-        <span className="mb-4 block text-sm font-bold tracking-[0.2em] text-[#D4AF37] uppercase">
-          Auspicious Heritage, Timeless Devotion
-        </span>
-        <h1 className="font-display mb-6 text-4xl leading-tight font-bold text-white drop-shadow-lg md:text-6xl">
-          Premium Sacred Metalware
-        </h1>
-        <p className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-stone-200 drop-shadow md:text-xl">
-          Discover our exclusive collection of traditional Kuthu Vilakku, designer diyas, and authentic ritual vessels
-          engineered with high-grade casting brass.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <a
-            href="#products"
-            className="inline-flex items-center justify-center rounded bg-[#D4AF37] px-8 py-3 text-sm font-bold tracking-wide text-[#081C15] uppercase shadow-lg transition-all hover:bg-[#AA8C2C]"
-          >
-            Explore Catalog
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center rounded border-2 border-white px-8 py-3 text-sm font-bold tracking-wide text-white uppercase transition-all hover:bg-white hover:text-[#1B4332]"
-          >
-            Request Custom Quote
-          </a>
+        {/* Right Side: Showcase Image */}
+        {/* CRITICAL: Image parent must be `relative` and have explicit height and width 
+          constraints for a `fill` image to work correctly.
+          - We use `h-full` on desktop so it perfectly fills the `80vh` parent container.
+          - Setting `min-h-[400px]` on mobile provides space for the image to display above/below.
+        */}
+        <div className="relative h-full min-h-[400px] w-full lg:w-1/2">
+          <Image src="/hero.png" alt="Tall Brass Lamp" fill className="object-cover object-center" priority />
         </div>
       </div>
     </section>

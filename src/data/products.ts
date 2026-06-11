@@ -1,3 +1,22 @@
+import { StaticImageData } from 'next/image';
+import {
+  image1,
+  image2,
+  image3,
+  image4,
+  image5,
+  image6,
+  image7,
+  image8,
+  image9,
+  image10,
+  image11,
+  image12,
+  image13,
+  image14,
+  image15,
+} from '../assets';
+
 export interface Product {
   id: number;
   name: string;
@@ -7,7 +26,7 @@ export interface Product {
   dimensions: string;
   price: string;
   rating: string;
-  image: string;
+  image: StaticImageData | string | any;
 }
 
 export const products: Product[] = [
@@ -21,7 +40,7 @@ export const products: Product[] = [
     dimensions: '10 x 30 x 15 cm | 2kg',
     price: '₹1,300/Kg',
     rating: '4.8/5 (24 Reviews)',
-    image: '/images/image_01.jpg',
+    image: image1,
   },
   {
     id: 2,
@@ -33,7 +52,7 @@ export const products: Product[] = [
     dimensions: '12.5 cm × 30 cm × 12.5 cm | 2 kg',
     price: '₹1,800/Kg',
     rating: '4.9/5 (18 Reviews)',
-    image: '/images/image_01.jpg',
+    image: image2,
   },
   {
     id: 3,
@@ -45,7 +64,7 @@ export const products: Product[] = [
     dimensions: '10cm x 65cm x 10cm | 2.0kg (Min Weight)',
     price: '₹1,500/Kg',
     rating: '4.7/5 (42 Reviews)',
-    image: '/images/image_03.jpg',
+    image: image3,
   },
   {
     id: 4,
@@ -57,7 +76,7 @@ export const products: Product[] = [
     dimensions: '7.5cm x 35cm x 7.5cm | 2.0kg (Min Weight)',
     price: '₹1,200/Kg',
     rating: '4.6/5 (12 Reviews)',
-    image: '/images/image_04.jpg',
+    image: image4,
   },
   {
     id: 5,
@@ -69,7 +88,7 @@ export const products: Product[] = [
     dimensions: '7.5cm x 40cm x 7.5cm | 2.0kg (Min Weight)',
     price: '₹1,400/Kg',
     rating: '5.0/5 (31 Reviews)',
-    image: '/images/placeholder.jpg',
+    image: image5,
   },
   {
     id: 6,
@@ -81,7 +100,7 @@ export const products: Product[] = [
     dimensions: '10 cm x 32 cm x 10 cm',
     price: '₹1,320/Piece',
     rating: '4.5/5 (9 Reviews)',
-    image: '/images/image_06.jpg',
+    image: image6,
   },
   {
     id: 7,
@@ -93,7 +112,7 @@ export const products: Product[] = [
     dimensions: '7.5 cm x 50.8 cm x 7.5 cm | Above 3 kg',
     price: '₹1,800/Kg',
     rating: '4.5/5 (9 Reviews)',
-    image: '/images/placeholder.jpg',
+    image: image7,
   },
   {
     id: 8,
@@ -105,7 +124,7 @@ export const products: Product[] = [
     dimensions: '7.5 cm x 30 cm x 7.5 cm | 800g to 1.5kg',
     price: '₹1,500/Piece',
     rating: '4.5/5 (9 Reviews)',
-    image: '/images/placeholder.jpg',
+    image: image8,
   },
   {
     id: 9,
@@ -117,10 +136,10 @@ export const products: Product[] = [
     dimensions: '10 cm x 152.4 cm x 10 cm | 2 Kg',
     price: '₹2,000/Kg',
     rating: '4.5/5 (9 Reviews)',
-    image: '/images/placeholder.jpg',
+    image: image9,
   },
   {
-    id: 17,
+    id: 10,
     name: '60cm Traditional Brass Kuthu Vilakku Set',
     category: '3-Tier Multi-Wick Kuthu Vilakku Set (5 Wicks, Traditional Oil Lamp Pair)',
     material: 'High-Grade Premium Brass',
@@ -129,10 +148,10 @@ export const products: Product[] = [
     dimensions: '10 cm x 60 cm x 10 cm | 2.5 kg to 4 kg',
     price: '₹1,500/Pair (Min: 2 Pairs)',
     rating: '4.5/5 (9 Reviews)',
-    image: '/images/placeholder.jpg',
+    image: image10,
   },
   {
-    id: 18,
+    id: 11,
     name: '60cm Lotus Design Brass Kuthu Vilakku',
     category: '3-Tier Lotus Top Traditional Oil Lamp (Silver Finish)',
     material: 'Premium Brass with High-Grade Silver Plating',
@@ -141,10 +160,10 @@ export const products: Product[] = [
     dimensions: '10 cm x 60 cm x 10 cm | 2 Kg',
     price: '₹1,400/Kg (Min: 2 Kg)',
     rating: '4.5/5 (9 Reviews)',
-    image: '/images/placeholder.jpg',
+    image: image11,
   },
   {
-    id: 23,
+    id: 12,
     name: 'Brass Lotus Diya 5 Inch',
     category: 'Single-Wick Floral Table Diya (Lotus Motif / Pooja Diya)',
     material: 'High-Quality Solid Brass / Premium Casting Metal',
@@ -153,10 +172,10 @@ export const products: Product[] = [
     dimensions: '12.7 cm x 5 cm x 12.7 cm | 150g to 300g',
     price: '₹500/Piece (Min: 2)',
     rating: '4.5/5 (9 Reviews)',
-    image: '/images/placeholder.jpg',
+    image: image12,
   },
   {
-    id: 25,
+    id: 13,
     name: '750ml Brass Kalash',
     category: 'Sacred Ritual Vessel (Lota Kalash)',
     material: 'Standard Grade Premium Brass',
@@ -165,10 +184,10 @@ export const products: Product[] = [
     dimensions: '11 cm x 12 cm x 11 cm',
     price: '₹5,000/Piece (Min: 15)',
     rating: '4.5/5 (9 Reviews)',
-    image: '/images/placeholder.jpg',
+    image: image13,
   },
   {
-    id: 27,
+    id: 14,
     name: '6 Inch Kamatchi Amman Diya',
     category: 'Single-Wick Kamatchi Amman Diya',
     material: 'High-Grade Solid Brass',
@@ -177,10 +196,10 @@ export const products: Product[] = [
     dimensions: '15.24 cm (6 inches) | 250 g',
     price: '₹900/Piece (Min: 2)',
     rating: '4.5/5 (9 Reviews)',
-    image: '/images/placeholder.jpg',
+    image: image14,
   },
   {
-    id: 32,
+    id: 15,
     name: 'Premium Designer Brass Pipe Lamp',
     category: 'Designer Industrial-Chic Brass Pipe Lamp',
     material: 'High-Grade Industrial Brass Tubing & Heavy-Duty Cast Base',
@@ -189,6 +208,6 @@ export const products: Product[] = [
     dimensions: 'Custom Floor-to-Table scale',
     price: '₹4,299/Piece (Min: 2)',
     rating: '4.5/5 (9 Reviews)',
-    image: '/images/placeholder.jpg',
+    image: image15,
   },
 ];

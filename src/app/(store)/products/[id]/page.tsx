@@ -26,10 +26,10 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         </div>
 
         <div className="overflow-hidden border border-[#d4af37]/30 bg-white shadow-xl">
-          <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-0 lg:grid-cols-12">
             {/* Image Section */}
-            <div className="relative flex aspect-square w-full items-center justify-center bg-white p-8">
-              <div className="relative h-full w-full">
+            <div className="relative flex min-h-[400px] w-full items-center justify-center bg-white p-8 lg:col-span-7">
+              <div className="relative w-full max-w-[800px] aspect-square">
                 <Image
                   src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.05 PM.jpeg'}
                   alt={product.name}
@@ -41,11 +41,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             </div>
 
             {/* Details Section */}
-            <div className="flex flex-col justify-center border-l border-[#d4af37]/20 bg-[#fdfbf7] p-8 md:p-12 lg:p-16">
+            <div className="flex flex-col justify-center border-t border-[#d4af37]/20 bg-[#fdfbf7] p-8 lg:col-span-5 lg:border-l lg:border-t-0 md:p-10">
               <span className="mb-3 block text-xs font-bold tracking-widest text-[#d4af37] uppercase">
                 {product.category}
               </span>
-              <h1 className="font-display mb-6 text-3xl leading-tight font-bold text-[#721c24] md:text-5xl">
+              <h1 className="font-display mb-6 text-3xl leading-tight font-bold text-[#721c24] md:text-4xl">
                 {product.name}
               </h1>
 
@@ -53,25 +53,28 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                 <span className="text-2xl font-bold text-[#4a1115]">{product.price}</span>
               </div>
 
-              <div className="mb-8 h-1 w-16 bg-[#d4af37]"></div>
+              <div className="mb-6 h-1 w-16 bg-[#d4af37]"></div>
 
-              <p className="mb-8 text-base leading-relaxed text-stone-600">{product.description}</p>
+              {/* Scrollable Description */}
+              <div className="mb-8 max-h-[180px] overflow-y-auto pr-2">
+                <p className="text-sm leading-relaxed text-stone-600">{product.description}</p>
+              </div>
 
               {/* Specifications Block */}
-              <div className="mb-10 rounded-sm border border-[#d4af37]/30 bg-white p-6 shadow-sm">
-                <h3 className="font-display mb-4 text-lg font-bold tracking-wide text-[#721c24] uppercase">
+              <div className="mb-8 rounded-sm border border-[#d4af37]/30 bg-white p-5 shadow-sm">
+                <h3 className="font-display mb-3 text-base font-bold tracking-wide text-[#721c24] uppercase">
                   Specifications
                 </h3>
-                <dl className="grid grid-cols-1 gap-x-4 gap-y-4 text-sm sm:grid-cols-2">
+                <dl className="grid grid-cols-1 gap-x-4 gap-y-3 text-sm sm:grid-cols-2">
                   <div>
                     <dt className="mb-1 text-xs font-bold tracking-wider text-[#d4af37] uppercase">Material</dt>
-                    <dd className="font-medium text-[#4a1115]">{product.material}</dd>
+                    <dd className="font-medium text-[#4a1115] line-clamp-2">{product.material}</dd>
                   </div>
                   <div>
                     <dt className="mb-1 text-xs font-bold tracking-wider text-[#d4af37] uppercase">
                       Dimensions & Weight
                     </dt>
-                    <dd className="font-medium text-[#4a1115]">{product.dimensions}</dd>
+                    <dd className="font-medium text-[#4a1115] line-clamp-2">{product.dimensions}</dd>
                   </div>
                 </dl>
               </div>

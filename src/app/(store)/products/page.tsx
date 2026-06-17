@@ -88,9 +88,6 @@ export default function ProductsPage() {
                 <p className="mb-6 line-clamp-2 text-sm text-stone-500">{product.material}</p>
                 <div className="mt-auto flex items-center justify-between border-t border-[#d4af37]/20 pt-4">
                   <span className="text-sm font-bold text-[#4a1115]">{product.price}</span>
-                  <span className="bg-[#721c24] px-4 py-1.5 text-xs font-bold tracking-wider text-[#d4af37] uppercase transition-colors group-hover:bg-[#4a1115]">
-                    Details
-                  </span>
                 </div>
               </div>
             </Link>

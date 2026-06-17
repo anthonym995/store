@@ -1,57 +1,68 @@
 import Image from 'next/image';
+import { products } from '@/data/products';
+
+const kuthuVilakkuImage = products.find(p => p.category.includes('Kuthu Vilakku'))?.image;
+const diyaImage = products.find(p => p.category.includes('Diya'))?.image;
+const kalashImage = products.find(p => p.category.includes('Kalash'))?.image;
+const designerImage = products.find(p => p.category.includes('Pipe Lamp'))?.image;
 
 const categories = [
   {
     id: 'kuthu-vilakku',
-    title: 'Traditional Kuthu Vilakku',
-    image: 'https://placehold.co/600x600/1B4332/D4AF37/png?text=Brass+Lamps',
+    title: 'Kuthu Vilakku',
+    desc: 'Traditional Brass & Silver Lamps',
+    image: kuthuVilakkuImage || '/images/WhatsApp Image 2026-04-25 at 12.59.05 PM.jpeg',
   },
   {
-    id: 'silver-finish',
-    title: 'Silver-Finish Lamps',
-    image: 'https://placehold.co/600x600/1B4332/e2e8f0/png?text=Silver+Lamps',
+    id: 'diyas',
+    title: 'Diyas',
+    desc: 'Metal & Brass Diyas',
+    image: diyaImage || '/images/WhatsApp Image 2026-04-25 at 12.59.04 PM.jpeg',
   },
   {
-    id: 'designer-diyas',
-    title: 'Designer Brass Diyas',
-    image: 'https://placehold.co/600x600/1B4332/D4AF37/png?text=Brass+Diyas',
+    id: 'vessels',
+    title: 'Sacred Vessels',
+    desc: 'Brass Kalash & Ritual Items',
+    image: kalashImage || '/images/WhatsApp Image 2026-04-25 at 12.59.03 PM.jpeg',
   },
   {
-    id: 'sacred-vessels',
-    title: 'Sacred Ritual Vessels',
-    image: 'https://placehold.co/600x600/1B4332/D4AF37/png?text=Ritual+Vessels',
-  },
-  {
-    id: 'architectural',
-    title: 'Architectural Lamps',
-    image: 'https://placehold.co/600x600/1B4332/D4AF37/png?text=Pipe+Lamps',
+    id: 'designer',
+    title: 'Designer Items',
+    desc: 'Premium Pipe Lamps',
+    image: designerImage || 'https://placehold.co/100x100/fcf9ef/d4af37/png?text=Designer',
   },
 ];
 
 export default function Categories() {
   return (
-    <section id="categories" className="border-b border-stone-100 bg-white py-16">
+    <section id="categories" className="bg-cream py-16">
       <div className="container mx-auto">
-        <div className="mb-12 text-center">
-          <h2 className="font-display text-3xl font-bold text-[#081C15]">Explore Collections</h2>
-          <div className="mx-auto mt-4 h-1 w-20 bg-[#D4AF37]"></div>
+        <div className="mb-10 text-center">
+          <h2 className="font-display text-2xl font-bold tracking-wider text-navy uppercase lg:text-3xl">
+            Our Collections
+          </h2>
+          <p className="mt-2 text-sm text-navy italic">A legacy of pure craftsmanship</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 md:gap-12">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 px-4 md:grid-cols-2">
           {categories.map((cat) => (
-            <div key={cat.id} className="group flex max-w-[160px] cursor-pointer flex-col items-center">
-              <div className="relative mb-4 h-32 w-32 overflow-hidden rounded-full border-4 border-[#F9F9F6] shadow-sm transition-all group-hover:border-[#D4AF37] group-hover:shadow-xl md:h-40 md:w-40">
+            <div
+              key={cat.id}
+              className="group flex cursor-pointer items-center gap-6 rounded-full border border-cream-dark bg-white p-3 pr-8 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border border-gold/30 md:h-20 md:w-20">
                 <Image
                   src={cat.image}
                   alt={cat.title}
                   fill
                   unoptimized
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              <h3 className="text-center text-sm font-bold text-[#081C15] transition-colors group-hover:text-[#2D6A4F] md:text-base">
-                {cat.title}
-              </h3>
+              <div className="flex flex-col">
+                <h3 className="text-sm font-bold tracking-wide text-navy uppercase md:text-base">{cat.title}</h3>
+                <p className="mt-0.5 text-xs text-stone-500 md:text-sm">{cat.desc}</p>
+              </div>
             </div>
           ))}
         </div>

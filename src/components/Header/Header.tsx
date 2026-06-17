@@ -2,206 +2,123 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="relative z-50 w-full">
-      {/* Top Utility Bar */}
-      <div className="relative z-50 border-b border-stone-200 bg-white py-3">
-        <div className="container mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4 md:gap-8">
-            {/* Mobile Menu Button */}
+    <header className="relative z-50 w-full shadow-sm">
+      {/* Tier 1: White Background, Centered Logo */}
+      <div className="bg-white px-4 py-3 md:px-8">
+        <div className="container mx-auto grid grid-cols-3 items-center">
+          {/* Left: Mobile Toggle & Search */}
+          <div className="flex items-center gap-4">
             <button
-              className="flex h-8 w-8 flex-col items-center justify-center space-y-1.5 focus:outline-none md:hidden"
+              className="flex h-8 w-8 flex-col items-center justify-center space-y-1.5 lg:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle mobile menu"
             >
               <span
-                className={`block h-0.5 w-6 bg-[#081C15] transition-transform duration-300 ${isMobileMenuOpen ? 'translate-y-2 rotate-45' : ''}`}
+                className={`bg-navy block h-0.5 w-6 transition-transform ${isMobileMenuOpen ? 'translate-y-2 rotate-45' : ''}`}
               ></span>
               <span
-                className={`block h-0.5 w-6 bg-[#081C15] transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}
+                className={`bg-navy block h-0.5 w-6 transition-opacity ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}
               ></span>
               <span
-                className={`block h-0.5 w-6 bg-[#081C15] transition-transform duration-300 ${isMobileMenuOpen ? '-translate-y-2 -rotate-45' : ''}`}
+                className={`bg-navy block h-0.5 w-6 transition-transform ${isMobileMenuOpen ? '-translate-y-2 -rotate-45' : ''}`}
               ></span>
             </button>
-
-            {/* Logo */}
-            <Link href="/" className="flex flex-col items-start leading-none">
-              <span className="font-display text-xl font-extrabold tracking-widest text-[#081C15] uppercase md:text-2xl">
-                E.V. Brassware
-              </span>
-              <span className="text-[10px] font-bold tracking-widest text-[#D4AF37] uppercase">Metal Work</span>
-            </Link>
-          </div>
-
-          {/* Search Bar */}
-          <div className="mx-8 hidden max-w-xl flex-1 md:flex">
-            <div className="flex w-full overflow-hidden rounded border border-stone-300 shadow-sm transition-colors focus-within:border-[#D4AF37]">
+            <div className="text-navy hidden items-center gap-2 text-sm lg:flex">
+              <svg className="text-gold h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
               <input
                 type="text"
-                placeholder="Search brass lamps, vessels, diyas..."
-                className="w-full px-4 py-2 text-sm focus:outline-none"
+                placeholder="Search..."
+                className="w-32 bg-transparent transition-all outline-none placeholder:text-stone-400 focus:w-48"
               />
-              <button className="bg-[#1B4332] px-6 text-sm font-bold tracking-wider text-white uppercase transition-colors hover:bg-[#081C15]">
-                Search
-              </button>
             </div>
           </div>
 
-          {/* Utilities */}
-          <div className="flex items-center gap-4 text-sm font-bold tracking-wider text-stone-600 uppercase md:gap-6">
-            <a href="#contact" className="hidden transition-colors hover:text-[#D4AF37] lg:block">
-              Track Quote
-            </a>
-            <Link href="/admin/login" className="hidden transition-colors hover:text-[#D4AF37] sm:block">
+          {/* Center: Logo */}
+          <div className="flex justify-center">
+            <Link href="/" className="relative flex items-center justify-center">
+              <Image
+                width={70}
+                height={70}
+                src="/logo.png"
+                alt="E.V. Brassware Logo"
+                className="object-contain"
+                priority
+              />
+            </Link>
+          </div>
+
+          {/* Right: Partner Login & Utilities */}
+          <div className="text-navy flex items-center justify-end gap-6">
+            <Link
+              href="/admin/login"
+              className="hover:text-gold hidden items-center gap-2 text-sm font-semibold transition-colors lg:flex"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                ></path>
+              </svg>
               Partner Login
             </Link>
+            <a
+              href="#contact"
+              className="hover:text-gold hidden items-center gap-2 text-sm font-semibold transition-colors sm:flex"
+            >
+              <span className="bg-maroon rounded-full px-4 py-1.5 text-xs tracking-wider text-white uppercase">
+                Get Quote
+              </span>
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation - Deep Green Base */}
-      <div className="relative z-40 hidden border-b-2 border-[#D4AF37] bg-[#1B4332] text-white md:block">
+      {/* Tier 2: Cream Navigation Bar */}
+      <div className="bg-cream hidden border-b border-stone-200 lg:block">
         <div className="container mx-auto">
-          <nav className="flex scrollbar-none overflow-x-auto">
-            <ul className="flex list-none items-center py-3 whitespace-nowrap">
+          <nav className="flex justify-center">
+            <ul className="text-navy flex list-none items-center gap-12 py-3.5 text-xs font-bold tracking-widest uppercase">
               <li>
-                <Link
-                  href="#kuthu-vilakku"
-                  className="rounded px-4 py-2 text-sm font-semibold transition-colors hover:text-[#D4AF37]"
-                >
-                  Traditional Kuthu Vilakku
+                <Link href="/products?category=Kuthu+Vilakku" className="hover:text-gold transition-colors">
+                  Kuthu Vilakku
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#silver-finish"
-                  className="rounded px-4 py-2 text-sm font-semibold transition-colors hover:text-[#D4AF37]"
-                >
-                  Silver-Finish Lamps
+                <Link href="/products?category=Diya" className="hover:text-gold transition-colors">
+                  Diyas
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#diyas"
-                  className="rounded px-4 py-2 text-sm font-semibold transition-colors hover:text-[#D4AF37]"
-                >
-                  Designer Diyas
+                <Link href="/products?category=Vessel" className="hover:text-gold transition-colors">
+                  Sacred Vessels
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#vessels"
-                  className="rounded px-4 py-2 text-sm font-semibold transition-colors hover:text-[#D4AF37]"
-                >
-                  Sacred Ritual Vessels
+                <Link href="/products?category=Designer" className="hover:text-gold transition-colors">
+                  Designer Items
                 </Link>
               </li>
-              <li className="ml-auto">
-                <a
-                  href="#contact"
-                  className="ml-4 rounded bg-[#D4AF37] px-5 py-1.5 text-sm font-bold tracking-wide text-[#081C15] uppercase transition-colors hover:bg-white hover:text-[#1B4332]"
-                >
-                  Bulk Orders
-                </a>
+              <li>
+                <Link href="/products" className="text-maroon hover:text-gold transition-colors">
+                  All Collections
+                </Link>
               </li>
             </ul>
           </nav>
-        </div>
-      </div>
-
-      {/* Mobile Sidebar Overlay */}
-      {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/50 transition-opacity md:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-      )}
-
-      {/* Mobile Sidebar Menu */}
-      <div
-        className={`fixed top-0 left-0 z-50 flex h-full w-[280px] transform flex-col bg-white shadow-2xl transition-transform duration-300 ease-in-out md:hidden ${
-          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
-        <div className="flex items-center justify-between border-b border-stone-200 p-4">
-          <span className="font-display text-xl font-extrabold tracking-widest text-[#081C15] uppercase">
-            E.V. Brassware
-          </span>
-          <button
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="p-2 text-stone-500 hover:text-[#D4AF37] focus:outline-none"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-        <nav className="flex-1 overflow-y-auto py-2">
-          <ul className="flex list-none flex-col">
-            <li>
-              <Link
-                href="/products"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block border-b border-stone-50 px-6 py-4 font-bold tracking-wide text-[#081C15] uppercase transition-colors hover:text-[#D4AF37]"
-              >
-                Full Catalog
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#kuthu-vilakku"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block border-b border-stone-50 px-6 py-4 font-bold tracking-wide text-[#081C15] uppercase transition-colors hover:text-[#D4AF37]"
-              >
-                Kuthu Vilakku
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#diyas"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block border-b border-stone-50 px-6 py-4 font-bold tracking-wide text-[#081C15] uppercase transition-colors hover:text-[#D4AF37]"
-              >
-                Designer Diyas
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#vessels"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block border-b border-stone-50 px-6 py-4 font-bold tracking-wide text-[#081C15] uppercase transition-colors hover:text-[#D4AF37]"
-              >
-                Sacred Vessels
-              </Link>
-            </li>
-          </ul>
-        </nav>
-        <div className="mt-auto border-t border-stone-200 bg-[#F9F9F6] p-6">
-          <Link
-            href="/admin/login"
-            className="mb-4 flex items-center gap-3 font-bold tracking-wide text-[#081C15] uppercase hover:text-[#D4AF37]"
-          >
-            Partner Login
-          </Link>
-          <a
-            href="#contact"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="block w-full rounded bg-[#1B4332] px-4 py-3 text-center text-sm font-bold tracking-widest text-white uppercase transition-colors hover:bg-[#081C15]"
-          >
-            Request Quote
-          </a>
         </div>
       </div>
     </header>

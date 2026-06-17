@@ -4,26 +4,26 @@ const categories = [
   {
     id: 'kuthu-vilakku',
     title: 'Kuthu Vilakku',
-    desc: 'Traditional Brass Lamps',
+    desc: 'Traditional Brass & Silver Lamps',
     image: '/images/WhatsApp Image 2026-04-25 at 12.59.05 PM.jpeg',
   },
   {
     id: 'diyas',
-    title: 'Designer Diyas',
-    desc: 'Exquisite daily lighting',
+    title: 'Diyas',
+    desc: 'Metal & Brass Diyas',
     image: '/images/WhatsApp Image 2026-04-25 at 12.59.04 PM.jpeg',
   },
   {
-    id: 'amman-diyas',
-    title: 'Amman Diyas',
-    desc: 'Sacred Goddess Diya',
+    id: 'vessels',
+    title: 'Sacred Vessels',
+    desc: 'Brass Kalash & Ritual Items',
     image: '/images/WhatsApp Image 2026-04-25 at 12.59.03 PM.jpeg',
   },
   {
-    id: 'sacred-vessels',
-    title: 'Sacred Vessels',
-    desc: 'Kalash & Pooja items',
-    image: 'https://placehold.co/100x100/fcf9ef/d4af37/png?text=Vessel',
+    id: 'designer',
+    title: 'Designer Items',
+    desc: 'Premium Pipe Lamps',
+    image: 'https://placehold.co/100x100/fcf9ef/d4af37/png?text=Designer',
   },
 ];
 

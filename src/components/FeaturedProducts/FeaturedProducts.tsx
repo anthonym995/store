@@ -22,7 +22,7 @@ export default function FeaturedProducts() {
               key={product.id}
               className="group flex flex-col bg-white shadow-lg transition-transform duration-300 hover:-translate-y-2"
             >
-              <div className="relative w-full overflow-hidden bg-[#fdfbf7] pt-[120%]">
+              <div className="relative aspect-square w-full overflow-hidden bg-[#fdfbf7]">
                 <Image
                   src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.04 PM.jpeg'}
                   alt={product.name}

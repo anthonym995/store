@@ -28,7 +28,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         <div className="overflow-hidden border border-[#d4af37]/30 bg-white shadow-xl">
           <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
             {/* Image Section */}
-            <div className="relative flex h-[400px] w-full items-center justify-center bg-white p-8 md:h-[650px]">
+            <div className="relative flex aspect-square w-full items-center justify-center bg-white p-8">
               <div className="relative h-full w-full">
                 <Image
                   src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.05 PM.jpeg'}

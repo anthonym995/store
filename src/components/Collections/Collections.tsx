@@ -11,8 +11,8 @@ const items = [
     // Occupies 2 columns horizontally, spans 2 vertical slots on desktop
     cardClass: 'md:col-span-2 md:row-span-2 h-[550px] md:h-[640px]',
     textClass: 'bottom-8 left-8 md:bottom-12 md:left-12 text-left',
-    imgContainerClass: 'justify-center items-end pb-32 pt-16 px-12 h-full w-full',
-    imgInnerClass: 'h-[65%] w-full',
+    imgContainerClass: 'justify-center items-end pb-24 pt-10 px-6 h-full w-full',
+    imgInnerClass: 'h-[85%] w-full',
   },
   {
     id: 2,
@@ -46,10 +46,10 @@ export default function Collections() {
       {/* Editorial Heading */}
       <div className="mb-14 text-center">
         <h2 className="font-serif text-2xl font-semibold tracking-[0.12em] text-[#540B12] uppercase sm:text-3xl md:text-4xl md:tracking-[0.18em]">
-          FEATURED COLLECTIOS
+          FEATURED COLLECTIONS
         </h2>
         <p className="mx-auto mt-2 max-w-xl font-sans text-xs tracking-widest text-[#705E54] uppercase md:text-sm">
-          Elegance Crafted for the Divine
+          Exquisite Craftsmanship & Timeless Design
         </p>
       </div>
 

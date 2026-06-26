@@ -93,23 +93,23 @@ export default function Header() {
           <nav className="flex justify-center">
             <ul className="text-navy flex list-none items-center gap-12 py-3.5 text-xs font-bold tracking-widest uppercase">
               <li>
-                <Link href="#kuthu-vilakku" className="hover:text-gold transition-colors">
+                <Link href="/products?category=Kuthu+Vilakku" className="hover:text-gold transition-colors">
                   Kuthu Vilakku
                 </Link>
               </li>
               <li>
-                <Link href="#diyas" className="hover:text-gold transition-colors">
-                  Designer Diyas
+                <Link href="/products?category=Diya" className="hover:text-gold transition-colors">
+                  Diyas
                 </Link>
               </li>
               <li>
-                <Link href="#amman-diyas" className="hover:text-gold transition-colors">
-                  Amman Diyas
-                </Link>
-              </li>
-              <li>
-                <Link href="#sacred-vessels" className="hover:text-gold transition-colors">
+                <Link href="/products?category=Vessel" className="hover:text-gold transition-colors">
                   Sacred Vessels
+                </Link>
+              </li>
+              <li>
+                <Link href="/products?category=Designer" className="hover:text-gold transition-colors">
+                  Designer Items
                 </Link>
               </li>
               <li>

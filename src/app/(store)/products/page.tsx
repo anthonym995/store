@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { products } from '@/data/products';
@@ -8,6 +8,14 @@ import { products } from '@/data/products';
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const filterCategories = ['All', 'Kuthu Vilakku', 'Diya', 'Vessel', 'Designer'];
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get('category');
+    if (category && filterCategories.includes(category)) {
+      setSelectedCategory(category);
+    }
+  }, []);
 
   const filteredProducts = useMemo(() => {
     if (selectedCategory === 'All') return products;
@@ -59,11 +67,11 @@ export default function ProductsPage() {
             <Link
               href={`/products/${product.id}`}
               key={product.id}
-              className="group flex flex-col border border-[#d4af37]/30 bg-white shadow-sm transition-all duration-300 hover:border-[#d4af37] hover:shadow-xl"
+              className="group flex flex-col items-center border border-[#d4af37]/30 bg-white shadow-sm transition-all duration-300 hover:border-[#d4af37] hover:shadow-xl"
             >
-              <div className="relative w-full overflow-hidden border-b border-[#d4af37]/20 bg-white pt-[100%]">
+              <div className="relative h-full w-full overflow-hidden border-b border-[#d4af37]/20 bg-white pt-[100%]">
                 <Image
-                  src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.03 PM.jpeg'}
+                  src={product.image}
                   alt={product.name}
                   fill
                   unoptimized
@@ -80,9 +88,6 @@ export default function ProductsPage() {
                 <p className="mb-6 line-clamp-2 text-sm text-stone-500">{product.material}</p>
                 <div className="mt-auto flex items-center justify-between border-t border-[#d4af37]/20 pt-4">
                   <span className="text-sm font-bold text-[#4a1115]">{product.price}</span>
-                  <span className="bg-[#721c24] px-4 py-1.5 text-xs font-bold tracking-wider text-[#d4af37] uppercase transition-colors group-hover:bg-[#4a1115]">
-                    Details
-                  </span>
                 </div>
               </div>
             </Link>

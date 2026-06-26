@@ -25,6 +25,12 @@ import image24 from './product_24.png';
 import image25 from './product_25.png';
 import image26 from './product_26.png';
 
+// GALLERY IMAGES
+
+import product19 from './gallery/product_19-1.png';
+import product22 from './gallery/product_22-1.png';
+import product23 from './gallery/product_23-1.png';
+
 export {
   image1,
   image2,
@@ -52,4 +58,7 @@ export {
   image24,
   image25,
   image26,
+  product19,
+  product22,
+  product23,
 };

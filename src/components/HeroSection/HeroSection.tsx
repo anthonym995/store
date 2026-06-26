@@ -1,12 +1,12 @@
-import React from 'react';
 import Image from 'next/image';
+import { product19, product22, product23 } from '@/assets';
 
 const items = [
   {
     id: 1,
     title: 'KUTHU VILAKKU',
     subtitle: 'Traditional brass lamps for timeless warmth.',
-    src: '/images/product_19-1.png',
+    src: product19,
     tag: 'TOP SELLING',
     // Occupies 2 columns horizontally, spans 2 vertical slots on desktop
     cardClass: 'md:col-span-2 md:row-span-2 h-[550px] md:h-[640px]',
@@ -16,51 +16,27 @@ const items = [
   },
   {
     id: 2,
-    title: 'DESIGNER DIYAS',
-    subtitle: 'Exquisite daily lighting for your home setup.',
-    src: '/images/product_24-1.png',
-    tag: 'DIAS COLLECTION',
-    // Fills the remainder of row 1
-    cardClass: 'md:col-span-2 h-[280px] md:h-[307px]',
-    textClass: 'bottom-8 left-8 md:bottom-10 md:left-12 text-left',
-    imgContainerClass: 'justify-end items-center p-6 md:pl-[45%] md:pr-16 h-full w-full',
-    imgInnerClass: 'h-[85%] w-full',
-  },
-  {
-    id: 3,
-    title: 'SACRED VESSELS',
-    subtitle: 'Premium Kalash & Pooja decorative items.',
-    src: '/images/product_22-1.png',
-    tag: 'POOJA ESSENTIALS',
-    // Fills the remainder of row 2
-    cardClass: 'md:col-span-2 h-[280px] md:h-[307px]',
-    textClass: 'bottom-8 left-8 md:bottom-10 md:left-12 text-left',
-    imgContainerClass: 'justify-end items-center p-6 md:pl-[45%] md:pr-16 h-full w-full',
-    imgInnerClass: 'h-[85%] w-full',
-  },
-  {
-    id: 4,
-    title: 'AMMAN DIYAS',
-    subtitle: 'Sacred Goddess Diya craftsmanship details.',
-    src: '/images/product_14-1.png',
-    tag: 'EXCLUSIVE',
-    // Splits the final row cleanly in half (2 out of 4 columns)
-    cardClass: 'md:col-span-2 h-[280px] md:h-[310px]',
-    textClass: 'bottom-8 left-8 text-left',
-    imgContainerClass: 'justify-end items-center p-6 md:pl-[45%] md:pr-12 h-full w-full',
-    imgInnerClass: 'h-[80%] w-full',
-  },
-  {
-    id: 5,
     title: 'ETERNAL GLOW',
     subtitle: 'Timeless light settings crafted for sacred spaces.',
-    src: '/images/product_23-1.png',
+    src: product23,
     tag: 'FESTIVE SPECIAL',
     // Splits the final row cleanly in half (2 out of 4 columns)
     cardClass: 'md:col-span-2 h-[280px] md:h-[310px]',
     textClass: 'bottom-8 left-8 text-left',
     imgContainerClass: 'justify-end items-center p-6 md:pl-[45%] md:pr-12 h-full w-full',
     imgInnerClass: 'h-[80%] w-full',
+  },
+  {
+    id: 3,
+    title: 'SACRED VESSELS',
+    subtitle: 'Premium Kalash & Pooja decorative items.',
+    src: product22,
+    tag: 'POOJA ESSENTIALS',
+    // Fills the remainder of row 2
+    cardClass: 'md:col-span-2 h-[280px] md:h-[307px]',
+    textClass: 'bottom-8 left-8 md:bottom-10 md:left-12 text-left',
+    imgContainerClass: 'justify-end items-center p-6 md:pl-[45%] md:pr-16 h-full w-full',
+    imgInnerClass: 'h-[85%] w-full',
   },
 ];
 
@@ -70,7 +46,7 @@ export default function HeroLuxurySection() {
       {/* Editorial Heading */}
       <div className="mb-14 text-center">
         <h2 className="font-serif text-2xl font-semibold tracking-[0.12em] text-[#540B12] uppercase sm:text-3xl md:text-4xl md:tracking-[0.18em]">
-          FEATURED ARTIFACTS
+          FEATURED COLLECTIOS
         </h2>
         <p className="mx-auto mt-2 max-w-xl font-sans text-xs tracking-widest text-[#705E54] uppercase md:text-sm">
           Elegance Crafted for the Divine

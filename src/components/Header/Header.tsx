@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="relative z-50 w-full shadow-sm">
       {/* Tier 1: White Background, Centered Logo */}
-      <div className="bg-white px-4 py-3 md:px-8">
+      <div className="bg-cream px-4 py-3 md:px-8">
         <div className="container mx-auto grid grid-cols-3 items-center">
           {/* Left: Mobile Toggle & Search */}
           <div className="flex items-center gap-4">
@@ -88,7 +88,7 @@ export default function Header() {
       </div>
 
       {/* Tier 2: Cream Navigation Bar */}
-      <div className="bg-cream hidden border-b border-stone-200 lg:block">
+      <div className="hidden border-b border-stone-200 bg-[#f5e8cc] lg:block">
         <div className="container mx-auto">
           <nav className="flex justify-center">
             <ul className="text-navy flex list-none items-center gap-12 py-3.5 text-xs font-bold tracking-widest uppercase">

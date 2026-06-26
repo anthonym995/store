@@ -40,9 +40,9 @@ const items = [
   },
 ];
 
-export default function HeroLuxurySection() {
+export default function Collections() {
   return (
-    <section className="w-full bg-[#FAF6F0] px-4 py-20 text-[#2C2520] md:px-8">
+    <section className="bg-cream w-full px-4 py-20 text-[#2C2520] md:px-8">
       {/* Editorial Heading */}
       <div className="mb-14 text-center">
         <h2 className="font-serif text-2xl font-semibold tracking-[0.12em] text-[#540B12] uppercase sm:text-3xl md:text-4xl md:tracking-[0.18em]">

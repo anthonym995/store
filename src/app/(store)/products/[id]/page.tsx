@@ -28,20 +28,20 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         <div className="overflow-hidden border border-[#d4af37]/30 bg-white shadow-xl">
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-12">
             {/* Image Section */}
-            <div className="relative flex min-h-[400px] w-full items-center justify-center bg-white p-8 lg:col-span-7">
-              <div className="relative w-full max-w-[800px] aspect-square">
+            <div className="relative flex min-h-[400px] w-full items-center justify-center bg-white py-8 lg:col-span-6">
+              <div className="relative aspect-square w-full max-w-[800px]">
                 <Image
                   src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.05 PM.jpeg'}
                   alt={product.name}
                   fill
                   unoptimized
-                  className="object-contain mix-blend-multiply drop-shadow-2xl"
+                  className="object-contain mix-blend-multiply"
                 />
               </div>
             </div>
 
             {/* Details Section */}
-            <div className="flex flex-col justify-center border-t border-[#d4af37]/20 bg-[#fdfbf7] p-8 lg:col-span-5 lg:border-l lg:border-t-0 md:p-10">
+            <div className="flex flex-col justify-center border-t border-[#d4af37]/20 bg-[#fdfbf7] p-8 md:p-10 lg:col-span-6 lg:border-t-0 lg:border-l">
               <span className="mb-3 block text-xs font-bold tracking-widest text-[#d4af37] uppercase">
                 {product.category}
               </span>
@@ -68,13 +68,13 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                 <dl className="grid grid-cols-1 gap-x-4 gap-y-3 text-sm sm:grid-cols-2">
                   <div>
                     <dt className="mb-1 text-xs font-bold tracking-wider text-[#d4af37] uppercase">Material</dt>
-                    <dd className="font-medium text-[#4a1115] line-clamp-2">{product.material}</dd>
+                    <dd className="line-clamp-2 font-medium text-[#4a1115]">{product.material}</dd>
                   </div>
                   <div>
                     <dt className="mb-1 text-xs font-bold tracking-wider text-[#d4af37] uppercase">
                       Dimensions & Weight
                     </dt>
-                    <dd className="font-medium text-[#4a1115] line-clamp-2">{product.dimensions}</dd>
+                    <dd className="line-clamp-2 font-medium text-[#4a1115]">{product.dimensions}</dd>
                   </div>
                 </dl>
               </div>

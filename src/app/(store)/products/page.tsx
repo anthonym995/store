@@ -37,7 +37,7 @@ export default function ProductsPage() {
       <div className="container mx-auto">
         <div className="mb-12">
           <h1 className="font-display mb-4 text-4xl font-bold text-[#721c24]">Masterpiece Catalog</h1>
-          <div className="mb-6 h-1 w-20 bg-[#d4af37]"></div>
+          <div className="bg-gold mb-6 h-1 w-20"></div>
           <p className="max-w-3xl text-base text-stone-600">
             Browse our extensive collection of heavy-duty brass kuthu vilakku, designer diyas, and authentic ritual
             vessels. Select any artifact to view its specifications and request a custom quote.
@@ -52,8 +52,8 @@ export default function ProductsPage() {
               onClick={() => setSelectedCategory(category)}
               className={`rounded-sm px-6 py-2.5 text-sm font-bold tracking-wider uppercase transition-all duration-300 ${
                 selectedCategory === category
-                  ? 'border border-[#721c24] bg-[#721c24] text-[#d4af37] shadow-md'
-                  : 'border border-[#d4af37] bg-white text-[#721c24] hover:bg-[#fdf5e6]'
+                  ? 'text-gold border border-[#721c24] bg-[#721c24] shadow-md'
+                  : 'border-gold border bg-white text-[#721c24] hover:bg-[#fdf5e6]'
               }`}
             >
               {category}
@@ -67,9 +67,9 @@ export default function ProductsPage() {
             <Link
               href={`/products/${product.id}`}
               key={product.id}
-              className="group flex flex-col items-center border border-[#d4af37]/30 bg-white shadow-sm transition-all duration-300 hover:border-[#d4af37] hover:shadow-xl"
+              className="group border-gold/30 hover:border-gold flex flex-col items-center border bg-white shadow-sm transition-all duration-300 hover:shadow-xl"
             >
-              <div className="relative h-full w-full overflow-hidden border-b border-[#d4af37]/20 bg-white pt-[100%]">
+              <div className="border-gold/20 relative h-full w-full overflow-hidden border-b bg-white pt-[100%]">
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -78,15 +78,15 @@ export default function ProductsPage() {
                   className="absolute inset-0 object-contain p-4 mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div className="flex flex-grow flex-col p-6">
-                <span className="mb-2 truncate text-xs font-bold tracking-widest text-[#d4af37] uppercase">
+              <div className="flex grow flex-col p-6">
+                <span className="text-gold mb-2 truncate text-xs font-bold tracking-widest uppercase">
                   {product.category.split('/')[0]}
                 </span>
                 <h3 className="font-display mb-2 text-lg leading-tight font-bold text-[#721c24] transition-colors group-hover:text-[#4a1115]">
                   {product.name}
                 </h3>
                 <p className="mb-6 line-clamp-2 text-sm text-stone-500">{product.material}</p>
-                <div className="mt-auto flex items-center justify-between border-t border-[#d4af37]/20 pt-4">
+                <div className="border-gold/20 mt-auto flex items-center justify-between border-t pt-4">
                   <span className="text-sm font-bold text-[#4a1115]">{product.price}</span>
                 </div>
               </div>

@@ -1,7 +1,11 @@
 @import 'tailwindcss';
 
 @theme inline {
-  /* Rich Maroon (Used for buttons and specific banners) */
+  /* Brand Red (Main theme color for buttons, headings, etc) */
+  --color-brand-red: #721c24;
+  --color-brand-red-dark: #4a1115;
+
+  /* Rich Maroon */
   --color-maroon: #5a0b14;
   --color-maroon-light: #7a1420;
 

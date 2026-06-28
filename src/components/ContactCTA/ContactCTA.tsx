@@ -1,6 +1,6 @@
 export default function ContactCTA() {
   return (
-    <section id="contact" className="bg-[#4a1115] py-20 text-[#fdf5e6]">
+    <section id="contact" className="bg-brand-red-dark py-20 text-[#fdf5e6]">
       <div className="container mx-auto grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div className="flex flex-col">
           <h2 className="font-display mb-4 text-3xl leading-tight font-bold text-white">
@@ -13,7 +13,7 @@ export default function ContactCTA() {
 
           <div className="flex flex-col gap-8">
             <div className="flex items-start gap-5">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold bg-[#721c24] text-gold">
+              <span className="border-gold text-gold bg-brand-red flex h-12 w-12 shrink-0 items-center justify-center rounded-full border">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -30,7 +30,7 @@ export default function ContactCTA() {
                 </svg>
               </span>
               <div>
-                <strong className="font-display mb-1 block text-lg tracking-wide text-gold">Call Us</strong>
+                <strong className="font-display text-gold mb-1 block text-lg tracking-wide">Call Us</strong>
                 <p className="text-sm text-stone-300">+91 98765 43210</p>
               </div>
             </div>
@@ -38,14 +38,14 @@ export default function ContactCTA() {
         </div>
 
         {/* Inquiry Form */}
-        <div className="rounded-sm border-2 border-gold bg-white p-8 shadow-2xl">
+        <div className="border-gold rounded-sm border-2 bg-white p-8 shadow-2xl">
           <h3 className="font-display mb-6 text-2xl font-bold text-[#721c24]">Send a Trade Inquiry</h3>
           <form className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-bold text-[#721c24]">Your Name / Company</label>
               <input
                 type="text"
-                className="w-full rounded-sm border border-gold/50 bg-[#fdfbf7] px-4 py-3 text-sm text-[#4a1115] focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none"
+                className="border-gold/50 focus:border-gold focus:ring-gold w-full rounded-sm border bg-[#fdfbf7] px-4 py-3 text-sm text-[#4a1115] focus:ring-1 focus:outline-none"
                 required
               />
             </div>
@@ -53,21 +53,21 @@ export default function ContactCTA() {
               <label className="text-sm font-bold text-[#721c24]">Email Address</label>
               <input
                 type="email"
-                className="w-full rounded-sm border border-gold/50 bg-[#fdfbf7] px-4 py-3 text-sm text-[#4a1115] focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none"
+                className="border-gold/50 focus:border-gold focus:ring-gold w-full rounded-sm border bg-[#fdfbf7] px-4 py-3 text-sm text-[#4a1115] focus:ring-1 focus:outline-none"
                 required
               />
             </div>
             <div className="flex flex-col gap-1.5">
               <label className="text-sm font-bold text-[#721c24]">Requirements</label>
               <textarea
-                className="min-h-[100px] w-full resize-y rounded-sm border border-gold/50 bg-[#fdfbf7] px-4 py-3 text-sm text-[#4a1115] focus:border-gold focus:ring-1 focus:ring-gold focus:outline-none"
+                className="border-gold/50 focus:border-gold focus:ring-gold min-h-[100px] w-full resize-y rounded-sm border bg-[#fdfbf7] px-4 py-3 text-sm text-[#4a1115] focus:ring-1 focus:outline-none"
                 rows={4}
                 required
               ></textarea>
             </div>
             <button
               type="submit"
-              className="mt-4 inline-flex w-full items-center justify-center rounded-sm bg-[#721c24] px-6 py-3.5 text-sm font-bold tracking-widest text-gold uppercase transition-all hover:bg-[#4a1115]"
+              className="text-gold mt-4 inline-flex w-full items-center justify-center rounded-sm bg-[#721c24] px-6 py-3.5 text-sm font-bold tracking-widest uppercase transition-all hover:bg-[#4a1115]"
             >
               Request Quote
             </button>

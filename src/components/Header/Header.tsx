@@ -28,20 +28,18 @@ export default function Header() {
                 className={`bg-navy block h-0.5 w-6 transition-transform ${isMobileMenuOpen ? '-translate-y-2 -rotate-45' : ''}`}
               ></span>
             </button>
-            <div className="text-navy hidden items-center gap-2 text-sm lg:flex">
-              <svg className="text-gold h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-navy hidden items-center gap-2 text-sm font-medium tracking-wide lg:flex">
+              <svg className="text-gold h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                 ></path>
               </svg>
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-32 bg-transparent transition-all outline-none placeholder:text-stone-400 focus:w-48"
-              />
+              <a href="tel:+919876543210" className="hover:text-gold transition-colors">
+                +91 98765 43210
+              </a>
             </div>
           </div>
 
@@ -62,26 +60,22 @@ export default function Header() {
           {/* Right: Partner Login & Utilities */}
           <div className="text-navy flex items-center justify-end gap-6">
             <Link
-              href="/admin/login"
-              className="hover:text-gold hidden items-center gap-2 text-sm font-semibold transition-colors lg:flex"
+              href="/about"
+              className="hover:text-gold hidden text-sm font-bold tracking-widest uppercase transition-colors md:block"
             >
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                ></path>
-              </svg>
-              Partner Login
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className="hover:text-gold hidden text-sm font-bold tracking-widest uppercase transition-colors md:block"
+            >
+              Contact
             </Link>
             <a
-              href="#contact"
-              className="hover:text-gold hidden items-center gap-2 text-sm font-semibold transition-colors sm:flex"
+              href="/contact"
+              className="bg-maroon hover:bg-brand-red-dark hidden items-center justify-center rounded-sm px-6 py-2 text-xs font-bold tracking-widest text-white uppercase shadow-sm transition-all hover:shadow-md sm:flex"
             >
-              <span className="bg-maroon rounded-full px-4 py-1.5 text-xs tracking-wider text-white uppercase">
-                Get Quote
-              </span>
+              Get Quote
             </a>
           </div>
         </div>

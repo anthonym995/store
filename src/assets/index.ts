@@ -30,6 +30,8 @@ import image26 from './product_26.png';
 import product19 from './gallery/product_19-1.png';
 import product22 from './gallery/product_22-1.png';
 import product23 from './gallery/product_23-1.png';
+import hero from './hero.png';
+import title from './title.png';
 
 export {
   image1,
@@ -61,4 +63,6 @@ export {
   product19,
   product22,
   product23,
+  hero,
+  title,
 };

@@ -2,114 +2,307 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  getFilteredRowModel,
+  SortingState,
+  useReactTable,
+} from '@tanstack/react-table';
 
-// Using a subset of your real catalog data for the admin mock
-const initialProducts = [
-  {
-    id: 1,
-    name: '30cm Kalash Design Brass Kuthu Vilakku',
-    category: 'Diya / Oil Lamp',
-    price: '₹1,300/Kg',
-    material: 'Grade-A Cast Brass',
-    status: 'Active',
-  },
-  {
-    id: 2,
-    name: '150cm Peacock Design Kuthu Vilakku',
-    category: 'Multi-Tiered Temple Lamp',
-    price: '₹1,500/Kg',
-    material: 'Premium Heavy Brass',
-    status: 'Active',
-  },
-  {
-    id: 3,
-    name: 'Brass Lotus Diya 5 Inch',
-    category: 'Floral Table Diya',
-    price: '₹500/Piece',
-    material: 'Solid Brass',
-    status: 'Active',
-  },
-  {
-    id: 4,
-    name: 'Premium Designer Brass Pipe Lamp',
-    category: 'Architectural Lamp',
-    price: '₹4,299/Piece',
-    material: 'Industrial Brass Tubing',
-    status: 'Made to Order',
-  },
-];
+import { products as actualProducts } from '@/data/products';
+
+type AdminProduct = (typeof actualProducts)[0] & { status: string };
+
+const initialProducts: AdminProduct[] = actualProducts.map((p) => ({
+  ...p,
+  status: 'Active', // Mocking status since it doesn't exist in the base data
+}));
 
 export default function ProductsList() {
-  const [products, setProducts] = useState(initialProducts);
+  const [data, setData] = useState<AdminProduct[]>(initialProducts);
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [globalFilter, setGlobalFilter] = useState('');
 
   const handleDelete = (id: number) => {
     if (confirm('Are you sure you want to remove this product from the catalog?')) {
-      setProducts(products.filter((p) => p.id !== id));
+      setData(data.filter((p) => p.id !== id));
     }
   };
 
-  return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 space-y-6 duration-500">
-      <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-        <div>
-          <h2 className="font-display text-2xl font-bold text-[#081C15]">Master Catalog</h2>
-          <p className="mt-1 text-sm text-stone-500">Manage brassware products, pricing, and materials.</p>
+  const columnHelper = createColumnHelper<AdminProduct>();
+
+  const columns = [
+    columnHelper.accessor('name', {
+      header: 'Artifact Info',
+      cell: (info) => (
+        <>
+          <div className="text-navy max-w-[250px] truncate text-base leading-tight font-bold" title={info.getValue()}>
+            {info.getValue()}
+          </div>
+        </>
+      ),
+    }),
+    columnHelper.accessor('category', {
+      header: 'Category',
+      cell: (info) => (
+        <span className="text-maroon block max-w-[150px] truncate font-bold" title={info.getValue()}>
+          {info.getValue()}
+        </span>
+      ),
+    }),
+    columnHelper.accessor('price', {
+      header: 'Pricing',
+      cell: (info) => (
+        <span className="font-display text-navy block max-w-[120px] truncate text-lg font-bold" title={info.getValue()}>
+          {info.getValue()}
+        </span>
+      ),
+    }),
+    columnHelper.accessor('status', {
+      header: 'Status',
+      cell: (info) => {
+        const status = info.getValue();
+        return (
+          <span
+            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase ${
+              status === 'Active'
+                ? 'border border-green-100 bg-green-50 text-green-600'
+                : 'border border-gray-100 bg-gray-50 text-gray-500'
+            }`}
+          >
+            <span
+              className={`h-1.5 w-1.5 rounded-full ${status === 'Active' ? 'animate-pulse bg-green-500' : 'bg-gray-400'}`}
+            ></span>
+            {status}
+          </span>
+        );
+      },
+    }),
+    columnHelper.display({
+      id: 'actions',
+      header: () => <div className="text-right">Actions</div>,
+      cell: (info) => (
+        <div className="flex items-center justify-end gap-3">
+          <Link
+            href={`/admin/products/${info.row.original.id}`}
+            title="View Details"
+            className="hover:bg-navy/5 hover:text-navy flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors"
+          >
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              />
+            </svg>
+          </Link>
+
+          <button
+            onClick={() => handleDelete(info.row.original.id)}
+            title="Remove Product"
+            className="hover:bg-brand-red/10 hover:text-brand-red flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors"
+          >
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+              />
+            </svg>
+          </button>
         </div>
-        <Link
-          href="/admin/products/add"
-          className="inline-flex items-center gap-2 rounded bg-[#1B4332] px-6 py-2.5 text-sm font-bold tracking-wider text-[#D4AF37] uppercase shadow-sm transition-all hover:bg-[#081C15]"
-        >
-          Add Product
-        </Link>
+      ),
+    }),
+  ];
+
+  const table = useReactTable({
+    data,
+    columns,
+    state: {
+      sorting,
+      globalFilter,
+    },
+    onSortingChange: setSorting,
+    onGlobalFilterChange: setGlobalFilter,
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      pagination: {
+        pageSize: 5,
+      },
+    },
+  });
+
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 space-y-4 duration-700">
+      <div className="flex flex-col justify-between gap-4 px-2 sm:flex-row sm:items-center">
+        <div>
+          <h2 className="font-display text-navy text-4xl font-bold tracking-tight">Master Catalog</h2>
+          <p className="mt-2 text-sm font-medium text-gray-500">Manage brassware products, pricing, and materials.</p>
+        </div>
+        <div className="flex flex-col items-center gap-3 sm:flex-row">
+          <div className="relative w-full sm:w-auto">
+            <svg
+              className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={globalFilter ?? ''}
+              onChange={(e) => setGlobalFilter(e.target.value)}
+              className="focus:border-navy/20 focus:ring-navy/10 w-full rounded-2xl border border-gray-100 bg-white py-3 pr-4 pl-11 text-sm shadow-[0_2px_10px_rgb(0,0,0,0.02)] transition-all focus:ring-4 focus:outline-none sm:w-64"
+            />
+          </div>
+          <Link
+            href="/admin/products/add"
+            className="group bg-navy hover:bg-navy-light relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl px-6 py-3 text-sm font-bold tracking-wider text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl sm:w-auto"
+          >
+            <div className="from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+            <svg
+              className="relative z-10 h-5 w-5 transition-transform group-hover:rotate-90"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+            </svg>
+            <span className="relative z-10 uppercase">Add Product</span>
+          </Link>
+        </div>
       </div>
 
-      {/* Products Table */}
-      <div className="overflow-hidden rounded border border-stone-200 bg-white shadow-sm">
-        <div className="overflow-x-auto">
+      {/* Products Table - Trendy Bento Card */}
+      <div className="overflow-hidden rounded-4xl border border-gray-100 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+        <div className="custom-scrollbar overflow-x-auto">
           <table className="w-full text-left text-sm whitespace-nowrap">
-            <thead className="border-b border-stone-200 bg-[#F9F9F6]">
-              <tr>
-                <th className="px-6 py-4 text-xs font-bold tracking-wider text-[#2D6A4F] uppercase">Artifact Info</th>
-                <th className="px-6 py-4 text-xs font-bold tracking-wider text-[#2D6A4F] uppercase">Category</th>
-                <th className="px-6 py-4 text-xs font-bold tracking-wider text-[#2D6A4F] uppercase">Material</th>
-                <th className="px-6 py-4 text-xs font-bold tracking-wider text-[#2D6A4F] uppercase">Pricing</th>
-                <th className="px-6 py-4 text-xs font-bold tracking-wider text-[#2D6A4F] uppercase">Status</th>
-                <th className="px-6 py-4 text-right text-xs font-bold tracking-wider text-[#2D6A4F] uppercase">
-                  Actions
-                </th>
-              </tr>
+            <thead className="border-b border-gray-50 bg-gray-50/50">
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
+                    const isSortable = header.column.getCanSort();
+                    return (
+                      <th
+                        key={header.id}
+                        onClick={header.column.getToggleSortingHandler()}
+                        className={`text-navy px-6 py-3 text-xs font-bold tracking-widest uppercase ${
+                          isSortable ? 'group cursor-pointer transition-colors select-none hover:bg-gray-100' : ''
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          {flexRender(header.column.columnDef.header, header.getContext())}
+                          {{
+                            asc: (
+                              <svg
+                                className="text-maroon h-4 w-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7" />
+                              </svg>
+                            ),
+                            desc: (
+                              <svg
+                                className="text-maroon h-4 w-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                              </svg>
+                            ),
+                          }[header.column.getIsSorted() as string] ??
+                            (isSortable ? (
+                              <svg
+                                className="h-4 w-4 text-gray-300 opacity-0 transition-opacity group-hover:opacity-100"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+                                />
+                              </svg>
+                            ) : null)}
+                        </div>
+                      </th>
+                    );
+                  })}
+                </tr>
+              ))}
             </thead>
-            <tbody className="divide-y divide-stone-100">
-              {products.map((product) => (
-                <tr key={product.id} className="group transition-colors hover:bg-[#F9F9F6]">
-                  <td className="px-6 py-4">
-                    <div className="font-bold text-[#081C15]">{product.name}</div>
-                    <div className="text-xs text-stone-500">SKU: EV-{1000 + product.id}</div>
-                  </td>
-                  <td className="px-6 py-4 font-medium text-[#1B4332]">{product.category}</td>
-                  <td className="px-6 py-4 text-stone-600">{product.material}</td>
-                  <td className="px-6 py-4 font-bold text-[#081C15]">{product.price}</td>
-                  <td className="px-6 py-4">
-                    <span
-                      className={`inline-flex rounded px-2 py-1 text-xs font-bold tracking-wide uppercase ${
-                        product.status === 'Active' ? 'bg-[#D4AF37]/20 text-[#AA8C2C]' : 'bg-stone-200 text-stone-600'
-                      }`}
-                    >
-                      {product.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-right">
-                    <button
-                      onClick={() => handleDelete(product.id)}
-                      className="text-xs font-bold tracking-wider text-red-600 uppercase hover:underline"
-                    >
-                      Remove
-                    </button>
-                  </td>
+            <tbody className="divide-y divide-gray-50">
+              {table.getRowModel().rows.map((row) => (
+                <tr key={row.id} className="group hover:bg-cream-dark/10 transition-colors">
+                  {row.getVisibleCells().map((cell) => (
+                    <td key={cell.id} className="px-6 py-3">
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))}
                 </tr>
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="flex items-center justify-between border-t border-gray-50 bg-gray-50/30 px-6 py-3">
+          <div className="text-sm font-medium text-gray-500">
+            Showing{' '}
+            <span className="text-navy font-bold">
+              {table.getState().pagination.pageIndex * table.getState().pagination.pageSize + 1}
+            </span>{' '}
+            to{' '}
+            <span className="text-navy font-bold">
+              {Math.min(
+                (table.getState().pagination.pageIndex + 1) * table.getState().pagination.pageSize,
+                table.getPrePaginationRowModel().rows.length
+              )}
+            </span>{' '}
+            of <span className="text-navy font-bold">{table.getPrePaginationRowModel().rows.length}</span> results
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => table.previousPage()}
+              disabled={!table.getCanPreviousPage()}
+              className="hover:text-navy flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm transition-all hover:border-gray-300 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={() => table.nextPage()}
+              disabled={!table.getCanNextPage()}
+              className="hover:text-navy flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-500 shadow-sm transition-all hover:border-gray-300 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>

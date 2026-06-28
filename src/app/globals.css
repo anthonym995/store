@@ -57,54 +57,28 @@ h6 {
   padding: 0 1.5rem;
 }
 
-/* [data-theme=lalithaa-gold] {
-    --bg-color: #fff8dc;
-    --bg-light-white: #fffbf3;
-    --bg-white: #fff;
-    --bg-warm-white: #fff7e8;
-    --bg-light-sand: #f5e8cc;
-    --bg-espresso: #251d17;
-    --bg-dark-expresso: #130d01;
-    --bg-midnight-blue: #010c1a;
-    --bg-vanilla: #fff3da;
-    --bg-warm-cream: #f4e6ca;
-    --bg-forest-green: #073125;
-    --bg-space-blue: #1b263b;
-    --bg-charcoal-blue: #0d1b2a;
-    --bg-light-grey: #f4f4f4;
-    --bg-snow: #eeeff5;
-    --bg-ice-blue: #e6ecf4;
-    --text-color: #00184c;
-    --text-accent: #af8742;
-    --text-dark-blue: #041250;
-    --text-white: #fff;
-    --text-soft-peach: #ffd59b;
-    --text-light-peach: #ffe2b9;
-    --text-pale-peach: #ffdfb3;
-    --text-coffee: #3f3024;
-    --text-ivory: #fdf6e3;
-    --text-platinum: #e0e1dd;
-    --text-primary-blue: #3f52c9;
-    --text-slate-navy-blue: #1e293b;
-    --text-charcoal-gray: #333;
-    --primary-button: #00184c;
-    --primary-button-hover: #102c66;
-    --primary-button-text: #fff;
-    --nav-bg-color: #f5e8cc;
-    --info-bar-bg: #2c1e15;
-    --info-bar-text: #fff;
-    --nav-item-active: #af8742;
-    --border-color: #d4c1a0;
-    --highlight: #f9d68d;
-    --highlight-light: #f6e6ca;
-    --border-light-grey: #d8d3d0;
-    --border-soft-peach: #ffd59b;
-    --border-amber: #ffb252;
-    --border-soft-gray: #c5c5c5;
-    --border-dark-red: #7b1717;
-    --border-dark-navy-blue: #04125026;
-    --border-light-steel-blue: #adb6cb;
-    --accent-gold: gold;
-    --soft-orange: #eab676;
-    --category-pill-bg: #f6e6ca;
-} */
+/* Custom Scrollbar for Admin Theme */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(10, 34, 57, 0.2); /* navy with opacity */
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(90, 11, 20, 0.4); /* maroon with opacity */
+}
+
+/* Firefox fallback */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(10, 34, 57, 0.2) rgba(0, 0, 0, 0.02);
+}

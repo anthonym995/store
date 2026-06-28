@@ -1,6 +1,7 @@
 'use client';
 
 import { useForm, Controller } from 'react-hook-form';
+import Link from 'next/link';
 
 interface ProductFormValues {
   productName: string;
@@ -35,35 +36,58 @@ export default function AddProduct() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="animate-in fade-in slide-in-from-bottom-4 mx-auto max-w-4xl space-y-8 duration-500"
+      className="animate-in fade-in slide-in-from-bottom-4 mx-auto max-w-5xl space-y-8 pb-12 duration-700"
     >
-      <div className="flex items-center justify-between border-b border-stone-200 pb-4">
+      {/* Top Bar */}
+      <div className="flex flex-col gap-4 px-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="font-display text-2xl font-bold text-[#081C15]">Add New Masterpiece</h2>
-          <p className="mt-1 text-sm text-stone-500">Add a new brassware artifact to the catalog.</p>
+          <div className="mb-2 flex items-center gap-2 text-sm font-bold tracking-widest text-gray-400 uppercase">
+            <Link href="/admin/products" className="hover:text-navy transition-colors">
+              Catalog
+            </Link>
+            <span>/</span>
+            <span className="text-maroon">Add</span>
+          </div>
+          <h2 className="font-display text-navy text-4xl font-bold tracking-tight">New Masterpiece</h2>
+          <p className="mt-2 text-sm font-medium text-gray-500">Add a new brassware artifact to the catalog.</p>
         </div>
+
         <button
           type="submit"
-          className="flex items-center gap-2 rounded bg-[#1B4332] px-6 py-2.5 text-sm font-bold tracking-wider text-[#D4AF37] uppercase shadow-sm transition-all hover:bg-[#081C15] focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 active:scale-95"
+          className="group bg-navy hover:bg-navy-light focus:ring-navy/20 relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl px-8 py-4 text-sm font-bold tracking-wider text-white shadow-lg transition-all outline-none hover:-translate-y-1 hover:shadow-xl focus:ring-4"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+          <svg className="relative z-10 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
           </svg>
-          Save Product
+          <span className="relative z-10 uppercase">Save Product</span>
         </button>
       </div>
 
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {/* Main Info */}
-        <div className="space-y-6 md:col-span-2">
-          <div className="space-y-5 rounded border border-stone-200 bg-white p-7 shadow-sm">
-            <h3 className="font-display flex items-center gap-2 text-lg font-bold text-[#081C15]">
+        {/* Main Info Column */}
+        <div className="space-y-8 md:col-span-2">
+          {/* General Information Bento Box */}
+          <div className="relative overflow-hidden rounded-[2rem] border border-gray-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <div className="bg-cream-dark/30 pointer-events-none absolute -top-20 -left-20 h-48 w-48 rounded-full blur-2xl"></div>
+
+            <h3 className="font-display text-navy mb-8 flex items-center gap-3 text-xl font-bold">
+              <span className="text-maroon flex h-8 w-8 items-center justify-center rounded-xl bg-gray-50">
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </span>
               General Information
             </h3>
 
-            <div className="space-y-4">
+            <div className="relative space-y-6">
               <div>
-                <label className="mb-1.5 block text-xs font-bold tracking-wide text-[#2D6A4F] uppercase">
+                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
                   Product Name
                 </label>
                 <Controller
@@ -74,7 +98,7 @@ export default function AddProduct() {
                     <input
                       {...field}
                       type="text"
-                      className="w-full rounded border border-stone-300 px-4 py-2.5 transition-all outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
                       placeholder="e.g. 30cm Kalash Design Kuthu Vilakku"
                     />
                   )}
@@ -82,7 +106,7 @@ export default function AddProduct() {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold tracking-wide text-[#2D6A4F] uppercase">
+                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
                   Material Selection
                 </label>
                 <Controller
@@ -92,7 +116,7 @@ export default function AddProduct() {
                     <input
                       {...field}
                       type="text"
-                      className="w-full rounded border border-stone-300 px-4 py-2.5 transition-all outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
                       placeholder="e.g. Grade-A Cast Brass"
                     />
                   )}
@@ -100,7 +124,7 @@ export default function AddProduct() {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold tracking-wide text-[#2D6A4F] uppercase">
+                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
                   Description
                 </label>
                 <Controller
@@ -110,7 +134,7 @@ export default function AddProduct() {
                     <textarea
                       {...field}
                       rows={5}
-                      className="w-full resize-y rounded border border-stone-300 px-4 py-2.5 transition-all outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full resize-y rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
                       placeholder="Enter premium material details and craftsmanship description..."
                     />
                   )}
@@ -119,17 +143,30 @@ export default function AddProduct() {
             </div>
           </div>
 
-          <div className="space-y-5 rounded border border-stone-200 bg-white p-7 shadow-sm">
-            <h3 className="font-display flex items-center gap-2 text-lg font-bold text-[#081C15]">Pricing Details</h3>
+          {/* Pricing Bento Box */}
+          <div className="relative overflow-hidden rounded-[2rem] border border-gray-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <h3 className="font-display text-navy mb-8 flex items-center gap-3 text-xl font-bold">
+              <span className="text-gold-dark flex h-8 w-8 items-center justify-center rounded-xl bg-gray-50">
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </span>
+              Pricing Details
+            </h3>
 
-            <div className="grid grid-cols-2 gap-5">
+            <div className="relative grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
-                <label className="mb-1.5 block text-xs font-bold tracking-wide text-[#2D6A4F] uppercase">
+                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
                   Price (₹)
                 </label>
                 <div className="relative">
-                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <span className="font-medium text-stone-500">₹</span>
+                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-5">
+                    <span className="font-display text-lg font-bold text-gray-400">₹</span>
                   </div>
                   <Controller
                     name="price"
@@ -138,15 +175,16 @@ export default function AddProduct() {
                       <input
                         {...field}
                         type="number"
-                        className="w-full rounded border border-stone-300 py-2.5 pr-4 pl-8 transition-all outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+                        className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 py-4 pr-5 pl-10 text-lg font-bold transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
                         placeholder="0.00"
                       />
                     )}
                   />
                 </div>
               </div>
+
               <div>
-                <label className="mb-1.5 block text-xs font-bold tracking-wide text-[#2D6A4F] uppercase">
+                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
                   Pricing Unit
                 </label>
                 <Controller
@@ -156,7 +194,7 @@ export default function AddProduct() {
                     <input
                       {...field}
                       type="text"
-                      className="w-full rounded border border-stone-300 px-4 py-2.5 transition-all outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
                       placeholder="e.g. Per Kg / Per Piece"
                     />
                   )}
@@ -166,13 +204,15 @@ export default function AddProduct() {
           </div>
         </div>
 
-        {/* Sidebar Info */}
-        <div className="space-y-6">
-          <div className="space-y-4 rounded border border-stone-200 bg-white p-6 shadow-sm">
-            <h3 className="font-display text-lg font-bold text-[#081C15]">Product Image</h3>
-            <div className="group flex cursor-pointer flex-col items-center justify-center rounded border-2 border-dashed border-stone-300 p-8 text-center transition-colors hover:border-[#D4AF37] hover:bg-[#F9F9F6]">
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-[#1B4332] text-[#D4AF37] transition-transform group-hover:scale-110">
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        {/* Sidebar Column */}
+        <div className="space-y-8">
+          {/* Image Upload Bento Box */}
+          <div className="rounded-[2rem] border border-gray-100 bg-white p-8 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <h3 className="font-display text-navy mb-6 text-left text-xl font-bold">Product Image</h3>
+
+            <div className="group hover:border-maroon/50 hover:bg-maroon/5 flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50/50 p-10 transition-all">
+              <div className="text-maroon group-hover:bg-maroon mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm transition-transform group-hover:scale-110 group-hover:text-white">
+                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -181,15 +221,17 @@ export default function AddProduct() {
                   />
                 </svg>
               </div>
-              <p className="mb-1 text-sm font-bold text-[#1B4332]">Click to upload image</p>
-              <p className="text-xs text-stone-500">SVG, PNG, JPG (High Res)</p>
+              <p className="text-navy mb-1 text-sm font-bold">Upload Artifact Image</p>
+              <p className="text-xs font-medium text-gray-400">SVG, PNG, JPG (Max 5MB)</p>
             </div>
           </div>
 
-          <div className="space-y-4 rounded border border-stone-200 bg-white p-6 shadow-sm">
-            <h3 className="font-display text-lg font-bold text-[#081C15]">Category</h3>
+          {/* Category Bento Box */}
+          <div className="rounded-[2rem] border border-gray-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <h3 className="font-display text-navy mb-6 text-xl font-bold">Organization</h3>
+
             <div>
-              <label className="mb-1.5 block text-xs font-bold tracking-wide text-[#2D6A4F] uppercase">
+              <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
                 Select Category
               </label>
               <div className="relative">
@@ -199,7 +241,7 @@ export default function AddProduct() {
                   render={({ field }) => (
                     <select
                       {...field}
-                      className="w-full appearance-none rounded border border-stone-300 bg-white px-4 py-2.5 text-sm transition-all outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]"
+                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full appearance-none rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
                     >
                       <option value="" disabled>
                         Choose a category...
@@ -211,7 +253,7 @@ export default function AddProduct() {
                     </select>
                   )}
                 />
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-stone-500">
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-gray-400">
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>

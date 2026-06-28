@@ -41,7 +41,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
             <div>
-              <h2 className="font-display mb-6 text-3xl font-bold text-[#5a0b14] md:text-4xl">
+              <h2 className="font-display text-maroon mb-6 text-3xl font-bold md:text-4xl">
                 Preserving Cultural Heritage
               </h2>
               <p className="mb-6 text-base leading-relaxed text-[#3f3024]">
@@ -56,16 +56,16 @@ export default function AboutPage() {
               </p>
               <Link
                 href="/products"
-                className="inline-flex items-center justify-center rounded-sm bg-[#5a0b14] px-8 py-3 text-sm font-bold tracking-widest text-[#fff] uppercase transition-colors hover:bg-[#7a1420]"
+                className="bg-maroon inline-flex items-center justify-center rounded-sm px-8 py-3 text-sm font-bold tracking-widest text-white uppercase transition-colors hover:bg-[#7a1420]"
               >
                 Explore The Catalog
               </Link>
             </div>
 
             <div className="relative aspect-square w-full shadow-2xl">
-              <Image src="/logo.png" alt="Craftsmanship" fill className="bg-[#fff] object-contain p-12" />
-              <div className="absolute -bottom-6 -left-6 border-4 border-[#fff] bg-[#f5e8cc] p-6 shadow-xl">
-                <span className="font-display text-4xl font-bold text-[#5a0b14]">40+</span>
+              <Image src="/logo.png" alt="Craftsmanship" fill className="bg-white object-contain p-12" />
+              <div className="absolute -bottom-6 -left-6 border-4 border-white bg-[#f5e8cc] p-6 shadow-xl">
+                <span className="font-display text-maroon text-4xl font-bold">40+</span>
                 <p className="mt-1 text-sm font-bold tracking-widest text-[#af8742] uppercase">Years of Excellence</p>
               </div>
             </div>
@@ -77,13 +77,13 @@ export default function AboutPage() {
       <section className="bg-[#f5e8cc] py-20">
         <div className="container mx-auto px-6">
           <div className="mb-16 text-center">
-            <h2 className="font-display mb-4 text-3xl font-bold text-[#5a0b14]">The Pillars of Our Craft</h2>
+            <h2 className="font-display text-maroon mb-4 text-3xl font-bold">The Pillars of Our Craft</h2>
             <div className="mx-auto h-1 w-16 bg-[#af8742]"></div>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {/* Value 1 */}
-            <div className="border border-[#d4c1a0] bg-[#fff] p-8 text-center transition-transform hover:-translate-y-2">
+            <div className="border border-[#d4c1a0] bg-white p-8 text-center transition-transform hover:-translate-y-2">
               <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#fff7e8] text-[#af8742]">
                 <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -94,14 +94,14 @@ export default function AboutPage() {
                   ></path>
                 </svg>
               </div>
-              <h3 className="font-display mb-3 text-xl font-bold text-[#5a0b14]">Premium Materials</h3>
+              <h3 className="font-display text-maroon mb-3 text-xl font-bold">Premium Materials</h3>
               <p className="text-sm leading-relaxed text-[#3f3024]">
                 We source only the highest-grade cast brass, ensuring unparalleled durability and a high-glow mirror
                 polish that never fades.
               </p>
             </div>
             {/* Value 2 */}
-            <div className="border border-[#d4c1a0] bg-[#fff] p-8 text-center transition-transform hover:-translate-y-2">
+            <div className="border border-[#d4c1a0] bg-white p-8 text-center transition-transform hover:-translate-y-2">
               <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#fff7e8] text-[#af8742]">
                 <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -112,14 +112,14 @@ export default function AboutPage() {
                   ></path>
                 </svg>
               </div>
-              <h3 className="font-display mb-3 text-xl font-bold text-[#5a0b14]">Spiritual Sanctity</h3>
+              <h3 className="font-display text-maroon mb-3 text-xl font-bold">Spiritual Sanctity</h3>
               <p className="text-sm leading-relaxed text-[#3f3024]">
                 Every piece is meticulously designed with Vastu and Agamic principles in mind, turning metal into a
                 vessel of pure devotion.
               </p>
             </div>
             {/* Value 3 */}
-            <div className="border border-[#d4c1a0] bg-[#fff] p-8 text-center transition-transform hover:-translate-y-2">
+            <div className="border border-[#d4c1a0] bg-white p-8 text-center transition-transform hover:-translate-y-2">
               <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#fff7e8] text-[#af8742]">
                 <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -130,7 +130,7 @@ export default function AboutPage() {
                   ></path>
                 </svg>
               </div>
-              <h3 className="font-display mb-3 text-xl font-bold text-[#5a0b14]">Master Artisans</h3>
+              <h3 className="font-display text-maroon mb-3 text-xl font-bold">Master Artisans</h3>
               <p className="text-sm leading-relaxed text-[#3f3024]">
                 Crafted by generational experts whose hands carry the wisdom of centuries, delivering flawless
                 perfection in every curve and motif.
@@ -141,16 +141,16 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#5a0b14] py-20 text-center">
+      <section className="bg-maroon py-20 text-center">
         <div className="container mx-auto px-6">
-          <h2 className="font-display mb-6 text-3xl font-bold text-[#fff] md:text-4xl">Bring Divine Radiance Home</h2>
+          <h2 className="font-display mb-6 text-3xl font-bold text-white md:text-4xl">Bring Divine Radiance Home</h2>
           <p className="mx-auto mb-8 max-w-2xl text-base font-light text-[#e0e1dd]">
             Whether you are outfitting a grand temple or establishing a sacred space in your own home, E.V. Brassware is
             here to serve your spiritual needs.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-sm bg-[#af8742] px-8 py-4 text-sm font-bold tracking-widest text-[#5a0b14] uppercase transition-colors hover:bg-[#f9d68d]"
+            className="text-maroon inline-flex items-center justify-center rounded-sm bg-[#af8742] px-8 py-4 text-sm font-bold tracking-widest uppercase transition-colors hover:bg-[#f9d68d]"
           >
             Request a Quote Today
           </Link>

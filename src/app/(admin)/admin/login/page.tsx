@@ -32,19 +32,19 @@ export default function AdminLogin() {
     <div className="animate-in fade-in flex min-h-screen flex-col justify-center bg-[#F9F9F6] py-12 font-sans duration-500 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="mb-6 flex flex-col items-center leading-none">
-          <span className="font-display text-3xl font-extrabold tracking-widest text-[#081C15] uppercase">
+          <span className="font-display text-maroon text-3xl font-extrabold tracking-widest uppercase">
             E.V. Brassware
           </span>
           <span className="mt-1 text-xs font-bold tracking-[0.2em] text-[#D4AF37] uppercase">Partner Portal</span>
         </div>
-        <h2 className="text-center text-2xl font-bold tracking-tight text-[#1B4332]">Secure Dashboard Access</h2>
+        <h2 className="text-maroon text-center text-2xl font-bold tracking-tight">Secure Dashboard Access</h2>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="border border-stone-200 bg-white px-4 py-8 shadow-xl sm:rounded sm:px-10">
           <form className="space-y-6" onSubmit={handleLogin}>
             <div>
-              <label htmlFor="username" className="block text-xs font-bold tracking-wide text-[#2D6A4F] uppercase">
+              <label htmlFor="username" className="text-maroon block text-xs font-bold tracking-wide uppercase">
                 Username
               </label>
               <div className="relative mt-1.5">
@@ -61,7 +61,7 @@ export default function AdminLogin() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-xs font-bold tracking-wide text-[#2D6A4F] uppercase">
+              <label htmlFor="password" className="text-maroon block text-xs font-bold tracking-wide uppercase">
                 Password
               </label>
               <div className="relative mt-1.5">
@@ -87,7 +87,7 @@ export default function AdminLogin() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex w-full justify-center rounded bg-[#1B4332] px-4 py-3.5 text-sm font-bold tracking-widest text-[#D4AF37] uppercase shadow-md transition-all hover:bg-[#081C15] focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+                className="bg-maroon hover:bg-brand-red-dark flex w-full justify-center rounded px-4 py-3.5 text-sm font-bold tracking-widest text-[#D4AF37] uppercase shadow-md transition-all focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:outline-none active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isLoading ? 'Authenticating...' : 'Sign In'}
               </button>
@@ -96,8 +96,8 @@ export default function AdminLogin() {
 
           <div className="mt-8 border-t border-stone-100 pt-6 text-center">
             <p className="text-xs font-medium text-stone-500">
-              Demo Access: <span className="font-bold text-[#1B4332]">admin</span> /{' '}
-              <span className="font-bold text-[#1B4332]">admin</span>
+              Demo Access: <span className="text-maroon font-bold">admin</span> /{' '}
+              <span className="text-maroon font-bold">admin</span>
             </p>
           </div>
         </div>

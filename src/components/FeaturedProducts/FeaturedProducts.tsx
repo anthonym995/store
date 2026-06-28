@@ -1,26 +1,43 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { products } from '@/data/products';
+import title from '@/assets/title.png';
 
 export default function FeaturedProducts() {
   const featured = products.slice(0, 4);
+
   return (
-    <section id="products" className="bg-cream relative py-16">
-      {/* Deep Brown Top Half Background */}
-      <div className="bg-brown absolute top-0 left-0 z-0 h-[40%] w-full"></div>
+    <section id="products" className="bg-cream relative pb-16">
+      {/* 1. Banner Section (Full Width) */}
+      <div className="flex w-full bg-[#0b0605]">
+        {/* CHANGED: Height is now exactly 250px */}
+        <div className="relative flex h-[250px] w-full overflow-hidden">
+          {/* Left Text Content */}
+          <div className="z-10 flex w-1/2 flex-col justify-center pl-8 md:pl-16 lg:pl-16 xl:pl-32">
+            <h2 className="font-display mb-2 text-3xl font-normal tracking-wider text-[#ebd39e] sm:text-4xl">
+              THE LATEST IN LUXURY
+            </h2>
+            <p className="text-sm tracking-wide text-[#fdfbf7] sm:text-base">Elegance, Crafted for the Moment</p>
+          </div>
 
-      <div className="relative z-10 container mx-auto py-16">
-        <div className="mb-12 text-center">
-          <h2 className="font-display text-gold text-3xl font-bold tracking-widest uppercase">Featured Artifacts</h2>
-          <p className="text-cream-dark mt-2 text-sm">Elegance Crafted for the Divine</p>
+          {/* Right Image */}
+          <div className="relative h-full w-1/2">
+            {/* Gradient mask */}
+            <div className="absolute inset-0 z-10 w-24 bg-gradient-to-r from-[#0b0605] to-transparent"></div>
+
+            <Image src={title} alt="The Latest in Luxury" fill className="object-cover object-right" priority />
+          </div>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 gap-6 px-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* 2. Product Grid (Constrained to 1027px) */}
+      <div className="relative z-20 mx-auto -mt-16 max-w-[1027px] px-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {featured.map((product) => (
             <Link
               href={`/products/${product.id}`}
               key={product.id}
-              className="group flex flex-col bg-white shadow-lg transition-transform duration-300 hover:-translate-y-2"
+              className="group flex flex-col overflow-hidden rounded-t-xl bg-white shadow-lg transition-transform duration-300 hover:-translate-y-2"
             >
               <div className="relative aspect-square w-full overflow-hidden bg-[#fdfbf7]">
                 <Image

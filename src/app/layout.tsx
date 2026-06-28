@@ -8,8 +8,12 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Giri Trading | Spiritual & Pooja Essentials',
-  description: 'Explore a wide range of Hindu traditions, pooja items, books, idols, and ethnic wear.',
+  title: 'E.V. Brassware | Premium Cast Brassware & Sacred Vessels',
+  description:
+    'Preserving cultural heritage through premium cast brassware, sacred ritual vessels, and timeless lighting masterpieces. Crafted with devotion for generations.',
+  icons: {
+    icon: '/logo.svg',
+  },
 };
 
 export default function RootLayout({

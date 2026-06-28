@@ -2,8 +2,40 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { products } from '@/data/products';
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const product = products.find((p) => p.id === parseInt(resolvedParams.id));
+
+  if (!product) {
+    return {
+      title: 'Product Not Found | E.V. Brassware',
+    };
+  }
+
+  return {
+    title: `${product.name} | E.V. Brassware`,
+    description: product.description,
+    openGraph: {
+      title: `${product.name} | E.V. Brassware`,
+      description: product.description,
+      images: [
+        {
+          url: typeof product.image === 'string' ? product.image : product.image?.src || '/logo.png',
+          alt: product.name,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: product.name,
+      description: product.description,
+    },
+  };
+}
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -31,7 +63,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
             <div className="relative flex min-h-[400px] w-full items-center justify-center bg-white py-8 lg:col-span-6">
               <div className="relative aspect-square w-full max-w-[800px]">
                 <Image
-                  src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.05 PM.jpeg'}
+                  src={product.image || '/logo.png'}
                   alt={product.name}
                   fill
                   unoptimized

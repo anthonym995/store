@@ -50,7 +50,7 @@ export default function Categories() {
               key={cat.id}
               className="group border-cream-dark flex cursor-pointer items-center gap-6 rounded-full border bg-white p-3 pr-8 shadow-sm transition-shadow hover:shadow-md"
             >
-              <div className="border-gold/30 relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border md:h-20 md:w-20">
+              <div className="border-gold/30 relative h-16 w-16 shrink-0 overflow-hidden rounded-full border md:h-20 md:w-20">
                 <Image
                   src={cat.image}
                   alt={cat.title}

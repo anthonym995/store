@@ -68,7 +68,7 @@ export default function Collections() {
             </div>
 
             {/* Custom Pedestal Platform Shadow */}
-            <div className="pointer-events-none absolute bottom-10 left-1/2 h-[50px] w-[80%] -translate-x-1/2 rounded-full bg-gradient-to-b from-[#D3C8BC] to-transparent opacity-75 blur-md" />
+            <div className="pointer-events-none absolute bottom-10 left-1/2 h-[50px] w-[80%] -translate-x-1/2 rounded-full bg-linear-to-b from-[#D3C8BC] to-transparent opacity-75 blur-md" />
 
             {/* Asset Framework Window Container */}
             <div className={`absolute inset-0 flex ${item.imgContainerClass}`}>

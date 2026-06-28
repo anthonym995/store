@@ -23,7 +23,7 @@ export default function FeaturedProducts() {
           {/* Right Image */}
           <div className="relative h-full w-1/2">
             {/* Gradient mask */}
-            <div className="absolute inset-0 z-10 w-24 bg-gradient-to-r from-[#0b0605] to-transparent"></div>
+            <div className="absolute inset-0 z-10 w-24 bg-linear-to-r from-[#0b0605] to-transparent"></div>
 
             <Image src={title} alt="The Latest in Luxury" fill className="object-cover object-right" priority />
           </div>
@@ -48,7 +48,7 @@ export default function FeaturedProducts() {
                   className="absolute inset-0 object-contain p-6 mix-blend-multiply transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
-              <div className="border-cream-dark flex flex-grow flex-col items-center border-t p-6 text-center">
+              <div className="border-cream-dark flex grow flex-col items-center border-t p-6 text-center">
                 <h3 className="font-display text-navy group-hover:text-maroon mb-1 line-clamp-1 text-base font-bold tracking-wide uppercase">
                   {product.name}
                 </h3>

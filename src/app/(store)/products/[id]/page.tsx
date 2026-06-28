@@ -25,7 +25,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
           </Link>
         </div>
 
-        <div className="overflow-hidden border border-[#d4af37]/30 bg-white shadow-xl">
+        <div className="border-gold/30 overflow-hidden border bg-white shadow-xl">
           <div className="grid grid-cols-1 gap-0 lg:grid-cols-12">
             {/* Image Section */}
             <div className="relative flex min-h-[400px] w-full items-center justify-center bg-white py-8 lg:col-span-6">

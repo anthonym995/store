@@ -1,17 +1,9 @@
-// SEO fields for the Category
-export interface CategorySEO {
-  metaTitle?: string;
-  metaDescription?: string;
-  slug: string;
-}
+import { StaticImageData } from 'next/image';
 
 // The core Category model
 export interface Category {
-  id: number | string;
-  name: string;
-  description?: string;
-  imageUrl?: string;
-
-  // Embedded SEO Object
-  seo?: CategorySEO;
+  id: string | number;
+  title: string;
+  desc: string;
+  image: StaticImageData | string | any;
 }

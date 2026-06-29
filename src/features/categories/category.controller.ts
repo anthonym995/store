@@ -1,30 +1,25 @@
 import { Category } from './category.model';
-
-// Mock DB for categories
-const dummyCategories: Category[] = [
-  { id: 1, name: 'Kuthu Vilakku', seo: { slug: 'kuthu-vilakku' } },
-  { id: 2, name: 'Pipe Lamp', seo: { slug: 'pipe-lamp' } },
-];
+import { categories } from '@/data/categories';
 
 export const categoryController = {
   // GET ALL CATEGORIES
   getAllCategories: async (): Promise<Category[]> => {
-    return dummyCategories;
+    return categories;
   },
 
   // GET CATEGORY BY ID
   getCategoryById: async (id: string | number): Promise<Category | null> => {
-    const category = dummyCategories.find((c) => c.id.toString() === id.toString());
+    const category = categories.find(c => c.id.toString() === id.toString());
     return category || null;
   },
 
   // CREATE CATEGORY
   createCategory: async (categoryData: Partial<Category>): Promise<Category> => {
     const newCategory = {
-      id: Date.now(),
-      ...categoryData,
+      id: categoryData.id || Date.now().toString(),
+      ...categoryData
     } as Category;
-
+    
     return newCategory;
   },
 
@@ -36,5 +31,5 @@ export const categoryController = {
   // DELETE CATEGORY
   deleteCategory: async (id: string | number): Promise<boolean> => {
     return true;
-  },
+  }
 };

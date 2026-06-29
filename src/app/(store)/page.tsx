@@ -1,8 +1,8 @@
-import Hero from '@/components/Hero/Hero';
-import Categories from '@/components/Categories/Categories';
-import FeaturedProducts from '@/components/FeaturedProducts/FeaturedProducts';
-import ContactCTA from '@/components/ContactCTA/ContactCTA';
-import Collections from '@/components/Collections/Collections';
+import Hero from '@/components/sections/Hero/Hero';
+import Categories from '@/components/sections/Categories/Categories';
+import FeaturedProducts from '@/components/sections/FeaturedProducts/FeaturedProducts';
+import ContactCTA from '@/components/sections/ContactCTA/ContactCTA';
+import Collections from '@/components/sections/Collections/Collections';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

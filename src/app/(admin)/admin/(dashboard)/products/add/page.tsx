@@ -2,6 +2,8 @@
 
 import { useForm, Controller } from 'react-hook-form';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useCreateProduct } from '@/features/products/useProducts';
 
 interface ProductFormValues {
   productName: string;
@@ -28,9 +30,24 @@ export default function AddProduct() {
     },
   });
 
-  const onSubmit = (data: ProductFormValues) => {
-    console.log('Submitting Product Data:', data);
-    // Future integration: API call to your backend goes here
+  const router = useRouter();
+  const { mutateAsync: createProduct, isPending } = useCreateProduct();
+
+  const onSubmit = async (data: ProductFormValues) => {
+    try {
+      await createProduct({
+        name: data.productName,
+        desc: data.description,
+        price: data.price.toString(),
+        category: data.category,
+        material: data.material,
+        image: '/products/kuthu.jpg', // Placeholder since there's no image upload yet
+      });
+      router.push('/admin/products');
+    } catch (error) {
+      console.error('Failed to create product:', error);
+      alert('Failed to create product');
+    }
   };
 
   return (
@@ -54,13 +71,21 @@ export default function AddProduct() {
 
         <button
           type="submit"
-          className="group bg-navy hover:bg-navy-light focus:ring-navy/20 relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl px-8 py-4 text-sm font-bold tracking-wider text-white shadow-lg transition-all outline-none hover:-translate-y-1 hover:shadow-xl focus:ring-4"
+          disabled={isPending}
+          className="group bg-navy hover:bg-navy-light focus:ring-navy/20 relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl px-8 py-4 text-sm font-bold tracking-wider text-white shadow-lg transition-all outline-none hover:-translate-y-1 hover:shadow-xl focus:ring-4 disabled:opacity-50 disabled:hover:translate-y-0"
         >
           <div className="from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
-          <svg className="relative z-10 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-          </svg>
-          <span className="relative z-10 uppercase">Save Product</span>
+          {isPending ? (
+            <svg className="relative z-10 h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          ) : (
+            <svg className="relative z-10 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+            </svg>
+          )}
+          <span className="relative z-10 uppercase">{isPending ? 'Saving...' : 'Save Product'}</span>
         </button>
       </div>
 

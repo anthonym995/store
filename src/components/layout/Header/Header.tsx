@@ -122,7 +122,7 @@ export default function Header() {
 
       {/* Mobile Menu Backdrop */}
       <div
-        className={`fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-60 bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           isMobileMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
         onClick={() => setIsMobileMenuOpen(false)}
@@ -130,7 +130,7 @@ export default function Header() {
 
       {/* Mobile Menu Drawer (Left Side) */}
       <div
-        className={`fixed top-0 left-0 z-[70] h-full w-[80%] max-w-sm bg-[#f5e8cc] shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`fixed top-0 left-0 z-70 h-full w-[80%] max-w-sm bg-[#f5e8cc] shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >

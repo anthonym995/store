@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   createColumnHelper,
@@ -13,59 +14,57 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { useProducts } from '@/features/products/useProducts';
-import { Product } from '@/lib/types';
+import { useCategories } from '@/features/categories/useCategories';
+import { Category } from '@/lib/types';
 
-type AdminProduct = Product & { status: string };
+type AdminCategory = Category & { status: string };
 
-export default function ProductsList() {
-  const { data: apiProducts, isLoading } = useProducts();
-  const [data, setData] = useState<AdminProduct[]>([]);
+export default function CategoriesList() {
+  const { data: apiCategories, isLoading } = useCategories();
+  const [data, setData] = useState<AdminCategory[]>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
 
   // Sync API data to local state
   useEffect(() => {
-    if (apiProducts) {
-      const formattedProducts = apiProducts.map((p) => ({
-        ...p,
+    if (apiCategories) {
+      const formattedCategories = apiCategories.map((c) => ({
+        ...c,
         status: 'Active', // Mocking status since it doesn't exist in the base data
       }));
-      setData(formattedProducts);
+      setData(formattedCategories);
     }
-  }, [apiProducts]);
+  }, [apiCategories]);
 
   const handleDelete = (id: number) => {
-    if (confirm('Are you sure you want to remove this product from the catalog?')) {
-      setData(data.filter((p) => p.id !== id));
+    if (confirm('Are you sure you want to remove this category?')) {
+      setData(data.filter((c) => c.id !== id));
     }
   };
 
-  const columnHelper = createColumnHelper<AdminProduct>();
+  const columnHelper = createColumnHelper<AdminCategory>();
 
   const columns = [
-    columnHelper.accessor('name', {
-      header: 'Artifact Info',
+    columnHelper.accessor('image', {
+      header: 'Image',
       cell: (info) => (
-        <>
-          <div className="text-navy max-w-[250px] truncate text-base leading-tight font-bold" title={info.getValue()}>
-            {info.getValue()}
-          </div>
-        </>
+        <div className="relative h-12 w-12 overflow-hidden rounded-md border border-gray-200">
+          <Image src={info.getValue() || '/logo.png'} alt="Category" fill className="object-cover" unoptimized />
+        </div>
       ),
     }),
-    columnHelper.accessor('category', {
-      header: 'Category',
+    columnHelper.accessor('title', {
+      header: 'Category Title',
       cell: (info) => (
-        <span className="text-maroon block max-w-[150px] truncate font-bold" title={info.getValue()}>
+        <div className="text-navy max-w-[250px] truncate text-base leading-tight font-bold" title={info.getValue()}>
           {info.getValue()}
-        </span>
+        </div>
       ),
     }),
-    columnHelper.accessor('price', {
-      header: 'Pricing',
+    columnHelper.accessor('desc', {
+      header: 'Description',
       cell: (info) => (
-        <span className="font-display text-navy block max-w-[120px] truncate text-lg font-bold" title={info.getValue()}>
+        <span className="block max-w-[300px] truncate text-gray-500" title={info.getValue()}>
           {info.getValue()}
         </span>
       ),
@@ -96,24 +95,23 @@ export default function ProductsList() {
       cell: (info) => (
         <div className="flex items-center justify-end gap-3">
           <Link
-            href={`/admin/products/${info.row.original.id}`}
-            title="View Details"
+            href={`/admin/categories/${info.row.original.id}`}
+            title="Edit Category"
             className="hover:bg-navy/5 hover:text-navy flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors"
           >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
               />
             </svg>
           </Link>
 
           <button
             onClick={() => handleDelete(info.row.original.id)}
-            title="Remove Product"
+            title="Remove Category"
             className="hover:bg-brand-red/10 hover:text-brand-red flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors"
           >
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,8 +152,8 @@ export default function ProductsList() {
     <div className="animate-in fade-in slide-in-from-bottom-4 space-y-4 duration-700">
       <div className="flex flex-col justify-between gap-4 px-2 sm:flex-row sm:items-center">
         <div>
-          <h2 className="font-display text-navy text-4xl font-bold tracking-tight">Master Catalog</h2>
-          <p className="mt-2 text-sm font-medium text-gray-500">Manage brassware products, pricing, and materials.</p>
+          <h2 className="font-display text-navy text-4xl font-bold tracking-tight">Categories</h2>
+          <p className="mt-2 text-sm font-medium text-gray-500">Organize and manage your product collections.</p>
         </div>
         <div className="flex flex-col items-center gap-3 sm:flex-row">
           <div className="relative w-full sm:w-auto">
@@ -174,14 +172,14 @@ export default function ProductsList() {
             </svg>
             <input
               type="text"
-              placeholder="Search products..."
+              placeholder="Search categories..."
               value={globalFilter ?? ''}
               onChange={(e) => setGlobalFilter(e.target.value)}
               className="focus:border-navy/20 focus:ring-navy/10 w-full rounded-2xl border border-gray-100 bg-white py-3 pr-4 pl-11 text-sm shadow-[0_2px_10px_rgb(0,0,0,0.02)] transition-all focus:ring-4 focus:outline-none sm:w-64"
             />
           </div>
           <Link
-            href="/admin/products/add"
+            href="/admin/categories/add"
             className="group bg-navy hover:bg-navy-light relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl px-6 py-3 text-sm font-bold tracking-wider text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl sm:w-auto"
           >
             <div className="from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
@@ -193,12 +191,12 @@ export default function ProductsList() {
             >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
             </svg>
-            <span className="relative z-10 uppercase">Add Product</span>
+            <span className="relative z-10 uppercase">Add Category</span>
           </Link>
         </div>
       </div>
 
-      {/* Products Table - Trendy Bento Card */}
+      {/* Categories Table - Trendy Bento Card */}
       <div className="overflow-hidden rounded-4xl border border-gray-100 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
         <div className="custom-scrollbar overflow-x-auto">
           {isLoading ? (

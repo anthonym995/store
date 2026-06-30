@@ -17,6 +17,20 @@ export const fetchProductById = async (id: string): Promise<Product> => {
   return response.data.data;
 };
 
+export const createProduct = async (data: Partial<Product>): Promise<Product> => {
+  const response = await apiClient.post('/product', data);
+  return response.data.data;
+};
+
+export const updateProduct = async (id: string, data: Partial<Product>): Promise<Product> => {
+  const response = await apiClient.put(`/product/${id}`, data);
+  return response.data.data;
+};
+
+export const deleteProduct = async (id: string): Promise<void> => {
+  await apiClient.delete(`/product/${id}`);
+};
+
 // ==========================================
 // CATEGORIES API
 // ==========================================
@@ -31,4 +45,16 @@ export const fetchCategoryById = async (id: string): Promise<Category> => {
   return response.data.data;
 };
 
-// You can continue adding all your global fetch functions here (Cart, Auth, etc.)
+export const createCategory = async (data: Partial<Category>): Promise<Category> => {
+  const response = await apiClient.post('/category', data);
+  return response.data.data;
+};
+
+export const updateCategory = async (id: string, data: Partial<Category>): Promise<Category> => {
+  const response = await apiClient.put(`/category/${id}`, data);
+  return response.data.data;
+};
+
+export const deleteCategory = async (id: string): Promise<void> => {
+  await apiClient.delete(`/category/${id}`);
+};

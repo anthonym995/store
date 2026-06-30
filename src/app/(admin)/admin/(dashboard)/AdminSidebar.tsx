@@ -15,7 +15,7 @@ export default function AdminSidebar() {
     }`;
     const activeClass = 'bg-white/10 font-bold text-white shadow-[0_0_15px_rgba(255,255,255,0.05)]';
     const inactiveClass = 'font-medium text-gray-400 hover:bg-white/5 hover:text-white';
-    
+
     return `${baseClass} ${isActive ? activeClass : inactiveClass}`;
   };
 
@@ -60,12 +60,10 @@ export default function AdminSidebar() {
           <div className="mb-6 px-2 text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase">Menu</div>
         )}
 
-        <Link
-          href="/admin"
-          className={getLinkClass(pathname === '/admin')}
-          title="Overview"
-        >
-          <div className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname === '/admin' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}></div>
+        <Link href="/admin" className={getLinkClass(pathname === '/admin')} title="Overview">
+          <div
+            className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname === '/admin' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+          ></div>
           <svg className="relative z-10 h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
@@ -82,7 +80,9 @@ export default function AdminSidebar() {
           className={getLinkClass(pathname.startsWith('/admin/products'))}
           title="Catalog Manager"
         >
-          <div className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/products') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}></div>
+          <div
+            className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/products') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+          ></div>
           <svg
             className="relative z-10 h-5 w-5 shrink-0 transition-transform group-hover:scale-110"
             fill="none"
@@ -97,7 +97,37 @@ export default function AdminSidebar() {
             />
           </svg>
           {!isCollapsed && (
-            <span className="relative whitespace-nowrap transition-transform group-hover:translate-x-1">Catalog Manager</span>
+            <span className="relative whitespace-nowrap transition-transform group-hover:translate-x-1">
+              Catalog Manager
+            </span>
+          )}
+        </Link>
+
+        <Link
+          href="/admin/categories"
+          className={getLinkClass(pathname.startsWith('/admin/categories'))}
+          title="Categories"
+        >
+          <div
+            className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/categories') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+          ></div>
+          <svg
+            className="relative z-10 h-5 w-5 shrink-0 transition-transform group-hover:scale-110"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+            />
+          </svg>
+          {!isCollapsed && (
+            <span className="relative whitespace-nowrap transition-transform group-hover:translate-x-1">
+              Categories
+            </span>
           )}
         </Link>
 
@@ -106,7 +136,9 @@ export default function AdminSidebar() {
           className={getLinkClass(pathname.startsWith('/admin/inquiries'))}
           title="Inquiries"
         >
-          <div className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/inquiries') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}></div>
+          <div
+            className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/inquiries') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+          ></div>
           <svg
             className="relative z-10 h-5 w-5 shrink-0 transition-transform group-hover:scale-110"
             fill="none"

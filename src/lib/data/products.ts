@@ -26,7 +26,7 @@ import {
   image24,
   image25,
   image26,
-} from '../assets';
+} from '@/assets';
 
 export interface Product {
   id: number;

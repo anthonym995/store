@@ -1,5 +1,5 @@
-import { products } from '@/data/products';
-import { Category } from '@/types';
+import { products } from '@/lib/data/products';
+import { Category } from '@/lib/types';
 
 const kuthuVilakkuImage = products.find((p) => p.category.includes('Kuthu Vilakku'))?.image;
 const diyaImage = products.find((p) => p.category.includes('Diya'))?.image;

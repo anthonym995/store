@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { products as actualProducts } from '@/data/products';
+import { products as actualProducts } from '@/lib/data/products';
 
 const mockCatalog = actualProducts.map((p) => ({
   ...p,

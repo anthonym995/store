@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { products } from '@/data/products';
+import { products } from '@/lib/data/products';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 

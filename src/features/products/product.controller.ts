@@ -1,5 +1,5 @@
-import { Product } from '@/types';
-import { products as dummyProducts } from '@/data/products';
+import { Product } from '@/lib/types';
+import { products as dummyProducts } from '@/lib/data/products';
 
 export const productController = {
   // GET ALL PRODUCTS

@@ -1,5 +1,5 @@
-import { Category } from '@/types';
-import { categories } from '@/data/categories';
+import { Category } from '@/lib/types';
+import { categories } from '@/lib/data/categories';
 
 export const categoryController = {
   // GET ALL CATEGORIES

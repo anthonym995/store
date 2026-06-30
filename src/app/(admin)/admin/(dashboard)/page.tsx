@@ -1,4 +1,4 @@
-import { products } from '@/data/products';
+import { products } from '@/lib/data/products';
 
 export default function AdminOverview() {
   return (

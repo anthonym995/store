@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useCategories } from '@/features/categories/useCategories';
-import { categories as dummyCategories } from '@/data/categories';
+import { categories as dummyCategories } from '@/lib/data/categories';
 
 export default function Categories() {
   const { data: apiCategories, isLoading } = useCategories();

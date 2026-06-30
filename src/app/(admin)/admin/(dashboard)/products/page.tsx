@@ -13,7 +13,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-import { products as actualProducts } from '@/data/products';
+import { products as actualProducts } from '@/lib/data/products';
 
 type AdminProduct = (typeof actualProducts)[0] & { status: string };
 

@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { products } from '@/data/products';
+import { products } from '@/lib/data/products';
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');

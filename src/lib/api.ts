@@ -1,5 +1,5 @@
 import { apiClient } from './axios';
-import { Product, Category } from '@/types';
+import { Product, Category } from '@/lib/types';
 
 // ==========================================
 // PRODUCTS API

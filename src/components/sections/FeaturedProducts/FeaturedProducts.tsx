@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useProducts } from '@/features/products/useProducts';
-import { products as dummyProducts } from '@/data/products';
+import { products as dummyProducts } from '@/lib/data/products';
 import { ProductSkeleton } from '@/components/ui/ProductSkeleton';
 import title from '@/assets/title.png';
 

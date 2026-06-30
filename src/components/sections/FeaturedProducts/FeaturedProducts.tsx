@@ -3,15 +3,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useProducts } from '@/features/products/useProducts';
-import { products as dummyProducts } from '@/lib/data/products';
 import { ProductSkeleton } from '@/components/ui/ProductSkeleton';
 import title from '@/assets/title.png';
 
 export default function FeaturedProducts() {
-  const { data: apiProducts, isLoading } = useProducts();
+  const { data: products = [], isLoading } = useProducts();
 
-  // Fallback to dummy data if API fails or returns empty
-  const products = apiProducts && apiProducts.length > 0 ? apiProducts : dummyProducts;
   const featured = products.slice(0, 4);
 
   return (

@@ -2,13 +2,9 @@
 
 import Image from 'next/image';
 import { useCategories } from '@/features/categories/useCategories';
-import { categories as dummyCategories } from '@/lib/data/categories';
 
 export default function Categories() {
-  const { data: apiCategories, isLoading } = useCategories();
-
-  // Fallback to dummy data if API fails or returns empty
-  const categories = apiCategories && apiCategories.length > 0 ? apiCategories : dummyCategories;
+  const { data: categories = [], isLoading } = useCategories();
 
   return (
     <section id="categories" className="bg-cream py-16">

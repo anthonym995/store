@@ -4,14 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCategories } from '@/features/categories/useCategories';
-import { categories as dummyCategories } from '@/lib/data/categories';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { data: apiCategories, isLoading } = useCategories();
-
-  // Fallback to dummy data if API fails or returns empty
-  const categories = apiCategories && apiCategories.length > 0 ? apiCategories : dummyCategories;
+  const { data: categories = [], isLoading } = useCategories();
 
   return (
     <header className="relative z-50 w-full shadow-sm">

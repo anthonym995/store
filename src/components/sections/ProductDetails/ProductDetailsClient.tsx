@@ -3,13 +3,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useProduct } from '@/features/products/useProducts';
-import { products as dummyProducts } from '@/lib/data/products';
 import { notFound } from 'next/navigation';
 
 export default function ProductDetailsClient({ id }: { id: string }) {
-  const { data: apiProduct, isLoading } = useProduct(id);
-
-  const product = apiProduct || dummyProducts.find((p) => p.id === parseInt(id));
+  const { data: product, isLoading } = useProduct(id);
 
   if (isLoading) {
     return (

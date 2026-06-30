@@ -5,15 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useProducts } from '@/features/products/useProducts';
-import { products as dummyProducts } from '@/lib/data/products';
 import { ProductSkeleton } from '@/components/ui/ProductSkeleton';
 
 function ProductsContent() {
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  const { data: apiProducts, isLoading } = useProducts();
-  const activeProducts = apiProducts && apiProducts.length > 0 ? apiProducts : dummyProducts;
+  const { data: activeProducts = [], isLoading } = useProducts();
 
   // These must perfectly match the `title` property of categories from the API
   const filterCategories = ['All', 'Kuthu Vilakku', 'Diyas', 'Sacred Vessels', 'Designer Items'];

@@ -3,9 +3,15 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useCategories } from '@/features/categories/useCategories';
+import { categories as dummyCategories } from '@/lib/data/categories';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { data: apiCategories, isLoading } = useCategories();
+
+  // Fallback to dummy data if API fails or returns empty
+  const categories = apiCategories && apiCategories.length > 0 ? apiCategories : dummyCategories;
 
   return (
     <header className="relative z-50 w-full shadow-sm">
@@ -86,34 +92,99 @@ export default function Header() {
         <div className="container mx-auto">
           <nav className="flex justify-center">
             <ul className="text-navy flex list-none items-center gap-12 py-3.5 text-xs font-bold tracking-widest uppercase">
-              <li>
-                <Link href="/products?category=Kuthu+Vilakku" className="hover:text-gold transition-colors">
-                  Kuthu Vilakku
-                </Link>
-              </li>
-              <li>
-                <Link href="/products?category=Diya" className="hover:text-gold transition-colors">
-                  Diyas
-                </Link>
-              </li>
-              <li>
-                <Link href="/products?category=Vessel" className="hover:text-gold transition-colors">
-                  Sacred Vessels
-                </Link>
-              </li>
-              <li>
-                <Link href="/products?category=Designer" className="hover:text-gold transition-colors">
-                  Designer Items
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="text-maroon hover:text-gold transition-colors">
-                  All Collections
-                </Link>
-              </li>
+              {isLoading ? (
+                <>
+                  {[1, 2, 3, 4].map((i) => (
+                    <li key={i}>
+                      <div className="h-4 w-24 animate-pulse rounded bg-[#ebd39e]/50"></div>
+                    </li>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {categories.map((cat) => (
+                    <li key={cat.id}>
+                      <Link
+                        href={`/products?category=${encodeURIComponent(cat.title)}`}
+                        className="hover:text-gold transition-colors"
+                      >
+                        {cat.title}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <Link href="/products" className="text-maroon hover:text-gold transition-colors">
+                      All Collections
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
         </div>
+      </div>
+
+      {/* Mobile Menu Backdrop */}
+      <div
+        className={`fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+          isMobileMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+        }`}
+        onClick={() => setIsMobileMenuOpen(false)}
+      ></div>
+
+      {/* Mobile Menu Drawer (Left Side) */}
+      <div
+        className={`fixed top-0 left-0 z-[70] h-full w-[80%] max-w-sm bg-[#f5e8cc] shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="border-gold/20 flex items-center justify-between border-b p-4">
+          <span className="font-display text-navy text-lg font-bold tracking-widest uppercase">Menu</span>
+          <button
+            className="text-navy hover:text-maroon p-2 transition-colors"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <nav className="flex flex-col p-6">
+          <ul className="text-navy flex flex-col gap-6 text-sm font-bold tracking-widest uppercase">
+            {isLoading ? (
+              <>
+                {[1, 2, 3, 4].map((i) => (
+                  <li key={i}>
+                    <div className="h-4 w-3/4 animate-pulse rounded bg-[#ebd39e]/50"></div>
+                  </li>
+                ))}
+              </>
+            ) : (
+              <>
+                {categories.map((cat) => (
+                  <li key={cat.id}>
+                    <Link
+                      href={`/products?category=${encodeURIComponent(cat.title)}`}
+                      className="hover:text-gold block transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {cat.title}
+                    </Link>
+                  </li>
+                ))}
+                <li className="border-gold/20 border-t pt-4">
+                  <Link
+                    href="/products"
+                    className="text-maroon hover:text-gold block transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    All Collections
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </nav>
       </div>
     </header>
   );

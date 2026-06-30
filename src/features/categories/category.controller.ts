@@ -1,4 +1,4 @@
-import { Category } from './category.model';
+import { Category } from '@/types';
 import { categories } from '@/data/categories';
 
 export const categoryController = {
@@ -9,7 +9,7 @@ export const categoryController = {
 
   // GET CATEGORY BY ID
   getCategoryById: async (id: string | number): Promise<Category | null> => {
-    const category = categories.find(c => c.id.toString() === id.toString());
+    const category = categories.find((c) => c.id.toString() === id.toString());
     return category || null;
   },
 
@@ -17,9 +17,9 @@ export const categoryController = {
   createCategory: async (categoryData: Partial<Category>): Promise<Category> => {
     const newCategory = {
       id: categoryData.id || Date.now().toString(),
-      ...categoryData
+      ...categoryData,
     } as Category;
-    
+
     return newCategory;
   },
 
@@ -31,5 +31,5 @@ export const categoryController = {
   // DELETE CATEGORY
   deleteCategory: async (id: string | number): Promise<boolean> => {
     return true;
-  }
+  },
 };

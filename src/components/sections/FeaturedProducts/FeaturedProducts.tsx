@@ -1,9 +1,17 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import { products } from '@/data/products';
+import { useProducts } from '@/features/products/useProducts';
+import { products as dummyProducts } from '@/data/products';
+import { ProductSkeleton } from '@/components/ui/ProductSkeleton';
 import title from '@/assets/title.png';
 
 export default function FeaturedProducts() {
+  const { data: apiProducts, isLoading } = useProducts();
+
+  // Fallback to dummy data if API fails or returns empty
+  const products = apiProducts && apiProducts.length > 0 ? apiProducts : dummyProducts;
   const featured = products.slice(0, 4);
 
   return (
@@ -32,34 +40,42 @@ export default function FeaturedProducts() {
 
       {/* 2. Product Grid (Constrained to 1027px) */}
       <div className="relative z-20 mx-auto -mt-16 max-w-[1027px] px-4">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((product) => (
-            <Link
-              href={`/products/${product.id}`}
-              key={product.id}
-              className="group flex flex-col overflow-hidden rounded-t-xl bg-white shadow-lg transition-transform duration-300 hover:-translate-y-2"
-            >
-              <div className="relative aspect-square w-full overflow-hidden bg-[#fdfbf7]">
-                <Image
-                  src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.04 PM.jpeg'}
-                  alt={product.name}
-                  fill
-                  unoptimized
-                  className="absolute inset-0 object-contain p-6 mix-blend-multiply transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-              <div className="border-cream-dark flex grow flex-col items-center border-t p-6 text-center">
-                <h3 className="font-display text-navy group-hover:text-maroon mb-1 line-clamp-1 text-base font-bold tracking-wide uppercase">
-                  {product.name}
-                </h3>
-                <p className="text-gold mb-4 text-xs font-semibold uppercase">{product.category.split('/')[0]}</p>
-                <div className="mt-auto">
-                  <span className="text-navy text-sm font-bold">{product.price}</span>
+        {isLoading ? (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {[1, 2, 3, 4].map((i) => (
+              <ProductSkeleton key={i} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {featured.map((product) => (
+              <Link
+                href={`/products/${product.id}`}
+                key={product.id}
+                className="group flex flex-col overflow-hidden rounded-t-xl bg-white shadow-lg transition-transform duration-300 hover:-translate-y-2"
+              >
+                <div className="relative aspect-square w-full overflow-hidden bg-[#fdfbf7]">
+                  <Image
+                    src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.04 PM.jpeg'}
+                    alt={product.name}
+                    fill
+                    unoptimized
+                    className="absolute inset-0 object-contain p-6 mix-blend-multiply transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+                <div className="border-cream-dark flex grow flex-col items-center border-t p-6 text-center">
+                  <h3 className="font-display text-navy group-hover:text-maroon mb-1 line-clamp-1 text-base font-bold tracking-wide uppercase">
+                    {product.name}
+                  </h3>
+                  <p className="text-gold mb-4 text-xs font-semibold uppercase">{product.category.split('/')[0]}</p>
+                  <div className="mt-auto">
+                    <span className="text-navy text-sm font-bold">{product.price}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

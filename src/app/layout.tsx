@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Open_Sans } from 'next/font/google';
+import QueryProvider from '@/lib/QueryProvider';
 import './globals.css';
 
 const openSans = Open_Sans({
@@ -23,7 +24,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${openSans.variable}`}>
-      <body className="flex min-h-screen flex-col bg-white font-sans">{children}</body>
+      <body className="flex min-h-screen flex-col bg-white font-sans">
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   );
 }

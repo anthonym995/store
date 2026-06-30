@@ -1,5 +1,5 @@
 import { products } from '@/data/products';
-import { Category } from '@/features/categories/category.model';
+import { Category } from '@/types';
 
 const kuthuVilakkuImage = products.find((p) => p.category.includes('Kuthu Vilakku'))?.image;
 const diyaImage = products.find((p) => p.category.includes('Diya'))?.image;

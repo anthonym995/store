@@ -1,6 +1,5 @@
 import { StaticImageData } from 'next/image';
 
-// The core Product model
 export interface Product {
   id: number | string;
   name: string;
@@ -12,9 +11,16 @@ export interface Product {
   rating: string;
   image: StaticImageData | string | any;
 
-  // SEO Fields (Flattened)
+  // SEO Fields
   metaTitle?: string;
   metaDescription?: string;
   slug?: string;
   keywords?: string[];
+}
+
+export interface Category {
+  id: string | number;
+  title: string;
+  desc: string;
+  image: StaticImageData | string | any;
 }

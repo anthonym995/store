@@ -44,7 +44,7 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
       reset({
         productName: product.name,
         description: product.description,
-        price: Number(product.price.replace(/[^0-9.-]+/g, '')), // Ensure we parse out any '₹' if it exists in DB string
+        price: product.price, // product.price is now a number
         weightCategory: 'Per Piece', // Mock placeholder
         category: product.category,
         material: product.material,
@@ -59,8 +59,9 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
         data: {
           name: data.productName,
           description: data.description,
-          price: data.price.toString(),
+          price: Number(data.price),
           category: data.category,
+          categorySlug: data.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, ''),
           material: data.material,
         },
       });

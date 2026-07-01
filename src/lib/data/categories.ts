@@ -10,25 +10,29 @@ export const categories: Category[] = [
   {
     id: 1,
     title: 'Kuthu Vilakku',
+    slug: 'kuthu-vilakku',
     desc: 'Traditional Brass & Silver Lamps',
-    image: kuthuVilakkuImage || '/images/WhatsApp Image 2026-04-25 at 12.59.05 PM.jpeg',
+    image: kuthuVilakkuImage,
   },
   {
     id: 2,
     title: 'Designer Items',
+    slug: 'designer-items',
     desc: 'Premium Pipe Lamps',
-    image: designerImage || 'https://placehold.co/100x100/fcf9ef/d4af37/png?text=Designer',
+    image: designerImage,
   },
   {
     id: 3,
     title: 'Diyas',
+    slug: 'diyas',
     desc: 'Metal & Brass Diyas',
-    image: diyaImage || '/images/WhatsApp Image 2026-04-25 at 12.59.04 PM.jpeg',
+    image: diyaImage,
   },
   {
     id: 4,
     title: 'Sacred Vessels',
+    slug: 'sacred-vessels',
     desc: 'Brass Kalash & Ritual Items',
-    image: kalashImage || '/images/WhatsApp Image 2026-04-25 at 12.59.03 PM.jpeg',
+    image: kalashImage,
   },
 ];

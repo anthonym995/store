@@ -65,8 +65,11 @@ export default function ProductsList() {
     columnHelper.accessor('price', {
       header: 'Pricing',
       cell: (info) => (
-        <span className="font-display text-navy block max-w-[120px] truncate text-lg font-bold" title={info.getValue()}>
-          {info.getValue()}
+        <span
+          className="font-display text-navy block max-w-[120px] truncate text-lg font-bold"
+          title={String(info.getValue())}
+        >
+          ₹{info.getValue()} / {info.row.original.unit}
         </span>
       ),
     }),

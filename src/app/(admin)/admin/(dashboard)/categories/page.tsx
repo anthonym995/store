@@ -36,7 +36,7 @@ export default function CategoriesList() {
     }
   }, [apiCategories]);
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string | number) => {
     if (confirm('Are you sure you want to remove this category?')) {
       setData(data.filter((c) => c.id !== id));
     }

@@ -35,7 +35,7 @@ export default function ProductsList() {
     }
   }, [apiProducts]);
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string | number) => {
     if (confirm('Are you sure you want to remove this product from the catalog?')) {
       setData(data.filter((p) => p.id !== id));
     }

@@ -37,7 +37,7 @@ export default function AddProduct() {
     try {
       await createProduct({
         name: data.productName,
-        desc: data.description,
+        description: data.description,
         price: data.price.toString(),
         category: data.category,
         material: data.material,

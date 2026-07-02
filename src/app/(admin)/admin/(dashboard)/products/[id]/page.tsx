@@ -5,12 +5,14 @@ import { useForm, Controller } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useProduct, useUpdateProduct } from '@/features/products/useProducts';
+import { useCategories } from '@/features/categories/useCategories';
 
 interface ProductFormValues {
   productName: string;
   description: string;
   price: number;
-  weightCategory: string;
+  unit: string;
+  dimensions: string;
   category: string;
   material: string;
 }
@@ -21,6 +23,7 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
 
   const { data: product, isLoading: isFetching } = useProduct(productId);
   const { mutateAsync: updateProduct, isPending } = useUpdateProduct();
+  const { data: categories = [] } = useCategories();
   const router = useRouter();
 
   const {
@@ -33,7 +36,8 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
       productName: '',
       description: '',
       price: 0,
-      weightCategory: '',
+      unit: 'Piece',
+      dimensions: '',
       category: '',
       material: '',
     },
@@ -45,7 +49,8 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
         productName: product.name,
         description: product.description,
         price: product.price, // product.price is now a number
-        weightCategory: 'Per Piece', // Mock placeholder
+        unit: product.unit || 'Piece',
+        dimensions: product.dimensions || '',
         category: product.category,
         material: product.material,
       });
@@ -61,8 +66,13 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
           description: data.description,
           price: Number(data.price),
           category: data.category,
-          categorySlug: data.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, ''),
+          categorySlug: data.category
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)+/g, ''),
           material: data.material,
+          unit: data.unit as any,
+          dimensions: data.dimensions,
         },
       });
       router.push('/admin/products');
@@ -191,6 +201,24 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
 
               <div>
                 <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
+                  Dimensions & Weight
+                </label>
+                <Controller
+                  name="dimensions"
+                  control={control}
+                  render={({ field }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
+                      placeholder="e.g. 10 x 30 x 15 cm | 2kg"
+                    />
+                  )}
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
                   Description
                 </label>
                 <Controller
@@ -254,15 +282,19 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
                   Pricing Unit
                 </label>
                 <Controller
-                  name="weightCategory"
+                  name="unit"
                   control={control}
                   render={({ field }) => (
-                    <input
+                    <select
                       {...field}
-                      type="text"
                       className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
-                      placeholder="e.g. Per Kg / Per Piece"
-                    />
+                    >
+                      <option value="Piece">Piece</option>
+                      <option value="kg">kg</option>
+                      <option value="Box">Box</option>
+                      <option value="Gram">Gram</option>
+                      <option value="Meter">Meter</option>
+                    </select>
                   )}
                 />
               </div>
@@ -312,10 +344,11 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
                       <option value="" disabled>
                         Choose a category...
                       </option>
-                      <option value="Traditional Kuthu Vilakku">Traditional Kuthu Vilakku</option>
-                      <option value="Silver-Finish Kuthu Vilakku">Silver-Finish Kuthu Vilakku</option>
-                      <option value="Designer Metal & Brass Diyas">Designer Metal & Brass Diyas</option>
-                      <option value="Sacred Ritual Vessels">Sacred Ritual Vessels</option>
+                      {categories.map((cat) => (
+                        <option key={cat.id} value={cat.title}>
+                          {cat.title}
+                        </option>
+                      ))}
                     </select>
                   )}
                 />

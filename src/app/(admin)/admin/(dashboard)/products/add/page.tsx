@@ -4,12 +4,14 @@ import { useForm, Controller } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCreateProduct } from '@/features/products/useProducts';
+import { useCategories } from '@/features/categories/useCategories';
 
 interface ProductFormValues {
   productName: string;
   description: string;
   price: number;
-  weightCategory: string;
+  unit: string;
+  dimensions: string;
   category: string;
   material: string;
 }
@@ -24,7 +26,8 @@ export default function AddProduct() {
       productName: '',
       description: '',
       price: 0,
-      weightCategory: '',
+      unit: 'Piece',
+      dimensions: '',
       category: '',
       material: '',
     },
@@ -32,6 +35,7 @@ export default function AddProduct() {
 
   const router = useRouter();
   const { mutateAsync: createProduct, isPending } = useCreateProduct();
+  const { data: categories = [] } = useCategories();
 
   const onSubmit = async (data: ProductFormValues) => {
     try {
@@ -40,9 +44,13 @@ export default function AddProduct() {
         description: data.description,
         price: Number(data.price),
         category: data.category,
-        categorySlug: data.category.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, ''),
+        categorySlug: data.category
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)+/g, ''),
         material: data.material,
-        unit: 'Piece',
+        dimensions: data.dimensions,
+        unit: data.unit as any,
         rating: 0,
         reviews: 0,
         image: '/products/kuthu.jpg', // Placeholder since there's no image upload yet
@@ -158,6 +166,24 @@ export default function AddProduct() {
 
               <div>
                 <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
+                  Dimensions & Weight
+                </label>
+                <Controller
+                  name="dimensions"
+                  control={control}
+                  render={({ field }) => (
+                    <input
+                      {...field}
+                      type="text"
+                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
+                      placeholder="e.g. 10 x 30 x 15 cm | 2kg"
+                    />
+                  )}
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
                   Description
                 </label>
                 <Controller
@@ -221,15 +247,19 @@ export default function AddProduct() {
                   Pricing Unit
                 </label>
                 <Controller
-                  name="weightCategory"
+                  name="unit"
                   control={control}
                   render={({ field }) => (
-                    <input
+                    <select
                       {...field}
-                      type="text"
                       className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
-                      placeholder="e.g. Per Kg / Per Piece"
-                    />
+                    >
+                      <option value="Piece">Piece</option>
+                      <option value="kg">kg</option>
+                      <option value="Box">Box</option>
+                      <option value="Gram">Gram</option>
+                      <option value="Meter">Meter</option>
+                    </select>
                   )}
                 />
               </div>
@@ -279,10 +309,11 @@ export default function AddProduct() {
                       <option value="" disabled>
                         Choose a category...
                       </option>
-                      <option value="kuthu-vilakku">Traditional Kuthu Vilakku</option>
-                      <option value="silver-finish">Silver-Finish Kuthu Vilakku</option>
-                      <option value="designer-diyas">Designer Metal & Brass Diyas</option>
-                      <option value="sacred-vessels">Sacred Ritual Vessels</option>
+                      {categories.map((cat) => (
+                        <option key={cat.id} value={cat.title}>
+                          {cat.title}
+                        </option>
+                      ))}
                     </select>
                   )}
                 />

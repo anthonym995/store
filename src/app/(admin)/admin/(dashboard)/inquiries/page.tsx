@@ -12,7 +12,7 @@ const initialInquiries = [
     type: 'Custom Bespoke Installation',
     date: 'Oct 24, 2023',
     status: 'Pending',
-    message: 'We are looking for a 6ft multi-tiered Kuthu Vilakku for our main hall. Please send a quote.'
+    message: 'We are looking for a 6ft multi-tiered Kuthu Vilakku for our main hall. Please send a quote.',
   },
   {
     id: '2',
@@ -21,7 +21,7 @@ const initialInquiries = [
     type: 'Wholesale / Bulk',
     date: 'Oct 22, 2023',
     status: 'Responded',
-    message: 'Need 50 pieces of the 5-inch Lotus Diya for our Diwali corporate gifting.'
+    message: 'Need 50 pieces of the 5-inch Lotus Diya for our Diwali corporate gifting.',
   },
   {
     id: '3',
@@ -30,8 +30,8 @@ const initialInquiries = [
     type: 'General Inquiry',
     date: 'Oct 20, 2023',
     status: 'Resolved',
-    message: 'Do you ship to Bangalore? If so, what are the shipping charges for heavy brass items?'
-  }
+    message: 'Do you ship to Bangalore? If so, what are the shipping charges for heavy brass items?',
+  },
 ];
 
 export default function InquiriesPage() {
@@ -42,16 +42,21 @@ export default function InquiriesPage() {
   };
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 space-y-8 duration-700">
+    <div className="animate-in fade-in slide-in-from-bottom-4 space-y-4 duration-700">
       <div className="flex flex-col justify-between gap-4 px-2 sm:flex-row sm:items-center">
         <div>
           <h2 className="font-display text-navy text-3xl font-bold tracking-tight">Client Inquiries</h2>
           <p className="mt-2 text-sm font-medium text-gray-500">Manage wholesale requests and customer messages.</p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-bold text-navy shadow-sm transition-all hover:shadow-md border border-gray-100">
+          <button className="text-navy flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-5 py-3 text-sm font-bold shadow-sm transition-all hover:shadow-md">
             <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+              />
             </svg>
             Filter
           </button>
@@ -74,10 +79,10 @@ export default function InquiriesPage() {
               {inquiries.map((inquiry) => (
                 <tr key={inquiry.id} className="group hover:bg-cream-dark/10 transition-colors">
                   <td className="px-6 py-5">
-                    <div className="text-navy text-base font-bold whitespace-normal max-w-[250px] leading-tight">{inquiry.client}</div>
-                    <div className="mt-1 text-xs font-medium tracking-wide text-gray-400">
-                      {inquiry.contact}
+                    <div className="text-navy max-w-[250px] text-base leading-tight font-bold whitespace-normal">
+                      {inquiry.client}
                     </div>
+                    <div className="mt-1 text-xs font-medium tracking-wide text-gray-400">{inquiry.contact}</div>
                   </td>
                   <td className="text-maroon px-6 py-5 font-bold">{inquiry.type}</td>
                   <td className="px-6 py-5 font-medium text-gray-500">{inquiry.date}</td>
@@ -85,14 +90,14 @@ export default function InquiriesPage() {
                     <span
                       className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-bold tracking-widest uppercase ${
                         inquiry.status === 'Pending'
-                          ? 'border border-brand-red/20 bg-brand-red/10 text-brand-red'
+                          ? 'border-brand-red/20 bg-brand-red/10 text-brand-red border'
                           : inquiry.status === 'Responded'
-                          ? 'border border-gold/30 bg-gold/10 text-gold-dark'
-                          : 'border border-green-100 bg-green-50 text-green-600'
+                            ? 'border-gold/30 bg-gold/10 text-gold-dark border'
+                            : 'border border-green-100 bg-green-50 text-green-600'
                       }`}
                     >
                       <span
-                        className={`h-1.5 w-1.5 rounded-full ${inquiry.status === 'Pending' ? 'animate-pulse bg-brand-red' : inquiry.status === 'Responded' ? 'bg-gold-dark' : 'bg-green-500'}`}
+                        className={`h-1.5 w-1.5 rounded-full ${inquiry.status === 'Pending' ? 'bg-brand-red animate-pulse' : inquiry.status === 'Responded' ? 'bg-gold-dark' : 'bg-green-500'}`}
                       ></span>
                       {inquiry.status}
                     </span>
@@ -101,7 +106,7 @@ export default function InquiriesPage() {
                     <div className="flex items-center justify-end gap-3">
                       <button
                         title="View Message"
-                        className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-navy/5 hover:text-navy"
+                        className="hover:bg-navy/5 hover:text-navy flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors"
                       >
                         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path
@@ -118,11 +123,11 @@ export default function InquiriesPage() {
                           />
                         </svg>
                       </button>
-                      
+
                       <button
                         onClick={() => handleDelete(inquiry.id)}
                         title="Archive"
-                        className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors hover:bg-brand-red/10 hover:text-brand-red"
+                        className="hover:bg-brand-red/10 hover:text-brand-red flex h-8 w-8 items-center justify-center rounded-lg text-gray-400 transition-colors"
                       >
                         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path

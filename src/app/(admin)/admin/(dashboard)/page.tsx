@@ -1,21 +1,17 @@
 import { products } from '@/lib/data/products';
+import Link from 'next/link';
 
 export default function AdminOverview() {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 space-y-6 duration-700">
-      <div className="mb-4 flex flex-col justify-between gap-4 px-2 sm:flex-row sm:items-end">
-        <div>
-          <h2 className="font-display text-navy text-3xl font-bold tracking-tight">Overview</h2>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed font-medium text-gray-500">
-            Here's what's happening with your catalog today.
-          </p>
-        </div>
+      <div className="px-2">
+        <h2 className="font-display text-navy text-3xl font-bold tracking-tight">Overview</h2>
       </div>
 
       {/* Trendy Bento Box Grid */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
         {/* Bento Item 1 - Featured / Main Stat (Spans 3 cols, 1 row) */}
-        <div className="group bg-navy relative flex flex-col justify-between overflow-hidden rounded-[2rem] p-6 shadow-xl lg:col-span-3">
+        <div className="group bg-navy relative flex flex-col justify-between overflow-hidden rounded-4xl p-6 shadow-xl md:col-span-2 lg:col-span-3">
           <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-white/5 blur-3xl transition-transform duration-700 group-hover:scale-150"></div>
 
           <div className="relative flex items-center justify-between">
@@ -32,7 +28,7 @@ export default function AdminOverview() {
 
           <div className="relative mt-8">
             <p className="mb-2 text-sm font-bold tracking-widest text-white/60 uppercase">Total Live Products</p>
-            <div className="flex items-end gap-4">
+            <div className="flex flex-wrap items-end gap-4">
               <p className="font-display text-5xl font-bold tracking-tight text-white">{products.length}</p>
               <div className="mb-2 flex items-center gap-1 rounded-lg border border-green-500/20 bg-green-500/20 px-3 py-1.5 text-sm font-bold text-green-300">
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -45,7 +41,7 @@ export default function AdminOverview() {
         </div>
 
         {/* Bento Item 2 - Secondary Stat (Spans 1 col, 1 row) */}
-        <div className="group relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-gray-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
+        <div className="group relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-gray-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] md:col-span-2 lg:col-span-1">
           <div className="bg-cream-dark/30 absolute -top-10 -right-10 h-32 w-32 rounded-full blur-2xl transition-transform duration-700 group-hover:scale-150"></div>
 
           <div className="relative flex items-start justify-between">
@@ -68,13 +64,16 @@ export default function AdminOverview() {
         </div>
 
         {/* Bento Item 4 - Recent Activity (Spans 4 cols, 1 row) */}
-        <div className="flex flex-col overflow-hidden rounded-[2rem] border border-gray-100 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] lg:col-span-4">
-          <div className="flex items-center justify-between border-b border-gray-50 px-6 py-4">
+        <div className="flex flex-col overflow-hidden rounded-4xl border border-gray-100 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] md:col-span-2 lg:col-span-4">
+          <div className="flex items-center justify-between border-b border-gray-50 px-6 pt-4">
             <h3 className="font-display text-navy text-lg font-bold">Quick Actions</h3>
           </div>
 
           <div className="grid flex-1 grid-cols-1 gap-4 bg-gray-50/30 p-6 md:grid-cols-3">
-            <button className="group hover:border-maroon/20 relative flex flex-col items-center justify-center rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+            <Link
+              href="/admin/products/add"
+              className="group hover:border-maroon/20 relative flex flex-col items-center justify-center rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+            >
               <div className="text-maroon group-hover:bg-maroon mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 transition-transform group-hover:scale-110 group-hover:text-white">
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
@@ -82,9 +81,12 @@ export default function AdminOverview() {
               </div>
               <p className="text-navy text-base font-bold">Add Product</p>
               <p className="mt-1 text-center text-xs font-medium text-gray-400">Create new entry</p>
-            </button>
+            </Link>
 
-            <button className="group hover:border-navy/20 relative flex flex-col items-center justify-center rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+            <Link
+              href="/admin/categories"
+              className="group hover:border-navy/20 relative flex flex-col items-center justify-center rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+            >
               <div className="text-navy group-hover:bg-navy mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 transition-transform group-hover:scale-110 group-hover:text-white">
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -97,9 +99,12 @@ export default function AdminOverview() {
               </div>
               <p className="text-navy text-base font-bold">Categories</p>
               <p className="mt-1 text-center text-xs font-medium text-gray-400">Manage collections</p>
-            </button>
+            </Link>
 
-            <button className="group hover:border-gold/30 relative flex flex-col items-center justify-center rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg">
+            <Link
+              href="/admin/settings"
+              className="group hover:border-gold/30 relative flex flex-col items-center justify-center rounded-2xl border border-gray-100 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
+            >
               <div className="text-gold-dark group-hover:bg-gold mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 transition-transform group-hover:scale-110 group-hover:text-white">
                 <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -118,7 +123,7 @@ export default function AdminOverview() {
               </div>
               <p className="text-navy text-base font-bold">Settings</p>
               <p className="mt-1 text-center text-xs font-medium text-gray-400">Portal config</p>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

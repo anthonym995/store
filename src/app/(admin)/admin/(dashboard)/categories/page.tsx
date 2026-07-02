@@ -150,50 +150,48 @@ export default function CategoriesList() {
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 space-y-4 duration-700">
-      <div className="flex flex-col justify-between gap-4 px-2 sm:flex-row sm:items-center">
-        <div>
-          <h2 className="font-display text-navy text-4xl font-bold tracking-tight">Categories</h2>
-          <p className="mt-2 text-sm font-medium text-gray-500">Organize and manage your product collections.</p>
-        </div>
-        <div className="flex flex-col items-center gap-3 sm:flex-row">
-          <div className="relative w-full sm:w-auto">
-            <svg
-              className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-            <input
-              type="text"
-              placeholder="Search categories..."
-              value={globalFilter ?? ''}
-              onChange={(e) => setGlobalFilter(e.target.value)}
-              className="focus:border-navy/20 focus:ring-navy/10 w-full rounded-2xl border border-gray-100 bg-white py-3 pr-4 pl-11 text-sm shadow-[0_2px_10px_rgb(0,0,0,0.02)] transition-all focus:ring-4 focus:outline-none sm:w-64"
-            />
-          </div>
-          <Link
-            href="/admin/categories/add"
-            className="group bg-navy hover:bg-navy-light relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl px-6 py-3 text-sm font-bold tracking-wider text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl sm:w-auto"
+      <div className="px-2">
+        <h2 className="font-display text-navy text-3xl font-bold tracking-tight">Categories</h2>
+      </div>
+
+      <div className="flex flex-col items-center justify-between gap-3 px-2 sm:flex-row">
+        <div className="relative w-full flex-1 sm:max-w-md">
+          <svg
+            className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
           >
-            <div className="from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
-            <svg
-              className="relative z-10 h-5 w-5 transition-transform group-hover:rotate-90"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-            </svg>
-            <span className="relative z-10 uppercase">Add Category</span>
-          </Link>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search categories..."
+            value={globalFilter ?? ''}
+            onChange={(e) => setGlobalFilter(e.target.value)}
+            className="focus:border-navy/20 focus:ring-navy/10 w-full rounded-2xl border border-gray-100 bg-white py-3 pr-4 pl-11 text-sm shadow-[0_2px_10px_rgb(0,0,0,0.02)] transition-all focus:ring-4 focus:outline-none"
+          />
         </div>
+        <Link
+          href="/admin/categories/add"
+          className="group bg-navy hover:bg-navy-light relative inline-flex w-full shrink-0 items-center justify-center gap-3 overflow-hidden rounded-2xl px-6 py-3 text-sm font-bold tracking-wider text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl sm:w-auto"
+        >
+          <div className="from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+          <svg
+            className="relative z-10 h-5 w-5 transition-transform group-hover:rotate-90"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+          </svg>
+          <span className="relative z-10 uppercase">Add Category</span>
+        </Link>
       </div>
 
       {/* Categories Table - Trendy Bento Card */}

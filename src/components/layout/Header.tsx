@@ -100,10 +100,7 @@ export default function Header() {
                 <>
                   {categories.map((cat) => (
                     <li key={cat.id}>
-                      <Link
-                        href={`/products?category=${encodeURIComponent(cat.title)}`}
-                        className="hover:text-gold transition-colors"
-                      >
+                      <Link href={`/products?category=${cat.slug}`} className="hover:text-gold transition-colors">
                         {cat.title}
                       </Link>
                     </li>
@@ -160,7 +157,7 @@ export default function Header() {
                 {categories.map((cat) => (
                   <li key={cat.id}>
                     <Link
-                      href={`/products?category=${encodeURIComponent(cat.title)}`}
+                      href={`/products?category=${cat.slug}`}
                       className="hover:text-gold block transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >

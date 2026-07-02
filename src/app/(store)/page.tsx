@@ -1,8 +1,8 @@
-import Hero from '@/components/sections/Hero/Hero';
-import Categories from '@/components/sections/Categories/Categories';
-import FeaturedProducts from '@/components/sections/FeaturedProducts/FeaturedProducts';
-import ContactCTA from '@/components/sections/ContactCTA/ContactCTA';
-import Collections from '@/components/sections/Collections/Collections';
+import Hero from '@/components/sections/Hero';
+import OurCollections from '@/components/sections/OurCollections';
+import FeaturedProducts from '@/components/sections/FeaturedProducts';
+import ContactCTA from '@/components/sections/ContactCTA';
+import FeaturedCollections from '@/components/sections/FeaturedCollections';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -21,9 +21,9 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Categories />
+      <OurCollections />
       <FeaturedProducts />
-      <Collections />
+      <FeaturedCollections />
       <ContactCTA />
     </>
   );

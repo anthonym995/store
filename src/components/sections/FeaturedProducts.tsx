@@ -47,7 +47,7 @@ export default function FeaturedProducts() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {featured.map((product) => (
               <Link
-                href={`/products/${product.id}`}
+                href={`/products/${product.slug}`}
                 key={product.id}
                 className="group flex flex-col overflow-hidden rounded-t-xl bg-white shadow-lg transition-transform duration-300 hover:-translate-y-2"
               >

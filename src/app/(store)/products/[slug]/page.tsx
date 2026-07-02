@@ -1,12 +1,12 @@
 import { products } from '@/lib/data/products';
 import { Metadata } from 'next';
-import ProductDetailsClient from '@/components/sections/ProductDetails/ProductDetailsClient';
+import ProductDetailsClient from '@/components/sections/ProductDetailsClient';
 
 export const dynamic = 'force-dynamic';
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
-  const product = products.find((p) => p.id === parseInt(resolvedParams.id));
+  const product = products.find((p) => p.slug === resolvedParams.slug);
 
   if (!product) {
     return {
@@ -35,8 +35,8 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   };
 }
 
-export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
 
-  return <ProductDetailsClient id={resolvedParams.id} />;
+  return <ProductDetailsClient id={resolvedParams.slug} />;
 }

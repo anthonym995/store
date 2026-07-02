@@ -5,41 +5,34 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useProducts } from '@/features/products/useProducts';
+import { useCategories } from '@/features/categories/useCategories';
 import { ProductSkeleton } from '@/components/ui/ProductSkeleton';
 
 function ProductsContent() {
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  const { data: activeProducts = [], isLoading } = useProducts();
+  const { data: activeProducts = [], isLoading: productsLoading } = useProducts();
+  const { data: categories = [], isLoading: categoriesLoading } = useCategories();
 
-  // These must perfectly match the `title` property of categories from the API
-  const filterCategories = ['All', 'Kuthu Vilakku', 'Diyas', 'Sacred Vessels', 'Designer Items'];
+  const filterCategories = useMemo(() => {
+    return [{ title: 'All', slug: 'all' }, ...categories.map((c) => ({ title: c.title, slug: c.slug }))];
+  }, [categories]);
 
   // This will re-run whenever the URL search parameters change (like clicking a Header link)
   useEffect(() => {
     const category = searchParams.get('category');
-    if (category && filterCategories.includes(category)) {
+    if (category && filterCategories.some((c) => c.slug === category)) {
       setSelectedCategory(category);
     } else if (!category) {
       // If no category in URL, default to All
-      setSelectedCategory('All');
+      setSelectedCategory('all');
     }
   }, [searchParams]);
 
   const filteredProducts = useMemo(() => {
-    if (selectedCategory === 'All') return activeProducts;
-    return activeProducts.filter((p) => {
-      const cat = p.category.toLowerCase();
-      const name = p.name.toLowerCase();
-      if (selectedCategory === 'Kuthu Vilakku') return cat.includes('vilakku') || name.includes('vilakku');
-      if (selectedCategory === 'Diyas')
-        return cat.includes('diya') || (cat.includes('lamp') && !cat.includes('vilakku'));
-      if (selectedCategory === 'Sacred Vessels')
-        return cat.includes('vessel') || (cat.includes('kalash') && !name.includes('vilakku'));
-      if (selectedCategory === 'Designer Items') return cat.includes('designer') || name.includes('pipe');
-      return true;
-    });
+    if (selectedCategory === 'all') return activeProducts;
+    return activeProducts.filter((p) => p.categorySlug === selectedCategory);
   }, [selectedCategory, activeProducts]);
 
   return (
@@ -58,22 +51,22 @@ function ProductsContent() {
         <div className="mb-12 flex flex-wrap gap-3">
           {filterCategories.map((category) => (
             <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
+              key={category.slug}
+              onClick={() => setSelectedCategory(category.slug)}
               className={`rounded-sm px-6 py-2.5 text-sm font-bold tracking-wider uppercase transition-all duration-300 ${
-                selectedCategory === category
+                selectedCategory === category.slug
                   ? 'text-gold border-brand-red bg-brand-red border shadow-md'
                   : 'border-gold text-brand-red border bg-white hover:bg-[#fdf5e6]'
               }`}
             >
-              {category}
+              {category.title}
             </button>
           ))}
         </div>
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {isLoading ? (
+          {productsLoading ? (
             <>
               {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                 <ProductSkeleton key={i} />
@@ -83,7 +76,7 @@ function ProductsContent() {
             <>
               {filteredProducts.map((product) => (
                 <Link
-                  href={`/products/${product.id}`}
+                  href={`/products/${product.slug}`}
                   key={product.id}
                   className="group border-gold/30 hover:border-gold flex flex-col items-center border bg-white shadow-sm transition-all duration-300 hover:shadow-xl"
                 >

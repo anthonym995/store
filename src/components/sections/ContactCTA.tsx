@@ -39,35 +39,35 @@ export default function ContactCTA() {
 
         {/* Inquiry Form */}
         <div className="border-gold rounded-sm border-2 bg-white p-8 shadow-2xl">
-          <h3 className="font-display mb-6 text-2xl font-bold text-[#721c24]">Send a Trade Inquiry</h3>
+          <h3 className="font-display text-brand-red mb-6 text-2xl font-bold">Send a Trade Inquiry</h3>
           <form className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-bold text-[#721c24]">Your Name / Company</label>
+              <label className="text-brand-red text-sm font-bold">Your Name / Company</label>
               <input
                 type="text"
-                className="border-gold/50 focus:border-gold focus:ring-gold w-full rounded-sm border bg-[#fdfbf7] px-4 py-3 text-sm text-[#4a1115] focus:ring-1 focus:outline-none"
+                className="border-gold/50 focus:border-gold focus:ring-gold text-brand-red-dark w-full rounded-sm border bg-[#fdfbf7] px-4 py-3 text-sm focus:ring-1 focus:outline-none"
                 required
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-bold text-[#721c24]">Email Address</label>
+              <label className="text-brand-red text-sm font-bold">Email Address</label>
               <input
                 type="email"
-                className="border-gold/50 focus:border-gold focus:ring-gold w-full rounded-sm border bg-[#fdfbf7] px-4 py-3 text-sm text-[#4a1115] focus:ring-1 focus:outline-none"
+                className="border-gold/50 focus:border-gold focus:ring-gold text-brand-red-dark w-full rounded-sm border bg-[#fdfbf7] px-4 py-3 text-sm focus:ring-1 focus:outline-none"
                 required
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="text-sm font-bold text-[#721c24]">Requirements</label>
+              <label className="text-brand-red text-sm font-bold">Requirements</label>
               <textarea
-                className="border-gold/50 focus:border-gold focus:ring-gold min-h-[100px] w-full resize-y rounded-sm border bg-[#fdfbf7] px-4 py-3 text-sm text-[#4a1115] focus:ring-1 focus:outline-none"
+                className="border-gold/50 focus:border-gold focus:ring-gold text-brand-red-dark min-h-[100px] w-full resize-y rounded-sm border bg-[#fdfbf7] px-4 py-3 text-sm focus:ring-1 focus:outline-none"
                 rows={4}
                 required
               ></textarea>
             </div>
             <button
               type="submit"
-              className="text-gold mt-4 inline-flex w-full items-center justify-center rounded-sm bg-[#721c24] px-6 py-3.5 text-sm font-bold tracking-widest uppercase transition-all hover:bg-[#4a1115]"
+              className="text-gold bg-brand-red hover:bg-brand-red-dark mt-4 inline-flex w-full items-center justify-center rounded-sm px-6 py-3.5 text-sm font-bold tracking-widest uppercase transition-all"
             >
               Request Quote
             </button>

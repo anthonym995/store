@@ -19,6 +19,12 @@ export const productController = {
     return (product as Product) || null;
   },
 
+  // GET PRODUCT BY SLUG
+  getProductBySlug: async (slug: string): Promise<Product | null> => {
+    const product = dummyProducts.find((p) => p.slug === slug);
+    return (product as Product) || null;
+  },
+
   // CREATE PRODUCT
   createProduct: async (productData: Partial<Product>): Promise<Product> => {
     // In a real app with a DB, you would insert into MongoDB/PostgreSQL here

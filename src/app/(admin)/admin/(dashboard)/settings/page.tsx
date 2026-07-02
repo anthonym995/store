@@ -62,13 +62,8 @@ export default function SettingsPage() {
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 space-y-6 duration-700">
-      <div className="flex flex-col justify-between gap-4 px-2 sm:flex-row sm:items-end">
-        <div>
-          <h2 className="font-display text-navy text-3xl font-bold tracking-tight">System Settings</h2>
-          <p className="mt-2 text-sm font-medium text-gray-500">
-            Manage your account and administrative access for the portal.
-          </p>
-        </div>
+      <div className="px-2">
+        <h2 className="font-display text-navy text-3xl font-bold tracking-tight">System Settings</h2>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">

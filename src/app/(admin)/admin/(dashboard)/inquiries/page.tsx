@@ -43,24 +43,22 @@ export default function InquiriesPage() {
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 space-y-4 duration-700">
-      <div className="flex flex-col justify-between gap-4 px-2 sm:flex-row sm:items-center">
-        <div>
-          <h2 className="font-display text-navy text-3xl font-bold tracking-tight">Client Inquiries</h2>
-          <p className="mt-2 text-sm font-medium text-gray-500">Manage wholesale requests and customer messages.</p>
-        </div>
-        <div className="flex gap-3">
-          <button className="text-navy flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-5 py-3 text-sm font-bold shadow-sm transition-all hover:shadow-md">
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
-              />
-            </svg>
-            Filter
-          </button>
-        </div>
+      <div className="px-2">
+        <h2 className="font-display text-navy text-3xl font-bold tracking-tight">Client Inquiries</h2>
+      </div>
+      
+      <div className="flex justify-end px-2">
+        <button className="text-navy flex items-center gap-2 rounded-2xl border border-gray-100 bg-white px-5 py-3 text-sm font-bold shadow-sm transition-all hover:shadow-md">
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+            />
+          </svg>
+          Filter
+        </button>
       </div>
 
       <div className="rounded-[2rem] border border-gray-100 bg-white p-2 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">

@@ -47,9 +47,9 @@ export default function AdminSidebar() {
 
       {/* Sidebar */}
       <aside
-        className={`bg-navy fixed inset-y-0 left-0 z-50 flex h-full flex-col overflow-hidden text-gray-300 shadow-2xl transition-all duration-300 md:relative md:translate-x-0 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'} ${isCollapsed ? 'md:w-24' : 'md:w-72'} w-72 shrink-0`}
+        className={`bg-navy fixed inset-y-0 left-0 z-50 flex h-full flex-col overflow-hidden text-gray-300 shadow-2xl transition-all duration-300 md:relative md:translate-x-0 ${isMobileOpen ? 'translate-x-0' : '-translate-x-full'} ${isCollapsed ? 'md:w-24' : 'md:w-64'} w-64 shrink-0`}
       >
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/5 to-transparent"></div>
+        <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-white/5 to-transparent"></div>
 
         {/* Toggle Button (Desktop Only) */}
         <button
@@ -96,7 +96,7 @@ export default function AdminSidebar() {
 
           <Link href="/admin" onClick={closeMobile} className={getLinkClass(pathname === '/admin')} title="Overview">
             <div
-              className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname === '/admin' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+              className={`from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent transition-opacity ${pathname === '/admin' ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
             ></div>
             <svg className="relative z-10 h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -116,7 +116,7 @@ export default function AdminSidebar() {
             title="Catalog Manager"
           >
             <div
-              className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/products') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+              className={`from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/products') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
             ></div>
             <svg
               className="relative z-10 h-5 w-5 shrink-0 transition-transform group-hover:scale-110"
@@ -145,7 +145,7 @@ export default function AdminSidebar() {
             title="Categories"
           >
             <div
-              className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/categories') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+              className={`from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/categories') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
             ></div>
             <svg
               className="relative z-10 h-5 w-5 shrink-0 transition-transform group-hover:scale-110"
@@ -174,7 +174,7 @@ export default function AdminSidebar() {
             title="Inquiries"
           >
             <div
-              className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/inquiries') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+              className={`from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/inquiries') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
             ></div>
             <svg
               className="relative z-10 h-5 w-5 shrink-0 transition-transform group-hover:scale-110"
@@ -208,7 +208,7 @@ export default function AdminSidebar() {
             title="Settings"
           >
             <div
-              className={`from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/settings') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
+              className={`from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent transition-opacity ${pathname.startsWith('/admin/settings') ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}
             ></div>
             <svg
               className="relative z-10 h-5 w-5 shrink-0 transition-transform group-hover:scale-110"
@@ -231,7 +231,7 @@ export default function AdminSidebar() {
             )}
           </Link>
           <Link href="/" className={getLinkClass(false)} title="Back to Storefront">
-            <div className="from-maroon/40 absolute inset-0 bg-gradient-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
+            <div className="from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
             <svg
               className="relative z-10 h-5 w-5 shrink-0 transition-transform group-hover:scale-110"
               fill="none"
@@ -254,7 +254,7 @@ export default function AdminSidebar() {
             className={`flex w-full ${isCollapsed ? 'flex-col items-center gap-4' : 'items-center justify-between'}`}
           >
             <div className="flex items-center gap-3">
-              <div className="from-maroon to-maroon-light text-gold flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br font-bold shadow-lg">
+              <div className="from-maroon to-maroon-light text-gold flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br font-bold shadow-lg">
                 EV
               </div>
               {!isCollapsed && (

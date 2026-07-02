@@ -158,9 +158,9 @@ export default function ProductsList() {
       <div className="px-2">
         <h2 className="font-display text-navy text-3xl font-bold tracking-tight">Master Catalog</h2>
       </div>
-      
-      <div className="flex flex-col items-center gap-3 sm:flex-row justify-between px-2">
-        <div className="relative w-full sm:max-w-md flex-1">
+
+      <div className="flex flex-col items-center justify-between gap-3 px-2 sm:flex-row">
+        <div className="relative w-full flex-1 sm:max-w-md">
           <svg
             className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-400"
             fill="none"
@@ -184,7 +184,7 @@ export default function ProductsList() {
         </div>
         <Link
           href="/admin/products/add"
-          className="group bg-navy hover:bg-navy-light relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl px-6 py-3 text-sm font-bold tracking-wider text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl sm:w-auto shrink-0"
+          className="group bg-navy hover:bg-navy-light relative inline-flex w-full shrink-0 items-center justify-center gap-3 overflow-hidden rounded-2xl px-6 py-3 text-sm font-bold tracking-wider text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl sm:w-auto"
         >
           <div className="from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
           <svg
@@ -201,7 +201,7 @@ export default function ProductsList() {
 
       {/* Products Table - Trendy Bento Card */}
       <div className="overflow-hidden rounded-4xl border border-gray-100 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-        <div className="custom-scrollbar overflow-x-auto">
+        <div className="custom-scrollbar h-[400px] overflow-auto">
           {isLoading ? (
             <div className="space-y-4 p-8">
               {[1, 2, 3, 4, 5].map((i) => (

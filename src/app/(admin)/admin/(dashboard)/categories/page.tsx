@@ -45,14 +45,6 @@ export default function CategoriesList() {
   const columnHelper = createColumnHelper<AdminCategory>();
 
   const columns = [
-    columnHelper.accessor('image', {
-      header: 'Image',
-      cell: (info) => (
-        <div className="relative h-12 w-12 overflow-hidden rounded-md border border-gray-200">
-          <Image src={info.getValue() || '/logo.png'} alt="Category" fill className="object-cover" unoptimized />
-        </div>
-      ),
-    }),
     columnHelper.accessor('title', {
       header: 'Category Title',
       cell: (info) => (
@@ -196,7 +188,7 @@ export default function CategoriesList() {
 
       {/* Categories Table - Trendy Bento Card */}
       <div className="overflow-hidden rounded-4xl border border-gray-100 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-        <div className="custom-scrollbar overflow-x-auto">
+        <div className="custom-scrollbar h-[400px] overflow-auto">
           {isLoading ? (
             <div className="space-y-4 p-8">
               {[1, 2, 3, 4, 5].map((i) => (

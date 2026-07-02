@@ -78,9 +78,9 @@ export default function AddCategory() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <div className="mx-auto max-w-3xl">
         {/* Main Info Column */}
-        <div className="space-y-8 md:col-span-2">
+        <div className="space-y-8">
           {/* General Information Bento Box */}
           <div className="relative overflow-hidden rounded-[2rem] border border-gray-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
             <div className="bg-cream-dark/30 pointer-events-none absolute -top-20 -left-20 h-48 w-48 rounded-full blur-2xl"></div>
@@ -131,29 +131,6 @@ export default function AddCategory() {
                   )}
                 />
               </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Sidebar Column */}
-        <div className="space-y-8">
-          {/* Image Upload Bento Box */}
-          <div className="rounded-[2rem] border border-gray-100 bg-white p-8 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-            <h3 className="font-display text-navy mb-6 text-left text-xl font-bold">Category Image</h3>
-
-            <div className="group hover:border-maroon/50 hover:bg-maroon/5 flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50/50 p-10 transition-all">
-              <div className="text-maroon group-hover:bg-maroon mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm transition-transform group-hover:scale-110 group-hover:text-white">
-                <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
-                  />
-                </svg>
-              </div>
-              <p className="text-navy mb-1 text-sm font-bold">Upload Cover Image</p>
-              <p className="text-xs font-medium text-gray-400">SVG, PNG, JPG</p>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useProduct } from '@/features/products/useProducts';
@@ -7,6 +8,7 @@ import { notFound } from 'next/navigation';
 
 export default function ProductDetailsClient({ id }: { id: string }) {
   const { data: product, isLoading } = useProduct(id);
+  const [activeTab, setActiveTab] = useState<'description' | 'specifications'>('description');
 
   if (isLoading) {
     return (
@@ -66,7 +68,7 @@ export default function ProductDetailsClient({ id }: { id: string }) {
               </div>
             </div>
 
-            {/* Details Section */}
+            {/* Details Section (Minimal) */}
             <div className="border-gold/20 flex flex-col justify-center border-t bg-[#fdfbf7] p-8 md:p-10 lg:col-span-6 lg:border-t-0 lg:border-l">
               <span className="text-gold mb-3 block text-xs font-bold tracking-widest uppercase">
                 {product.category}
@@ -81,29 +83,10 @@ export default function ProductDetailsClient({ id }: { id: string }) {
                 </span>
               </div>
 
-              <div className="bg-gold mb-6 h-1 w-16"></div>
+              <div className="bg-gold mb-8 h-1 w-16"></div>
 
-              {/* Scrollable Description */}
-              <div className="mb-8 max-h-[180px] overflow-y-auto pr-2">
-                <p className="text-sm leading-relaxed text-stone-600">{product.description}</p>
-              </div>
-
-              {/* Specifications Block */}
-              <div className="border-gold/30 mb-8 rounded-sm border bg-white p-5 shadow-sm">
-                <h3 className="font-display text-brand-red mb-3 text-base font-bold tracking-wide uppercase">
-                  Specifications
-                </h3>
-                <dl className="grid grid-cols-1 gap-x-4 gap-y-3 text-sm sm:grid-cols-2">
-                  <div>
-                    <dt className="text-gold mb-1 text-xs font-bold tracking-wider uppercase">Material</dt>
-                    <dd className="text-brand-red-dark line-clamp-2 font-medium">{product.material}</dd>
-                  </div>
-                  <div>
-                    <dt className="text-gold mb-1 text-xs font-bold tracking-wider uppercase">Dimensions & Weight</dt>
-                    <dd className="text-brand-red-dark line-clamp-2 font-medium">{product.dimensions}</dd>
-                  </div>
-                </dl>
-              </div>
+              {/* Short Preview Description */}
+              <p className="mb-10 line-clamp-3 text-sm leading-relaxed text-stone-600">{product.description}</p>
 
               <div className="mt-auto flex flex-col gap-4">
                 <a
@@ -114,6 +97,75 @@ export default function ProductDetailsClient({ id }: { id: string }) {
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Product Details Tabs Section */}
+        <div className="border-gold/30 mt-12 overflow-hidden border bg-white shadow-xl">
+          <div className="border-gold/20 flex border-b">
+            <button
+              onClick={() => setActiveTab('description')}
+              className={`flex-1 py-4 text-sm font-bold tracking-widest uppercase transition-colors ${
+                activeTab === 'description' ? 'bg-navy text-gold' : 'text-navy bg-[#fdfbf7] hover:bg-[#f5e6d3]'
+              }`}
+            >
+              Description
+            </button>
+            <button
+              onClick={() => setActiveTab('specifications')}
+              className={`flex-1 py-4 text-sm font-bold tracking-widest uppercase transition-colors ${
+                activeTab === 'specifications' ? 'bg-navy text-gold' : 'text-navy bg-[#fdfbf7] hover:bg-[#f5e6d3]'
+              }`}
+            >
+              Specifications
+            </button>
+          </div>
+
+          <div className="bg-white p-6 sm:p-8 md:p-12">
+            {activeTab === 'description' && (
+              <div className="max-w-4xl text-stone-700">
+                <h3 className="font-display text-brand-red mb-4 text-xl font-bold sm:text-2xl">
+                  About this Masterpiece
+                </h3>
+                <p className="text-[14px] leading-relaxed whitespace-pre-line sm:text-[15px]">{product.description}</p>
+              </div>
+            )}
+
+            {activeTab === 'specifications' && (
+              <div className="max-w-4xl">
+                <h3 className="font-display text-brand-red mb-4 text-xl font-bold sm:text-2xl">
+                  Technical Specifications
+                </h3>
+                <div className="border-gold/30 overflow-hidden rounded-sm border shadow-sm">
+                  <table className="w-full text-left text-[14px] sm:text-[15px]">
+                    <tbody>
+                      <tr className="border-gold/20 flex flex-col border-b bg-[#fdfbf7] sm:table-row">
+                        <th className="text-navy w-full px-4 py-3 font-bold tracking-wider uppercase sm:w-1/3 sm:px-6 sm:py-5">
+                          Material
+                        </th>
+                        <td className="px-4 pb-4 font-medium text-stone-700 sm:px-6 sm:py-5 sm:pb-5">
+                          {product.material}
+                        </td>
+                      </tr>
+                      <tr className="border-gold/20 flex flex-col border-b bg-white sm:table-row">
+                        <th className="text-navy w-full px-4 py-3 font-bold tracking-wider uppercase sm:w-1/3 sm:px-6 sm:py-5">
+                          Dimensions &amp; Weight
+                        </th>
+                        <td className="px-4 pb-4 font-medium text-stone-700 sm:px-6 sm:py-5 sm:pb-5">
+                          {product.dimensions}
+                        </td>
+                      </tr>
+                      <tr className="flex flex-col bg-[#fdfbf7] sm:table-row">
+                        <th className="text-navy w-full px-4 py-3 font-bold tracking-wider uppercase sm:w-1/3 sm:px-6 sm:py-5">
+                          Unit
+                        </th>
+                        <td className="px-4 pb-4 font-medium text-stone-700 sm:px-6 sm:py-5 sm:pb-5">{product.unit}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

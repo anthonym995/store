@@ -8,7 +8,7 @@ export default function Hero() {
         The overall container defines the height context: 
         minimum 60vh on mobile, and exactly 80vh on large screens for a predictable, robust hero.
       */}
-      <div className="flex min-h-[60vh] flex-col lg:h-[80vh] lg:flex-row">
+      <div className="flex min-h-[60vh] flex-col-reverse lg:h-[80vh] lg:flex-row">
         {/* Left Side: Copy & CTA */}
         {/* Centered content. Ensuring this side also fills vertical space (lg:h-full)
           for proper vertical centering against the image. 

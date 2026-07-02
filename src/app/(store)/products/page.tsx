@@ -67,11 +67,7 @@ function ProductsContent() {
         {/* Product Grid */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {productsLoading ? (
-            <>
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <ProductSkeleton key={i} />
-              ))}
-            </>
+            <ProductSkeleton count={8} />
           ) : (
             <>
               {filteredProducts.map((product) => (
@@ -80,12 +76,11 @@ function ProductsContent() {
                   key={product.id}
                   className="group border-gold/30 hover:border-gold flex flex-col items-center border bg-white shadow-sm transition-all duration-300 hover:shadow-xl"
                 >
-                  <div className="border-gold/20 relative h-full w-full overflow-hidden border-b bg-white pt-[100%]">
+                  <div className="border-gold/20 relative aspect-square w-full shrink-0 overflow-hidden border-b bg-white">
                     <Image
-                      src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.04 PM.jpeg'}
+                      src={product.image}
                       alt={product.name}
                       fill
-                      unoptimized
                       className="absolute inset-0 object-contain p-4 mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
@@ -98,7 +93,9 @@ function ProductsContent() {
                     </h3>
                     <p className="mb-6 line-clamp-2 text-sm text-stone-500">{product.material}</p>
                     <div className="border-gold/20 mt-auto flex items-center justify-between border-t pt-4">
-                      <span className="text-brand-red-dark text-sm font-bold">{product.price}</span>
+                      <span className="text-brand-red-dark text-sm font-bold">
+                        {product.price > 0 ? `₹${product.price} / ${product.unit}` : 'Price on Request'}
+                      </span>
                     </div>
                   </div>
                 </Link>

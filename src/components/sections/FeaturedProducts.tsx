@@ -39,9 +39,7 @@ export default function FeaturedProducts() {
       <div className="relative z-20 mx-auto -mt-16 max-w-[1027px] px-4">
         {isLoading ? (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[1, 2, 3, 4].map((i) => (
-              <ProductSkeleton key={i} />
-            ))}
+            <ProductSkeleton count={4} />
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -51,7 +49,7 @@ export default function FeaturedProducts() {
                 key={product.id}
                 className="group flex flex-col overflow-hidden rounded-t-xl bg-white shadow-lg transition-transform duration-300 hover:-translate-y-2"
               >
-                <div className="relative aspect-square w-full overflow-hidden bg-[#fdfbf7]">
+                <div className="relative aspect-square w-full shrink-0 overflow-hidden bg-[#fdfbf7]">
                   <Image
                     src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.04 PM.jpeg'}
                     alt={product.name}
@@ -66,7 +64,9 @@ export default function FeaturedProducts() {
                   </h3>
                   <p className="text-gold mb-4 text-xs font-semibold uppercase">{product.category.split('/')[0]}</p>
                   <div className="mt-auto">
-                    <span className="text-navy text-sm font-bold">{product.price}</span>
+                    <span className="text-navy text-sm font-bold">
+                      {product.price > 0 ? `₹${product.price} / ${product.unit}` : 'Price on Request'}
+                    </span>
                   </div>
                 </div>
               </Link>

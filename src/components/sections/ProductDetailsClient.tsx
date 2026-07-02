@@ -76,7 +76,9 @@ export default function ProductDetailsClient({ id }: { id: string }) {
               </h1>
 
               <div className="mb-6 flex items-center gap-4">
-                <span className="text-brand-red-dark text-2xl font-bold">{product.price}</span>
+                <span className="text-brand-red-dark text-2xl font-bold">
+                  {product.price > 0 ? `₹${product.price} / ${product.unit}` : 'Price on Request'}
+                </span>
               </div>
 
               <div className="bg-gold mb-6 h-1 w-16"></div>

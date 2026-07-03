@@ -53,7 +53,7 @@ export default function CategoriesList() {
         </div>
       ),
     }),
-    columnHelper.accessor('desc', {
+    columnHelper.accessor('description', {
       header: 'Description',
       cell: (info) => (
         <span className="block max-w-[300px] truncate text-gray-500" title={info.getValue()}>

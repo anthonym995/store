@@ -30,7 +30,7 @@ export default function OurCollections() {
               </div>
               <div className="flex flex-col">
                 <h3 className="text-navy text-sm font-bold tracking-wide uppercase md:text-base">{cat.title}</h3>
-                <p className="mt-0.5 text-xs text-stone-500 md:text-sm">{cat.desc}</p>
+                <p className="mt-0.5 text-xs text-stone-500 md:text-sm">{cat.description}</p>
               </div>
             </Link>
           ))}

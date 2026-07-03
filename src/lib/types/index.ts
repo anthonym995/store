@@ -25,6 +25,6 @@ export interface Category {
   id: string | number;
   slug: string;
   title: string;
-  desc: string;
+  description: string;
   image: StaticImageData | string | any;
 }

@@ -1,21 +1,17 @@
 'use client';
 
 import { use, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useProduct, useUpdateProduct } from '@/features/products/useProducts';
 import { useCategories } from '@/features/categories/useCategories';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ProductUpdateSchema } from '@/features/products/product.validation';
+import { TextField, TextAreaField, SelectField } from '@/components/form';
+import { z } from 'zod';
 
-interface ProductFormValues {
-  productName: string;
-  description: string;
-  price: number;
-  unit: string;
-  dimensions: string;
-  category: string;
-  material: string;
-}
+type ProductFormValues = z.infer<typeof ProductUpdateSchema>;
 
 export default function EditProduct({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
@@ -26,14 +22,10 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
   const { data: categories = [] } = useCategories();
   const router = useRouter();
 
-  const {
-    control,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<ProductFormValues>({
+  const methods = useForm<ProductFormValues>({
+    resolver: zodResolver(ProductUpdateSchema),
     defaultValues: {
-      productName: '',
+      name: '',
       description: '',
       price: 0,
       unit: 'Piece',
@@ -43,10 +35,12 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
     },
   });
 
+  const { handleSubmit, reset } = methods;
+
   useEffect(() => {
     if (product) {
       reset({
-        productName: product.name,
+        name: product.name,
         description: product.description,
         price: product.price, // product.price is now a number
         unit: product.unit || 'Piece',
@@ -62,14 +56,10 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
       await updateProduct({
         id: productId,
         data: {
-          name: data.productName,
+          name: data.name,
           description: data.description,
           price: Number(data.price),
           category: data.category,
-          categorySlug: data.category
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, '-')
-            .replace(/(^-|-$)+/g, ''),
           material: data.material,
           unit: data.unit as any,
           dimensions: data.dimensions,
@@ -96,10 +86,11 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
   const newLocal =
     'from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100';
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="animate-in fade-in slide-in-from-bottom-4 mx-auto max-w-5xl space-y-8 pb-12 duration-700"
-    >
+    <FormProvider {...methods}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="animate-in fade-in slide-in-from-bottom-4 mx-auto max-w-5xl space-y-8 pb-12 duration-700"
+      >
       {/* Top Bar */}
       <div className="flex flex-col gap-4 px-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -162,78 +153,30 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
             </h3>
 
             <div className="relative space-y-6">
-              <div>
-                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
-                  Product Name
-                </label>
-                <Controller
-                  name="productName"
-                  control={control}
-                  rules={{ required: 'Product name is required' }}
-                  render={({ field }) => (
-                    <input
-                      {...field}
-                      type="text"
-                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
-                      placeholder="e.g. 30cm Kalash Design Kuthu Vilakku"
-                    />
-                  )}
-                />
-              </div>
+              <TextField
+                name="name"
+                label="PRODUCT NAME"
+                placeholder="e.g. 30cm Kalash Design Kuthu Vilakku"
+              />
 
-              <div>
-                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
-                  Material Selection
-                </label>
-                <Controller
-                  name="material"
-                  control={control}
-                  render={({ field }) => (
-                    <input
-                      {...field}
-                      type="text"
-                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
-                      placeholder="e.g. Grade-A Cast Brass"
-                    />
-                  )}
-                />
-              </div>
+              <TextField
+                name="material"
+                label="MATERIAL SELECTION"
+                placeholder="e.g. Grade-A Cast Brass"
+              />
 
-              <div>
-                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
-                  Dimensions & Weight
-                </label>
-                <Controller
-                  name="dimensions"
-                  control={control}
-                  render={({ field }) => (
-                    <input
-                      {...field}
-                      type="text"
-                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
-                      placeholder="e.g. 10 x 30 x 15 cm | 2kg"
-                    />
-                  )}
-                />
-              </div>
+              <TextField
+                name="dimensions"
+                label="DIMENSIONS & WEIGHT"
+                placeholder="e.g. 10 x 30 x 15 cm | 2kg"
+              />
 
-              <div>
-                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
-                  Description
-                </label>
-                <Controller
-                  name="description"
-                  control={control}
-                  render={({ field }) => (
-                    <textarea
-                      {...field}
-                      rows={5}
-                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full resize-y rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
-                      placeholder="Enter premium material details and craftsmanship description..."
-                    />
-                  )}
-                />
-              </div>
+              <TextAreaField
+                name="description"
+                label="DESCRIPTION"
+                placeholder="Enter premium material details and craftsmanship description..."
+                rows={5}
+              />
             </div>
           </div>
 
@@ -254,50 +197,24 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
             </h3>
 
             <div className="relative grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <div>
-                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
-                  Price (₹)
-                </label>
-                <div className="relative">
-                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-5">
-                    <span className="font-display text-lg font-bold text-gray-400">₹</span>
-                  </div>
-                  <Controller
-                    name="price"
-                    control={control}
-                    render={({ field }) => (
-                      <input
-                        {...field}
-                        type="number"
-                        className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 py-4 pr-5 pl-10 text-lg font-bold transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
-                        placeholder="0.00"
-                      />
-                    )}
-                  />
-                </div>
-              </div>
+              <TextField
+                name="price"
+                label="PRICE (₹)"
+                type="number"
+                placeholder="0.00"
+              />
 
-              <div>
-                <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
-                  Pricing Unit
-                </label>
-                <Controller
-                  name="unit"
-                  control={control}
-                  render={({ field }) => (
-                    <select
-                      {...field}
-                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
-                    >
-                      <option value="Piece">Piece</option>
-                      <option value="kg">kg</option>
-                      <option value="Box">Box</option>
-                      <option value="Gram">Gram</option>
-                      <option value="Meter">Meter</option>
-                    </select>
-                  )}
-                />
-              </div>
+              <SelectField
+                name="unit"
+                label="PRICING UNIT"
+                options={[
+                  { label: 'Piece', value: 'Piece' },
+                  { label: 'kg', value: 'kg' },
+                  { label: 'Box', value: 'Box' },
+                  { label: 'Gram', value: 'Gram' },
+                  { label: 'Meter', value: 'Meter' },
+                ]}
+              />
             </div>
           </div>
         </div>
@@ -329,39 +246,19 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
             <h3 className="font-display text-navy mb-6 text-xl font-bold">Organization</h3>
 
             <div>
-              <label className="mb-2 block text-xs font-bold tracking-widest text-gray-500 uppercase">
-                Select Category
-              </label>
-              <div className="relative">
-                <Controller
-                  name="category"
-                  control={control}
-                  render={({ field }) => (
-                    <select
-                      {...field}
-                      className="text-navy focus:border-maroon focus:ring-maroon/10 w-full appearance-none rounded-2xl border border-gray-200 bg-gray-50/50 px-5 py-4 text-sm font-medium transition-all outline-none hover:border-gray-300 focus:bg-white focus:ring-4"
-                    >
-                      <option value="" disabled>
-                        Choose a category...
-                      </option>
-                      {categories.map((cat) => (
-                        <option key={cat.id} value={cat.title}>
-                          {cat.title}
-                        </option>
-                      ))}
-                    </select>
-                  )}
-                />
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-gray-400">
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-              </div>
+              <SelectField
+                name="category"
+                label="SELECT CATEGORY"
+                options={categories.map((cat) => ({
+                  label: cat.title,
+                  value: cat.title,
+                }))}
+              />
             </div>
           </div>
         </div>
       </div>
-    </form>
+      </form>
+    </FormProvider>
   );
 }

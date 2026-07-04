@@ -7,7 +7,7 @@ import { useCreateProduct } from '@/features/products/useProducts';
 import { useCategories } from '@/features/categories/useCategories';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ProductCreateSchema } from '@/features/products/product.validation';
-import { TextField, TextAreaField, SelectField } from '@/components/form';
+import { TextField, TextAreaField, SelectField, Button } from '@/components/form';
 import { z } from 'zod';
 
 type ProductFormValues = z.infer<typeof ProductCreateSchema>;
@@ -23,6 +23,8 @@ export default function AddProduct() {
       dimensions: '',
       category: '',
       material: '',
+      metaTitle: '',
+      metaDescription: '',
     },
   });
 
@@ -45,6 +47,8 @@ export default function AddProduct() {
         rating: 0,
         reviews: 0,
         image: '/products/kuthu.jpg', // Placeholder since there's no image upload yet
+        metaTitle: data.metaTitle,
+        metaDescription: data.metaDescription,
       });
       router.push('/admin/products');
     } catch (error) {
@@ -57,51 +61,22 @@ export default function AddProduct() {
     <FormProvider {...methods}>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="animate-in fade-in slide-in-from-bottom-4 mx-auto max-w-5xl space-y-8 pb-12 duration-700"
+        className="animate-in fade-in slide-in-from-bottom-4 mx-auto max-w-5xl space-y-6 pb-8 duration-700"
       >
         {/* Top Bar */}
         <div className="flex flex-col gap-4 px-2 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <div className="mb-2 flex items-center gap-2 text-sm font-bold tracking-widest text-gray-400 uppercase">
-              <Link href="/admin/products" className="hover:text-navy transition-colors">
-                Catalog
-              </Link>
-              <span>/</span>
-              <span className="text-maroon">Add</span>
-            </div>
-            <h2 className="font-display text-navy text-4xl font-bold tracking-tight">New Masterpiece</h2>
-            <p className="mt-2 text-sm font-medium text-gray-500">Add a new brassware artifact to the catalog.</p>
-          </div>
+          <h2 className="font-display text-navy text-3xl font-bold tracking-tight">Add New Product</h2>
 
-          <button
-            type="submit"
-            disabled={isPending}
-            className="group bg-navy hover:bg-navy-light focus:ring-navy/20 relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl px-8 py-4 text-sm font-bold tracking-wider text-white shadow-lg transition-all outline-none hover:-translate-y-1 hover:shadow-xl focus:ring-4 disabled:opacity-50 disabled:hover:translate-y-0"
-          >
-            <div className="from-maroon/40 absolute inset-0 bg-linear-to-r to-transparent opacity-0 transition-opacity group-hover:opacity-100"></div>
-            {isPending ? (
-              <svg className="relative z-10 h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-            ) : (
-              <svg className="relative z-10 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-              </svg>
-            )}
-            <span className="relative z-10 uppercase">{isPending ? 'Saving...' : 'Save Product'}</span>
-          </button>
+          <Button type="submit" isLoading={isPending} className="w-full sm:w-auto">
+            {isPending ? 'Saving...' : 'Save Product'}
+          </Button>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Main Info Column */}
-          <div className="space-y-8 md:col-span-2">
+          <div className="space-y-6 lg:col-span-2">
             {/* General Information Bento Box */}
-            <div className="relative overflow-hidden rounded-4xl border border-gray-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <div className="relative overflow-hidden rounded-4xl border border-gray-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
               <div className="bg-cream-dark/30 pointer-events-none absolute -top-20 -left-20 h-48 w-48 rounded-full blur-2xl"></div>
 
               <h3 className="font-display text-navy mb-8 flex items-center gap-3 text-xl font-bold">
@@ -135,7 +110,7 @@ export default function AddProduct() {
             </div>
 
             {/* Pricing Bento Box */}
-            <div className="relative overflow-hidden rounded-4xl border border-gray-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <div className="relative overflow-hidden rounded-4xl border border-gray-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
               <h3 className="font-display text-navy mb-8 flex items-center gap-3 text-xl font-bold">
                 <span className="text-gold-dark flex h-8 w-8 items-center justify-center rounded-xl bg-gray-50">
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -166,12 +141,43 @@ export default function AddProduct() {
                 />
               </div>
             </div>
+
+            {/* SEO Details Bento Box */}
+            <div className="relative overflow-hidden rounded-4xl border border-gray-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+              <h3 className="font-display text-navy mb-6 flex items-center gap-3 text-lg font-bold">
+                <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gray-50 text-blue-600">
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                    />
+                  </svg>
+                </span>
+                Search Engine Optimization
+              </h3>
+
+              <div className="relative space-y-6">
+                <TextField
+                  name="metaTitle"
+                  label="META TITLE"
+                  placeholder="e.g. Premium Brass Kuthu Vilakku - Buy Online"
+                />
+                <TextAreaField
+                  name="metaDescription"
+                  label="META DESCRIPTION"
+                  placeholder="Enter a compelling description for search engine results..."
+                  rows={3}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Sidebar Column */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Image Upload Bento Box */}
-            <div className="rounded-4xl border border-gray-100 bg-white p-8 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <div className="rounded-4xl border border-gray-100 bg-white p-6 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
               <h3 className="font-display text-navy mb-6 text-left text-xl font-bold">Product Image</h3>
 
               <div className="group hover:border-maroon/50 hover:bg-maroon/5 flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50/50 p-10 transition-all">
@@ -191,7 +197,7 @@ export default function AddProduct() {
             </div>
 
             {/* Category Bento Box */}
-            <div className="rounded-4xl border border-gray-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <div className="rounded-4xl border border-gray-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
               <h3 className="font-display text-navy mb-6 text-xl font-bold">Organization</h3>
 
               <div>

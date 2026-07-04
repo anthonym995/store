@@ -14,6 +14,8 @@ export const ProductSchema = z.object({
   rating: z.number().min(0).max(5).optional(),
   reviews: z.number().int().min(0).optional(),
   image: z.any().optional(), // Can be string or local object
+  metaTitle: z.string().optional(),
+  metaDescription: z.string().optional(),
 });
 
 export const ProductCreateSchema = ProductSchema.omit({ id: true, slug: true, categorySlug: true });

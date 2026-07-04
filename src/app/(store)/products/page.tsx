@@ -12,7 +12,9 @@ function ProductsContent() {
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  const { data: activeProducts = [], isLoading: productsLoading } = useProducts();
+  const { data: activeProducts = [], isLoading: productsLoading } = useProducts(
+    selectedCategory === 'all' ? undefined : selectedCategory
+  );
   const { data: categories = [], isLoading: categoriesLoading } = useCategories();
 
   const filterCategories = useMemo(() => {
@@ -28,12 +30,9 @@ function ProductsContent() {
       // If no category in URL, default to All
       setSelectedCategory('all');
     }
-  }, [searchParams]);
+  }, [searchParams, filterCategories]);
 
-  const filteredProducts = useMemo(() => {
-    if (selectedCategory === 'all') return activeProducts;
-    return activeProducts.filter((p) => p.categorySlug === selectedCategory);
-  }, [selectedCategory, activeProducts]);
+  // Remove the old useMemo since activeProducts is now pre-filtered by the backend
 
   return (
     <div className="min-h-screen bg-[#fdfbf7] py-12">
@@ -70,9 +69,8 @@ function ProductsContent() {
             <ProductSkeleton count={8} />
           ) : (
             <>
-              {filteredProducts.map((product) => (
+              {activeProducts.map((product) => (
                 <Link
-                 
                   href={`/products/${product.slug}`}
                   key={product.id}
                   className="group border-gold/30 hover:border-gold flex flex-col items-center border bg-white shadow-sm transition-all duration-300 hover:shadow-xl"

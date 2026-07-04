@@ -1,5 +1,5 @@
 import { apiClient } from './axios';
-import { Product, Category } from '@/lib/types';
+import { Product, Category, Inquiry } from '@/lib/types';
 
 // ==========================================
 // PRODUCTS API
@@ -13,7 +13,7 @@ export const fetchProducts = async (category?: string): Promise<Product[]> => {
 };
 
 export const fetchProductById = async (id: string): Promise<Product> => {
-  const response = await apiClient.get(`/product/${id}`);
+  const response = await apiClient.get(`/catalog/${id}`);
   return response.data;
 };
 
@@ -28,12 +28,12 @@ export const createProduct = async (data: Partial<Product>): Promise<Product> =>
 };
 
 export const updateProduct = async (id: string, data: Partial<Product>): Promise<Product> => {
-  const response = await apiClient.put(`/product/${id}`, data);
+  const response = await apiClient.put(`/catalog/${id}`, data);
   return response.data;
 };
 
 export const deleteProduct = async (id: string): Promise<void> => {
-  await apiClient.delete(`/product/${id}`);
+  await apiClient.delete(`/catalog/${id}`);
 };
 
 // ==========================================
@@ -63,3 +63,17 @@ export const updateCategory = async (id: string, data: Partial<Category>): Promi
 export const deleteCategory = async (id: string): Promise<void> => {
   await apiClient.delete(`/category/${id}`);
 };
+
+// ==========================================
+// INQUIRIES API
+// ==========================================
+
+export const fetchInquiries = async (): Promise<Inquiry[]> => {
+  const response = await apiClient.get('/inquiries');
+  return response.data;
+};
+
+export const deleteInquiry = async (id: string): Promise<void> => {
+  await apiClient.delete(`/inquiries/${id}`);
+};
+

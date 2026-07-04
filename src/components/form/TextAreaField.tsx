@@ -22,8 +22,8 @@ export const TextAreaField: React.FC<TextAreaFieldProps> = ({ name, label, class
       <textarea
         id={name}
         {...register(name)}
-        className={`min-h-[100px] rounded-lg border px-4 py-2.5 text-sm shadow-sm transition-all focus:ring-2 focus:ring-blue-500 focus:outline-none ${
-          error ? 'border-red-500 ring-1 ring-red-500' : 'border-gray-300 hover:border-gray-400'
+        className={`w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm transition-all focus:border-navy focus:ring-1 focus:ring-navy focus:outline-none disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 min-h-[100px] ${
+          error ? 'border-brand-red focus:border-brand-red focus:ring-brand-red' : ''
         } ${className || ''}`}
         {...props}
       />

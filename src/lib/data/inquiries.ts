@@ -1,0 +1,41 @@
+import { Inquiry } from '@/lib/types';
+
+export const mockInquiries: Inquiry[] = [
+  {
+    id: 'inq_1',
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    phone: '+1 234 567 8900',
+    subject: 'Shipping Timeline',
+    message: 'Do you ship internationally? Im interested in purchasing several brass artifacts for my new home.',
+    status: 'new',
+    createdAt: '2023-10-24T10:30:00Z',
+    updatedAt: '2023-10-24T10:30:00Z',
+  },
+  {
+    id: 'inq_2',
+    name: 'Jane Smith',
+    email: 'jane@company.com',
+    phone: '+1 987 654 3210',
+    subject: 'Bulk Quote Request',
+    message: 'I need 500 units of this item. What is the pricing and lead time for bulk production?',
+    productId: 'prod_837264',
+    productName: 'Premium Brass Valve',
+    status: 'inprogress',
+    adminNotes: 'Contacted supplier for bulk discount rates.',
+    assignedTo: 'admin_1',
+    createdAt: '2023-10-22T14:15:00Z',
+    updatedAt: '2023-10-23T09:00:00Z',
+  },
+  {
+    id: 'inq_3',
+    name: 'Venkat R.',
+    email: 'venkat.r@email.in',
+    subject: 'Custom Design',
+    message: 'Can you cast a specific 6ft statue if I provide the 3D model?',
+    status: 'resolved',
+    adminNotes: 'Confirmed we can do it. Sent custom quote.',
+    createdAt: '2023-10-20T08:45:00Z',
+    updatedAt: '2023-10-21T11:20:00Z',
+  },
+];

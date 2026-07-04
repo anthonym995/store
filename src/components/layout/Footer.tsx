@@ -55,22 +55,22 @@ export default function Footer() {
           <h4 className="font-display mb-6 text-sm font-bold tracking-widest text-white uppercase">Collections</h4>
           <ul className="flex flex-col gap-4 text-sm font-light text-stone-300">
             <li>
-              <Link href="/products?category=Kuthu+Vilakku" className="hover:text-gold transition-colors">
+              <Link href="/products?category=kuthu-vilakku" className="hover:text-gold transition-colors">
                 Kuthu Vilakku
               </Link>
             </li>
             <li>
-              <Link href="/products?category=Diya" className="hover:text-gold transition-colors">
+              <Link href="/products?category=diyas" className="hover:text-gold transition-colors">
                 Diyas
               </Link>
             </li>
             <li>
-              <Link href="/products?category=Vessel" className="hover:text-gold transition-colors">
+              <Link href="/products?category=sacred-vessels" className="hover:text-gold transition-colors">
                 Sacred Vessels
               </Link>
             </li>
             <li>
-              <Link href="/products?category=Designer" className="hover:text-gold transition-colors">
+              <Link href="/products?category=designer-items" className="hover:text-gold transition-colors">
                 Designer Items
               </Link>
             </li>

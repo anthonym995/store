@@ -17,6 +17,11 @@ export const fetchProductById = async (id: string): Promise<Product> => {
   return response.data;
 };
 
+export const fetchProductBySlug = async (slug: string): Promise<Product> => {
+  const response = await apiClient.get(`/product/${slug}`);
+  return response.data;
+};
+
 export const createProduct = async (data: Partial<Product>): Promise<Product> => {
   const response = await apiClient.post('/product', data);
   return response.data;

@@ -1,5 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchProducts, fetchProductById, createProduct, updateProduct, deleteProduct } from '@/lib/api';
+import {
+  fetchProducts,
+  fetchProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  fetchProductBySlug,
+} from '@/lib/api';
 import { Product } from '@/lib/types';
 
 // ==========================================
@@ -18,6 +25,14 @@ export const useProduct = (id: string) => {
     queryKey: ['product', id],
     queryFn: () => fetchProductById(id),
     enabled: !!id,
+  });
+};
+
+export const useProductBySlug = (slug: string) => {
+  return useQuery({
+    queryKey: ['product', 'slug', slug],
+    queryFn: () => fetchProductBySlug(slug),
+    enabled: !!slug,
   });
 };
 

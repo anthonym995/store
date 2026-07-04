@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { productController } from '@/features/products/product.controller';
 
+export const revalidate = 3600; // Cache this API route for 1 hour
+
 // GET ALL PRODUCTS
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { categoryController } from '@/features/categories/category.controller';
 
+export const revalidate = 3600; // Cache this API route for 1 hour
+
 // GET ALL CATEGORIES
 export async function GET(request: NextRequest) {
   const categories = await categoryController.getAllCategories();

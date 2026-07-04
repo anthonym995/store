@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { productController } from '@/features/products/product.controller';
 
+export const revalidate = 3600; // Cache this API route for 1 hour
+
 // GET A SINGLE PRODUCT BY SLUG
 export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;

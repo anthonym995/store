@@ -3,15 +3,15 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from '@/components/ui/Link';
-import { useProduct } from '@/features/products/useProducts';
+import { useProductBySlug } from '@/features/products/useProducts';
 import { notFound } from 'next/navigation';
 
 // Tiny warm-cream pixel — gives Next.js something to blur-up from
 const BLUR_DATA_URL =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=';
 
-export default function ProductDetailsClient({ id }: { id: string }) {
-  const { data: product, isLoading } = useProduct(id);
+export default function ProductDetailsClient({ slug }: { slug: string }) {
+  const { data: product, isLoading } = useProductBySlug(slug);
   const [activeTab, setActiveTab] = useState<'description' | 'specifications'>('description');
 
   if (isLoading) {
@@ -50,7 +50,6 @@ export default function ProductDetailsClient({ id }: { id: string }) {
       <div className="container mx-auto max-w-6xl">
         <div className="mb-8">
           <Link
-           
             href="/products"
             className="hover:text-gold text-brand-red inline-flex items-center gap-2 text-sm font-bold tracking-wide uppercase transition-colors"
           >

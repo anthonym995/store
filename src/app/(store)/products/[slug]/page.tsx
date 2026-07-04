@@ -1,12 +1,18 @@
-import { products } from '@/lib/data/products';
 import { Metadata } from 'next';
 import ProductDetailsClient from '@/components/sections/ProductDetailsClient';
+import { fetchProductBySlug } from '@/lib/api';
 
 export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
-  const product = products.find((p) => p.slug === resolvedParams.slug);
+
+  let product = null;
+  try {
+    product = await fetchProductBySlug(resolvedParams.slug);
+  } catch (error) {
+    product = null;
+  }
 
   if (!product) {
     return {
@@ -38,5 +44,5 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
 
-  return <ProductDetailsClient id={resolvedParams.slug} />;
+  return <ProductDetailsClient slug={resolvedParams.slug} />;
 }

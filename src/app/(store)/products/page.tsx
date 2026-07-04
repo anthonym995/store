@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect, Suspense } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { useSearchParams } from 'next/navigation';
 import { useProducts } from '@/features/products/useProducts';
 import { useCategories } from '@/features/categories/useCategories';
@@ -72,6 +72,7 @@ function ProductsContent() {
             <>
               {filteredProducts.map((product) => (
                 <Link
+                 
                   href={`/products/${product.slug}`}
                   key={product.id}
                   className="group border-gold/30 hover:border-gold flex flex-col items-center border bg-white shadow-sm transition-all duration-300 hover:shadow-xl"

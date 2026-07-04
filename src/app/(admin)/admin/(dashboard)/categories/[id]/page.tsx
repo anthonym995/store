@@ -2,7 +2,7 @@
 
 import { use, useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { useRouter } from 'next/navigation';
 import { useCategory, useUpdateCategory } from '@/features/categories/useCategories';
 import { zodResolver } from '@hookform/resolvers/zod';

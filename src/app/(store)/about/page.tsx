@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 
 export const metadata: Metadata = {
   title: 'About Us | E.V. Brassware Metal Work',

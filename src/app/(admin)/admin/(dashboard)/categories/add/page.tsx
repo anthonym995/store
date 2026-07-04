@@ -1,7 +1,7 @@
 'use client';
 
 import { useForm, FormProvider } from 'react-hook-form';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { useRouter } from 'next/navigation';
 import { useCreateCategory } from '@/features/categories/useCategories';
 import { zodResolver } from '@hookform/resolvers/zod';

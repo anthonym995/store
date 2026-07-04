@@ -1,7 +1,7 @@
 'use client';
 
 import { useForm, FormProvider } from 'react-hook-form';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { useRouter } from 'next/navigation';
 import { useCreateProduct } from '@/features/products/useProducts';
 import { useCategories } from '@/features/categories/useCategories';

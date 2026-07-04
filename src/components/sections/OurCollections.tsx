@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { categories } from '@/lib/data/categories';
 
 export default function OurCollections() {

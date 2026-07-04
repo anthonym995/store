@@ -1,5 +1,5 @@
 import { products } from '@/lib/data/products';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 
 export default function AdminOverview() {
   return (

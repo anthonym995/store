@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
+import Link from '@/components/ui/Link';
 import { useProducts } from '@/features/products/useProducts';
 import { ProductSkeleton } from '@/components/ui/ProductSkeleton';
 

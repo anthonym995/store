@@ -6,6 +6,10 @@ import Link from 'next/link';
 import { useProduct } from '@/features/products/useProducts';
 import { notFound } from 'next/navigation';
 
+// Tiny warm-cream pixel — gives Next.js something to blur-up from
+const BLUR_DATA_URL =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=';
+
 export default function ProductDetailsClient({ id }: { id: string }) {
   const { data: product, isLoading } = useProduct(id);
   const [activeTab, setActiveTab] = useState<'description' | 'specifications'>('description');
@@ -62,7 +66,9 @@ export default function ProductDetailsClient({ id }: { id: string }) {
                   src={product.image || '/logo.png'}
                   alt={product.name}
                   fill
-                  unoptimized
+                  priority
+                  placeholder="blur"
+                  blurDataURL={BLUR_DATA_URL}
                   className="object-contain mix-blend-multiply"
                 />
               </div>

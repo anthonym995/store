@@ -28,7 +28,6 @@ export async function loginAdmin(credentials: any) {
   const token = await signJwt({ email, role: 'admin' }, '1d');
 
   return {
-    success: true,
     message: 'Login successful',
     data: {
       token,

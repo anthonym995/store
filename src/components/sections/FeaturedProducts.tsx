@@ -6,6 +6,10 @@ import { useProducts } from '@/features/products/useProducts';
 import { ProductSkeleton } from '@/components/ui/ProductSkeleton';
 import title from '@/assets/title.png';
 
+// Tiny warm-cream pixel — gives Next.js something to blur-up from
+const BLUR_DATA_URL =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=';
+
 export default function FeaturedProducts() {
   const { data: products = [], isLoading } = useProducts();
 
@@ -54,8 +58,9 @@ export default function FeaturedProducts() {
                     src={product.image || '/images/WhatsApp Image 2026-04-25 at 12.59.04 PM.jpeg'}
                     alt={product.name}
                     fill
-                    unoptimized
-                    className="absolute inset-0 object-contain p-6 mix-blend-multiply transition-transform duration-700 group-hover:scale-110"
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
+                    className="object-contain p-6 mix-blend-multiply transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
                 <div className="border-cream-dark flex grow flex-col items-center border-t p-6 text-center">

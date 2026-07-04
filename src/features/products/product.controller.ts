@@ -39,7 +39,15 @@ export const productController = {
 
   // GET PRODUCT BY SLUG
   getProductBySlug: async (slug: string): Promise<Product | null> => {
-    return productController.getProductById(slug);
+    try {
+      const snapshot = await db.collection('products').where('slug', '==', slug).limit(1).get();
+      if (snapshot.empty) return null;
+      const doc = snapshot.docs[0];
+      return { id: doc.id, ...doc.data() } as Product;
+    } catch (error) {
+      console.error('Error fetching product by slug', error);
+      return null;
+    }
   },
 
   // CREATE PRODUCT
@@ -55,9 +63,9 @@ export const productController = {
       // Generate base slug
       let slug = generateSlug(parsedData.name);
 
-      // Check if slug exists
-      const existingDoc = await db.collection('products').doc(slug).get();
-      if (existingDoc.exists) {
+      // Check if slug already exists as a field in any document
+      const existingSnap = await db.collection('products').where('slug', '==', slug).limit(1).get();
+      if (!existingSnap.empty) {
         // If it exists, append a short random string
         const randomStr = generateShortId();
         slug = `${slug}-${randomStr}`;
@@ -66,8 +74,8 @@ export const productController = {
       // Ensure the correct slug is saved in the document data
       const finalProductData = { ...parsedData, slug, categorySlug: generateSlug(parsedData.category) };
 
-      const docRef = db.collection('products').doc(slug);
-      await docRef.set(finalProductData);
+      // Use auto-generated Firebase ID; slug is stored as an indexed field
+      const docRef = await db.collection('products').add(finalProductData);
 
       return { id: docRef.id, ...finalProductData } as Product;
     } catch (error) {

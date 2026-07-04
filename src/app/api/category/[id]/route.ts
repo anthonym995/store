@@ -7,10 +7,10 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   const category = await categoryController.getCategoryById(id);
 
   if (!category) {
-    return NextResponse.json({ success: false, error: 'Category not found' }, { status: 404 });
+    return NextResponse.json({ error: 'Category not found' }, { status: 404 });
   }
 
-  return NextResponse.json({ success: true, data: category }, { status: 200 });
+  return NextResponse.json(category, { status: 200 });
 }
 
 // UPDATE A CATEGORY
@@ -21,9 +21,9 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
 
     const updatedCategory = await categoryController.updateCategory(id, body);
 
-    return NextResponse.json({ success: true, data: updatedCategory }, { status: 200 });
+    return NextResponse.json(updatedCategory, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ success: false, error: 'Update failed' }, { status: 500 });
+    return NextResponse.json({ error: 'Update failed' }, { status: 500 });
   }
 }
 
@@ -33,5 +33,5 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
 
   await categoryController.deleteCategory(id);
 
-  return NextResponse.json({ success: true, message: `Deleted category ID: ${id}` }, { status: 200 });
+  return NextResponse.json({ message: `Deleted category ID: ${id}` }, { status: 200 });
 }

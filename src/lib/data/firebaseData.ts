@@ -16,10 +16,7 @@ const generateSlug = (text: string) => {
 export const firebaseCategories = categories.map((cat) => {
   const { id, image, ...rest } = cat;
 
-  return {
-    ...rest,
-    slug: generateSlug(rest.title),
-  };
+  return { ...rest };
 });
 
 // 2. Prepare Products for Firestore
@@ -29,10 +26,5 @@ export const firebaseCategories = categories.map((cat) => {
 export const firebaseProducts = products.map((prod) => {
   const { id, image, ...rest } = prod;
 
-  return {
-    ...rest,
-    slug: generateSlug(rest.name),
-    categorySlug: generateSlug(rest.category),
-    image: `/products/product_${id}.png`,
-  };
+  return { ...rest, image: `/products/product_${id}.png` };
 });

@@ -9,11 +9,11 @@ export async function POST(request: Request) {
     const result = await loginAdmin(body);
 
     if (result.error) {
-      return NextResponse.json({ success: false, message: result.error }, { status: result.status });
+      return NextResponse.json({ message: result.error }, { status: result.status });
     }
 
     return NextResponse.json(result, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ success: false, message: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
   }
 }

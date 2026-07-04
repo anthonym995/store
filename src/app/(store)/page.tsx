@@ -1,6 +1,7 @@
 import Hero from '@/components/sections/Hero';
 import OurCollections from '@/components/sections/OurCollections';
 import FeaturedProducts from '@/components/sections/FeaturedProducts';
+import WhyChooseUs from '@/components/sections/WhyChooseUs';
 import ContactCTA from '@/components/sections/ContactCTA';
 import FeaturedCollections from '@/components/sections/FeaturedCollections';
 import { Metadata } from 'next';
@@ -23,6 +24,7 @@ export default function Home() {
       <Hero />
       <OurCollections />
       <FeaturedProducts />
+      <WhyChooseUs />
       <FeaturedCollections />
       <ContactCTA />
     </>

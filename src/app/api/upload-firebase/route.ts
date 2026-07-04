@@ -22,13 +22,13 @@ export async function GET() {
 
     // 3. Upload new categories
     for (const cat of firebaseCategories) {
-      const docRef = categoriesRef.doc(cat.slug); // Use slug as ID
+      const docRef = categoriesRef.doc(); // Auto-generated Firebase ID; slug is just an indexed field
       batch.set(docRef, cat);
     }
 
     // 4. Upload new products
     for (const prod of firebaseProducts) {
-      const docRef = productsRef.doc(prod.slug); // Use slug as ID
+      const docRef = productsRef.doc(); // Auto-generated Firebase ID; slug is just an indexed field
       batch.set(docRef, prod);
     }
 

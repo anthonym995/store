@@ -1,11 +1,9 @@
-import { product19, product22, product23 } from '@/assets';
-
 const FeacturedCollections = [
   {
     id: 1,
     title: 'KUTHU VILAKKU',
     subtitle: 'Traditional brass lamps for timeless warmth.',
-    src: product19,
+    src: '/collection/product_19-1.png',
     tag: 'TOP SELLING',
     // Occupies 2 columns horizontally, spans 2 vertical slots on desktop
     cardClass: 'md:col-span-2 md:row-span-2 h-[550px] md:h-[640px]',
@@ -17,7 +15,7 @@ const FeacturedCollections = [
     id: 2,
     title: 'ETERNAL GLOW',
     subtitle: 'Timeless light settings crafted for sacred spaces.',
-    src: product23,
+    src: '/collection/product_23-1.png',
     tag: 'FESTIVE SPECIAL',
     // Splits the final row cleanly in half (2 out of 4 columns)
     cardClass: 'md:col-span-2 h-[280px] md:h-[310px]',
@@ -29,7 +27,7 @@ const FeacturedCollections = [
     id: 3,
     title: 'SACRED VESSELS',
     subtitle: 'Premium Kalash & Pooja decorative items.',
-    src: product22,
+    src: '/collection/product_22-1.png',
     tag: 'POOJA ESSENTIALS',
     // Fills the remainder of row 2
     cardClass: 'md:col-span-2 h-[280px] md:h-[307px]',

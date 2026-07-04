@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useProducts } from '@/features/products/useProducts';
 import { ProductSkeleton } from '@/components/ui/ProductSkeleton';
-import title from '@/assets/title.png';
 
 // Tiny warm-cream pixel — gives Next.js something to blur-up from
 const BLUR_DATA_URL =
@@ -34,7 +33,13 @@ export default function FeaturedProducts() {
             {/* Gradient mask */}
             <div className="absolute inset-0 z-10 w-24 bg-linear-to-r from-[#0b0605] to-transparent"></div>
 
-            <Image src={title} alt="The Latest in Luxury" fill className="object-cover object-right" priority />
+            <Image
+              src="/banners/banner.png"
+              alt="The Latest in Luxury"
+              fill
+              className="object-cover object-right"
+              priority
+            />
           </div>
         </div>
       </div>

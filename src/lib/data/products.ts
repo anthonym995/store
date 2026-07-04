@@ -1,32 +1,4 @@
 import { Product } from '@/lib/types';
-import {
-  image1,
-  image2,
-  image3,
-  image4,
-  image5,
-  image6,
-  image7,
-  image8,
-  image9,
-  image10,
-  image11,
-  image12,
-  image13,
-  image14,
-  image15,
-  image16,
-  image17,
-  image18,
-  image19,
-  image20,
-  image21,
-  image22,
-  image23,
-  image24,
-  image25,
-  image26,
-} from '@/assets';
 
 export const products: Product[] = [
   {
@@ -43,7 +15,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.8,
     reviews: 24,
-    image: image1,
+    image: '/products/product_1.png',
   },
   {
     id: 2,
@@ -59,7 +31,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.9,
     reviews: 18,
-    image: image2,
+    image: '/products/product_2.png',
   },
   {
     id: 3,
@@ -76,7 +48,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.7,
     reviews: 42,
-    image: image3,
+    image: '/products/product_3.png',
   },
   {
     id: 4,
@@ -93,7 +65,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.6,
     reviews: 12,
-    image: image4,
+    image: '/products/product_4.png',
   },
   {
     id: 5,
@@ -110,7 +82,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 5,
     reviews: 31,
-    image: image5,
+    image: '/products/product_5.png',
   },
   {
     id: 6,
@@ -126,7 +98,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image6,
+    image: '/products/product_6.png',
   },
   {
     id: 7,
@@ -142,7 +114,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.5,
     reviews: 9,
-    image: image7,
+    image: '/products/product_7.png',
   },
   {
     id: 8,
@@ -158,7 +130,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image8,
+    image: '/products/product_8.png',
   },
   {
     id: 9,
@@ -174,7 +146,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.5,
     reviews: 9,
-    image: image9,
+    image: '/products/product_9.png',
   },
   {
     id: 10,
@@ -190,7 +162,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.5,
     reviews: 9,
-    image: image10,
+    image: '/products/product_10.png',
   },
   {
     id: 11,
@@ -206,7 +178,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.5,
     reviews: 9,
-    image: image11,
+    image: '/products/product_11.png',
   },
   {
     id: 12,
@@ -222,7 +194,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.5,
     reviews: 9,
-    image: image12,
+    image: '/products/product_12.png',
   },
   {
     id: 13,
@@ -238,7 +210,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.5,
     reviews: 9,
-    image: image13,
+    image: '/products/product_13.png',
   },
   {
     id: 14,
@@ -254,7 +226,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.5,
     reviews: 9,
-    image: image14,
+    image: '/products/product_14.png',
   },
   {
     id: 15,
@@ -271,7 +243,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image15,
+    image: '/products/product_15.png',
   },
   {
     id: 16,
@@ -287,7 +259,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.5,
     reviews: 9,
-    image: image16,
+    image: '/products/product_16.png',
   },
   {
     id: 17,
@@ -303,7 +275,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image17,
+    image: '/products/product_17.png',
   },
   {
     id: 18,
@@ -319,7 +291,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.5,
     reviews: 9,
-    image: image18,
+    image: '/products/product_18.png',
   },
   {
     id: 19,
@@ -335,7 +307,7 @@ export const products: Product[] = [
     unit: 'kg',
     rating: 4.5,
     reviews: 9,
-    image: image19,
+    image: '/products/product_19.png',
   },
   {
     id: 20,
@@ -351,7 +323,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image20,
+    image: '/products/product_20.png',
   },
   {
     id: 21,
@@ -367,7 +339,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image21,
+    image: '/products/product_21.png',
   },
   {
     id: 22,
@@ -383,7 +355,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image22,
+    image: '/products/product_22.png',
   },
   {
     id: 23,
@@ -400,7 +372,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image23,
+    image: '/products/product_23.png',
   },
   {
     id: 24,
@@ -417,7 +389,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image24,
+    image: '/products/product_24.png',
   },
   {
     id: 25,
@@ -434,7 +406,7 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image25,
+    image: '/products/product_25.png',
   },
   {
     id: 26,
@@ -451,6 +423,6 @@ export const products: Product[] = [
     unit: 'Piece',
     rating: 4.5,
     reviews: 9,
-    image: image26,
+    image: '/products/product_26.png',
   },
 ];

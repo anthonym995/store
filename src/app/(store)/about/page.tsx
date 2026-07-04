@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { title } from '@/assets';
 
 export const metadata: Metadata = {
   title: 'About Us | E.V. Brassware Metal Work',
@@ -134,7 +133,7 @@ export default function AboutPage() {
       {/* ── 1. HERO ─────────────────────────────────────────────────────────── */}
       <section className="bg-maroon relative flex h-[60vh] min-h-[480px] w-full items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20">
-          <Image src={title} alt="E.V. Brassware Heritage" fill className="object-cover" priority />
+          <Image src="/banners/banner.png" alt="E.V. Brassware Heritage" fill className="object-cover" priority />
         </div>
         <div className="absolute inset-0 z-0 bg-linear-to-b from-transparent via-[#3b0a0a]/10 to-[#3b0a0a]/20" />
 

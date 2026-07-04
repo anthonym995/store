@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { hero } from '@/assets';
 
 export default function Hero() {
   return (
@@ -42,7 +41,7 @@ export default function Hero() {
           - Setting `min-h-[400px]` on mobile provides space for the image to display above/below.
         */}
         <div className="relative h-full min-h-[400px] w-full lg:w-1/2">
-          <Image src={hero} alt="Tall Brass Lamp" fill className="object-cover object-center" priority />
+          <Image src="/banners/hero.png" alt="Tall Brass Lamp" fill className="object-cover object-center" priority />
         </div>
       </div>
     </section>
